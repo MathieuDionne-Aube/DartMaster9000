@@ -1,0 +1,688 @@
+﻿<Window x:Class="DartMaster9000.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:DartMaster9000"
+        xmlns:ct="clr-namespace:DartMaster9000.CustomControls"
+        mc:Ignorable="d"
+        Title="MainWindow" Width="1920" Height="1080"  MinWidth="1920"  MinHeight="1080" WindowState="Maximized"
+        >
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+
+        <StackPanel Orientation="Horizontal">
+            <Grid Width="620" Background="Gray">
+                <StackPanel>
+                    <Label Margin="20,0,0,0">CURRENT GAME</Label>
+                    <StackPanel x:Name="spScore" Margin="20,20,20,20" Orientation="Horizontal">
+                        <StackPanel x:Name="spTurns">
+                            <Label>TURNS</Label>
+                            <Label Height="25">Total</Label>
+                        </StackPanel>
+                    </StackPanel>
+                    <Grid>
+                        <StackPanel  Orientation="Vertical">
+                            <Border Margin="0,20,0,0" HorizontalAlignment="Center" BorderBrush="Black" BorderThickness="1">
+                                <StackPanel Margin="50,10,50,10" HorizontalAlignment="Center">
+                                    <Label HorizontalAlignment="Center">Current player</Label>
+                                    <Label x:Name="lbCurrentPlayer" HorizontalAlignment="Center">Player 1</Label>
+                                    <StackPanel  Orientation="Horizontal">
+                                        <StackPanel>
+                                            <Label>Dart1</Label>
+                                            <ct:CustomTextbox x:Name="textbox1" Width="50" KeyUp="TextBox_KeyUp"/>
+                                        </StackPanel>
+                                        <StackPanel Margin="10,0,0,0">
+                                            <Label>Dart2</Label>
+                                            <ct:CustomTextbox x:Name="textbox2" IsEnabled="False" Width="50" KeyUp="TextBox_KeyUp_1"/>
+                                        </StackPanel>
+                                        <StackPanel Margin="10,0,0,0">
+                                            <Label>Dart3</Label>
+                                            <ct:CustomTextbox x:Name="textbox3" IsEnabled="False" Width="50" KeyUp="TextBox_KeyUp_2"/>
+                                        </StackPanel>
+                                    </StackPanel>
+                                    <Button Margin="0,10,0,0" Click="Button_Click_1">WINNER</Button>
+                                </StackPanel>
+                            </Border>
+
+                            <StackPanel Orientation="Vertical" x:Name="spStandoffs" HorizontalAlignment="Center" Margin="0,20,0,0">
+                                <Label>WINNING STANDOFFS</Label>
+                            </StackPanel>
+                        </StackPanel>
+                    </Grid>
+                </StackPanel>
+            </Grid>
+            <Grid MaxWidth="1300" Width="1300" Height="1080" HorizontalAlignment="Left" Margin="0,0,-9,0">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="145*"/>
+                    <ColumnDefinition Width="571*"/>
+                </Grid.ColumnDefinitions>
+                <Grid.Background>
+                    <ImageBrush  ImageSource="/Images/dart-board-11361989.jpg" Stretch="UniformToFill"/>
+                </Grid.Background>
+
+                <Path x:Name="section20"  Grid.Column="1" Data="M3.3583806,2.6869786 L57.962188,-2.2533316 113.94975,2.6869786 63.492366,339.33383 55.333425,339.33382 z" Fill="Transparent" HorizontalAlignment="Left" Height="323.667" Margin="334.899,183.833,0,0" Stretch="Fill" Stroke="transparent" VerticalAlignment="Top" Width="107.667"  MouseDown="section20_MouseDown" MouseLeave="OnMouseLeave" MouseEnter="OnHover"/>
+                <Path x:Name="section5"  Grid.Column="1" Data="M3.3583806,2.6869786 L57.962188,-2.2533316 113.94975,2.6869786 63.492366,339.33383 55.333425,339.33382 z" Fill="Transparent" HorizontalAlignment="Left" Height="323.667" Margin="273.899,194.499,0,0" Stretch="Fill" Stroke="transparent" VerticalAlignment="Top" Width="107.667" RenderTransformOrigin="0.5,0.5" MouseDown="section5_MouseDown" MouseLeave="OnMouseLeave" MouseEnter="OnHover">
+                    <Path.RenderTransform>
+                        <TransformGroup>
+                            <ScaleTransform/>
+                            <SkewTransform/>
+                            <RotateTransform Angle="-18.204"/>
+                            <TranslateTransform/>
+                        </TransformGroup>
+                    </Path.RenderTransform>
+                </Path>
+
+
+                <Path x:Name="secion12"  Grid.Column="1" Data="M3.3583806,2.6869786 L57.962188,-2.2533316 113.94975,2.6869786 63.492366,339.33383 55.333425,339.33382 z" Fill="Transparent" HorizontalAlignment="Left" Height="323.667" Margin="219.232,221.166,0,0" Stretch="Fill" Stroke="transparent" VerticalAlignment="Top" Width="107.667" RenderTransformOrigin="0.5,0.5" MouseDown="secion12_MouseDown" MouseLeave="OnMouseLeave" MouseEnter="OnHover">
+                    <Path.RenderTransform>
+                        <TransformGroup>
+                            <ScaleTransform/>
+                            <SkewTransform/>
+                            <RotateTransform Angle="-36.031"/>
+                            <TranslateTransform/>
+                        </TransformGroup>
+                    </Path.RenderTransform>
+                </Path>
+
+
+                <Path x:Name="section9"  Grid.Column="1" Data="M3.3583806,2.6869786 L57.962188,-2.2533316 113.94975,2.6869786 63.492366,339.33383 55.333425,339.33382 z" Fill="Transparent" HorizontalAlignment="Left" Height="323.667" Margin="175.898,264.499,0,0" Stretch="Fill" Stroke="transparent" VerticalAlignment="Top" Width="107.667" RenderTransformOrigin="0.5,0.5" MouseDown="section9_MouseDown" MouseLeave="OnMouseLeave" MouseEnter="OnHover">
+                    <Path.RenderTransform>
+                        <TransformGroup>
+                            <ScaleTransform/>
+                            <SkewTransform/>
+                            <RotateTransform Angle="-54.325"/>
+                            <TranslateTransform/>
+                        </TransformGroup>
+                    </Path.RenderTransform>
+                </Path>
+
+
+                <Path x:Name="section14"  Grid.Column="1" Data="M3.3583806,2.6869786 L57.962188,-2.2533316 113.94975,2.6869786 63.492366,339.33383 55.333425,339.33382 z" Fill="Transparent" HorizontalAlignment="Left" Height="323.667" Margin="149.233,318.499,0,0" Stretch="Fill" Stroke="transparent" VerticalAlignment="Top" Width="107.667" RenderTransformOrigin="0.5,0.5" MouseDown="section14_MouseDown" MouseLeave="OnMouseLeave" MouseEnter="OnHover">
+                    <Path.RenderTransform>
+                        <TransformGroup>
+                            <ScaleTransform/>
+                            <SkewTransform/>
+                            <RotateTransform Angle="-72.13"/>
+                            <TranslateTransform/>
+                        </TransformGroup>
+                    </Path.RenderTransform>
+                </Path>
+
+
+                <Path x:Name="section11"  Grid.Column="1" Data="M3.3583806,2.6869786 L57.962188,-2.2533316 113.94975,2.6869786 63.492366,339.33383 55.333425,339.33382 z" Fill="Transparent" HorizontalAlignment="Left" Height="323.667" Margin="139.9,379.832,0,0" Stretch="Fill" Stroke="transparent" VerticalAlignment="Top" Width="107.667" RenderTransformOrigin="0.5,0.5" MouseDown="section11_MouseDown" MouseLeave="OnMouseLeave" MouseEnter="OnHover">
+                    <Path.RenderTransform>
+                        <TransformGroup>
+                            <ScaleTransform/>
+                            <SkewTransform/>
+                            <RotateTransform Angle="-89.665"/>
+                            <TranslateTransform/>
+                        </TransformGroup>
+                    </Path.RenderTransform>
+                </Path>
+
+
+                <Path x:Name="section8"  Grid.Column="1" Data="M3.3583806,2.6869786 L57.962188,-2.2533316 113.94975,2.6869786 63.492366,339.33383 55.333425,339.33382 z" Fill="Transparent" HorizontalAlignment="Left" Height="323.667" Margin="148.567,439.166,0,0" Stretch="Fill" Stroke="transparent" VerticalAlignment="Top" Width="107.667" RenderTransformOrigin="0.5,0.5" MouseDown="section8_MouseDown" MouseLeave="OnMouseLeave" MouseEnter="OnHover">
+                    <Path.RenderTransform>
+                        <TransformGroup>
+                            <ScaleTransform/>
+                            <SkewTransform/>
+                            <RotateTransform Angle="-107.625"/>
+                            <TranslateTransform/>
+                        </TransformGroup>
+                    </Path.RenderTransform>
+                </Path>
+
+
+                <Path x:Name="section16"  Grid.Column="1" Data="M3.3583806,2.6869786 L57.962188,-2.2533316 113.94975,2.6869786 63.492366,339.33383 55.333425,339.33382 z" Fill="Transparent" HorizontalAlignment="Left" Height="323.667" Margin="176.567,494.499,0,0" Stretch="Fill" Stroke="transparent" VerticalAlignment="Top" Width="107.667" RenderTransformOrigin="0.5,0.5" MouseDown="section16_MouseDown" MouseLeave="OnMouseLeave" MouseEnter="OnHover">
+                    <Path.RenderTransform>
+                        <TransformGroup>
+                            <ScaleTransform/>
+                            <SkewTransform/>
+                            <RotateTransform Angle="-125.911"/>
+                            <TranslateTransform/>
+                        </TransformGroup>
+                    </Path.RenderTransform>
+                </Path>
+
+
+                <Path x:Name="section7"  Grid.Column="1" Data="M3.3583806,2.6869786 L57.962188,-2.2533316 113.94975,2.6869786 63.492366,339.33383 55.333425,339.33382 z" Fill="Transparent" HorizontalAlignment="Left" Height="323.667" Margin="219.234,537.165,0,0" Stretch="Fill" Stroke="transparent" VerticalAlignment="Top" Width="107.667" RenderTransformOrigin="0.5,0.5" MouseDown="section7_MouseDown" MouseLeave="OnMouseLeave" MouseEnter="OnHover">
+                    <Path.RenderTransform>
+                        <TransformGroup>
+                            <ScaleTransform/>
+                            <SkewTransform/>
+                            <RotateTransform Angle="-144.096"/>
+                            <TranslateTransform/>
+                        </TransformGroup>
+                    </Path.RenderTransform>
+                </Path>
+
+
+                <Path x:Name="section19"  Grid.Column="1" Data="M3.3583806,2.6869786 L57.962188,-2.2533316 113.94975,2.6869786 63.492366,339.33383 55.333425,339.33382 z" Fill="Transparent" HorizontalAlignment="Left" Height="323.667" Margin="275.901,563.165,0,0" Stretch="Fill" Stroke="transparent" VerticalAlignment="Top" Width="107.667" RenderTransformOrigin="0.5,0.5" MouseDown="section19_MouseDown" MouseLeave="OnMouseLeave" MouseEnter="OnHover">
+                    <Path.RenderTransform>
+                        <TransformGroup>
+                            <ScaleTransform/>
+                            <SkewTransform/>
+                            <RotateTransform Angle="-161.659"/>
+                            <TranslateTransform/>
+                        </TransformGroup>
+                    </Path.RenderTransform>
+                </Path>
+
+
+                <Path x:Name="section3"  Grid.Column="1" Data="M3.3583806,2.6869786 L57.962188,-2.2533316 113.94975,2.6869786 63.492366,339.33383 55.333425,339.33382 z" Fill="Transparent" HorizontalAlignment="Left" Height="323.667" Margin="334.567,573.832,0,0" Stretch="Fill" Stroke="transparent" VerticalAlignment="Top" Width="107.667" RenderTransformOrigin="0.5,0.5" MouseDown="section3_MouseDown" MouseLeave="OnMouseLeave" MouseEnter="OnHover">
+                    <Path.RenderTransform>
+                        <TransformGroup>
+                            <ScaleTransform/>
+                            <SkewTransform/>
+                            <RotateTransform Angle="-179.405"/>
+                            <TranslateTransform/>
+                        </TransformGroup>
+                    </Path.RenderTransform>
+                </Path>
+
+
+                <Path x:Name="section17"  Grid.Column="1" Data="M3.3583806,2.6869786 L57.962188,-2.2533316 113.94975,2.6869786 63.492366,339.33383 55.333425,339.33382 z" Fill="Transparent" HorizontalAlignment="Left" Height="323.667" Margin="586.232,194.332,0,0" Stretch="Fill" Stroke="transparent" VerticalAlignment="Top" Width="107.667" RenderTransformOrigin="0.5,0.5" MouseDown="section17_MouseDown" MouseLeave="OnMouseLeave" MouseEnter="OnHover">
+                    <Path.RenderTransform>
+                        <TransformGroup>
+                            <ScaleTransform/>
+                            <SkewTransform/>
+                            <RotateTransform Angle="-197.547"/>
+                            <TranslateTransform X="-190.061" Y="369.724"/>
+                        </TransformGroup>
+                    </Path.RenderTransform>
+                </Path>
+
+
+                <Path x:Name="section2"  Grid.Column="1" Data="M3.3583806,2.6869786 L57.962188,-2.2533316 113.94975,2.6869786 63.492366,339.33383 55.333425,339.33382 z" Fill="Transparent" HorizontalAlignment="Left" Height="323.667" Margin="530.899,220.999,0,0" Stretch="Fill" Stroke="transparent" VerticalAlignment="Top" Width="107.667" RenderTransformOrigin="0.5,0.5" MouseDown="section2_MouseDown" MouseLeave="OnMouseLeave" MouseEnter="OnHover">
+                    <Path.RenderTransform>
+                        <TransformGroup>
+                            <ScaleTransform/>
+                            <SkewTransform/>
+                            <RotateTransform Angle="-215.382"/>
+                            <TranslateTransform X="-81.026" Y="315.784"/>
+                        </TransformGroup>
+                    </Path.RenderTransform>
+                </Path>
+
+
+                <Path x:Name="section15"  Grid.Column="1" Data="M3.3583806,2.6869786 L57.962188,-2.2533316 113.94975,2.6869786 63.492366,339.33383 55.333425,339.33382 z" Fill="Transparent" HorizontalAlignment="Left" Height="323.667" Margin="488.231,264.332,0,0" Stretch="Fill" Stroke="transparent" VerticalAlignment="Top" Width="107.667" RenderTransformOrigin="0.5,0.5" MouseDown="section15_MouseDown" MouseLeave="OnMouseLeave" MouseEnter="OnHover">
+                    <Path.RenderTransform>
+                        <TransformGroup>
+                            <ScaleTransform/>
+                            <SkewTransform/>
+                            <RotateTransform Angle="-233.74"/>
+                            <TranslateTransform X="5.156" Y="228.638"/>
+                        </TransformGroup>
+                    </Path.RenderTransform>
+                </Path>
+
+
+                <Path x:Name="section10"  Grid.Column="1" Data="M3.3583806,2.6869786 L57.962188,-2.2533316 113.94975,2.6869786 63.492366,339.33383 55.333425,339.33382 z" Fill="Transparent" HorizontalAlignment="Left" Height="323.667" Margin="464.233,318.332,0,0" Stretch="Fill" Stroke="transparent" VerticalAlignment="Top" Width="107.667" RenderTransformOrigin="0.5,0.5" MouseDown="section10_MouseDown" MouseLeave="OnMouseLeave" MouseEnter="OnHover">
+                    <Path.RenderTransform>
+                        <TransformGroup>
+                            <ScaleTransform/>
+                            <SkewTransform/>
+                            <RotateTransform Angle="-251.908"/>
+                            <TranslateTransform X="57.882" Y="120.345"/>
+                        </TransformGroup>
+                    </Path.RenderTransform>
+                </Path>
+
+
+                <Path x:Name="section6"  Grid.Column="1" Data="M3.3583806,2.6869786 L57.962188,-2.2533316 113.94975,2.6869786 63.492366,339.33383 55.333425,339.33382 z" Fill="Transparent" HorizontalAlignment="Left" Height="323.667" Margin="454.9,379.665,0,0" Stretch="Fill" Stroke="transparent" VerticalAlignment="Top" Width="107.667" RenderTransformOrigin="0.5,0.5" MouseDown="section6_MouseDown" MouseLeave="OnMouseLeave" MouseEnter="OnHover">
+                    <Path.RenderTransform>
+                        <TransformGroup>
+                            <ScaleTransform/>
+                            <SkewTransform/>
+                            <RotateTransform Angle="-270.303"/>
+                            <TranslateTransform X="75.866" Y="-2.421"/>
+                        </TransformGroup>
+                    </Path.RenderTransform>
+                </Path>
+
+
+                <Path x:Name="section13"  Grid.Column="1" Data="M3.3583806,2.6869786 L57.962188,-2.2533316 113.94975,2.6869786 63.492366,339.33383 55.333425,339.33382 z" Fill="Transparent" HorizontalAlignment="Left" Height="323.667" Margin="463.567,438.999,0,0" Stretch="Fill" Stroke="transparent" VerticalAlignment="Top" Width="107.667" RenderTransformOrigin="0.5,0.5" MouseDown="section13_MouseDown" MouseLeave="OnMouseLeave" MouseEnter="OnHover">
+                    <Path.RenderTransform>
+                        <TransformGroup>
+                            <ScaleTransform/>
+                            <SkewTransform/>
+                            <RotateTransform Angle="-287.848"/>
+                            <TranslateTransform X="57.87" Y="-120.989"/>
+                        </TransformGroup>
+                    </Path.RenderTransform>
+                </Path>
+
+
+                <Path x:Name="section4"  Grid.Column="1" Data="M3.3583806,2.6869786 L57.962188,-2.2533316 113.94975,2.6869786 63.492366,339.33383 55.333425,339.33382 z" Fill="Transparent" HorizontalAlignment="Left" Height="323.667" Margin="491.567,494.332,0,0" Stretch="Fill" Stroke="transparent" VerticalAlignment="Top" Width="107.667" RenderTransformOrigin="0.5,0.5" MouseDown="section4_MouseDown" MouseLeave="OnMouseLeave" MouseEnter="OnHover">
+                    <Path.RenderTransform>
+                        <TransformGroup>
+                            <ScaleTransform/>
+                            <SkewTransform/>
+                            <RotateTransform Angle="-306.549"/>
+                            <TranslateTransform X="1.257" Y="-231.339"/>
+                        </TransformGroup>
+                    </Path.RenderTransform>
+                </Path>
+
+
+                <Path x:Name="section18"  Grid.Column="1" Data="M3.3583806,2.6869786 L57.962188,-2.2533316 113.94975,2.6869786 63.492366,339.33383 55.333425,339.33382 z" Fill="Transparent" HorizontalAlignment="Left" Height="323.667" Margin="534.234,536.998,0,0" Stretch="Fill" Stroke="transparent" VerticalAlignment="Top" Width="107.667" RenderTransformOrigin="0.5,0.5" MouseDown="section18_MouseDown" MouseLeave="OnMouseLeave" MouseEnter="OnHover">
+                    <Path.RenderTransform>
+                        <TransformGroup>
+                            <ScaleTransform/>
+                            <SkewTransform/>
+                            <RotateTransform Angle="-324.734"/>
+                            <TranslateTransform X="-84.55" Y="-316.193"/>
+                        </TransformGroup>
+                    </Path.RenderTransform>
+                </Path>
+
+
+                <Path x:Name="section1"  Grid.Column="1" Data="M3.3583806,2.6869786 L57.962188,-2.2533316 113.94975,2.6869786 63.492366,339.33383 55.333425,339.33382 z" Fill="Transparent" HorizontalAlignment="Left" Height="323.667" Margin="590.901,562.998,0,0" Stretch="Fill" Stroke="transparent" VerticalAlignment="Top" Width="107.667" RenderTransformOrigin="0.5,0.5" MouseDown="section1_MouseDown" MouseLeave="OnMouseLeave" MouseEnter="OnHover">
+                    <Path.RenderTransform>
+                        <TransformGroup>
+                            <ScaleTransform/>
+                            <SkewTransform/>
+                            <RotateTransform Angle="-342.297"/>
+                            <TranslateTransform X="-198.169" Y="-367.561"/>
+                        </TransformGroup>
+                    </Path.RenderTransform>
+                </Path>
+                <Path x:Name="double20" Grid.Column="1" Data="M-2.1681129,5.8336073 L52.498692,2.5002639 109.16585,6.500276 107.16584,21.167321 51.165432,17.167237 -0.16810149,21.167321 z" Margin="332.732,167,592.667,894.333" Stretch="Fill" Stroke="Transparent" StrokeThickness="2" MouseEnter="ChildHover" MouseLeave="OnChildLeave" MouseDown="double20_MouseDown"/>
+                <Path x:Name="double5" Grid.Column="1" Data="M-2.1681129,5.8336073 L52.498692,2.5002639 109.16585,6.500276 107.16584,21.167321 51.165432,17.167237 -0.16810149,21.167321 z" Margin="220.566,185.667,704.833,875.666" Stretch="Fill" RenderTransformOrigin="0.5,0.5" Stroke="Transparent" StrokeThickness="2" MouseEnter="ChildHover" MouseLeave="OnChildLeave" MouseDown="double5_MouseDown">
+                    <Path.RenderTransform>
+                        <TransformGroup>
+                            <ScaleTransform/>
+                            <SkewTransform/>
+                            <RotateTransform Angle="-17.75"/>
+                            <TranslateTransform/>
+                        </TransformGroup>
+                    </Path.RenderTransform>
+                </Path>
+                <Path x:Name="double12" Grid.Column="1" Data="M-2.1681129,5.8336073 L52.498692,2.5002639 109.16585,6.500276 107.16584,21.167321 51.165432,17.167237 -0.16810149,21.167321 z" Margin="119.233,236.333,806.166,825" Stretch="Fill" RenderTransformOrigin="0.5,0.5" Stroke="Transparent" StrokeThickness="2" MouseEnter="ChildHover" MouseLeave="OnChildLeave" MouseDown="double12_MouseDown">
+                    <Path.RenderTransform>
+                        <TransformGroup>
+                            <ScaleTransform/>
+                            <SkewTransform/>
+                            <RotateTransform Angle="-36.262"/>
+                            <TranslateTransform/>
+                        </TransformGroup>
+                    </Path.RenderTransform>
+                </Path>
+                <Path x:Name="double9" Grid.Column="1" Data="M-2.1681129,5.8336073 L52.498692,2.5002639 109.16585,6.500276 107.16584,21.167321 51.165432,17.167237 -0.16810149,21.167321 z" Margin="122.065,381.667,803.334,679.666" Stretch="Fill" RenderTransformOrigin="0.5,0.5" Stroke="Transparent" StrokeThickness="2" MouseEnter="ChildHover" MouseLeave="OnChildLeave" MouseDown="double9_MouseDown">
+                    <Path.RenderTransform>
+                        <TransformGroup>
+                            <ScaleTransform/>
+                            <SkewTransform/>
+                            <RotateTransform Angle="-54.258"/>
+                            <TranslateTransform X="-84.04" Y="-63.605"/>
+                        </TransformGroup>
+                    </Path.RenderTransform>
+                </Path>
+                <Path x:Name="double14" Data="M-2.1681129,5.8336073 L52.498692,2.5002639 109.16585,6.500276 107.16584,21.167321 51.165432,17.167237 -0.16810149,21.167321 z" Margin="9.232,399.001,916.167,662.332" Stretch="Fill" RenderTransformOrigin="0.5,0.5" Grid.Column="1" Stroke="Transparent" StrokeThickness="2" MouseEnter="ChildHover" MouseLeave="OnChildLeave" MouseDown="double14_MouseDown">
+                    <Path.RenderTransform>
+                        <TransformGroup>
+                            <ScaleTransform/>
+                            <SkewTransform/>
+                            <RotateTransform Angle="-72.599"/>
+                            <TranslateTransform X="-22.245" Y="19.673"/>
+                        </TransformGroup>
+                    </Path.RenderTransform>
+                </Path>
+                <Path x:Name="double11" Data="M-2.1681129,5.8336073 L52.498692,2.5002639 109.16585,6.500276 107.16584,21.167321 51.165432,17.167237 -0.16810149,21.167321 z" Margin="171.834,451,1016.833,610.333" Stretch="Fill" RenderTransformOrigin="0.5,0.5" Grid.ColumnSpan="2" Stroke="Transparent" StrokeThickness="2" MouseEnter="ChildHover" MouseLeave="OnChildLeave" MouseDown="double11_MouseDown">
+                    <Path.RenderTransform>
+                        <TransformGroup>
+                            <ScaleTransform/>
+                            <SkewTransform/>
+                            <RotateTransform Angle="-89.807"/>
+                            <TranslateTransform X="61.019" Y="80.849"/>
+                        </TransformGroup>
+                    </Path.RenderTransform>
+                </Path>
+                <Path x:Name="double8" Data="M-2.1681129,5.8336073 L52.498692,2.5002639 109.16585,6.500276 107.16584,21.167321 51.165432,17.167237 -0.16810149,21.167321 z" Margin="41.899,613.668,883.5,447.665" Stretch="Fill" RenderTransformOrigin="0.5,0.5" Grid.Column="1" Stroke="Transparent" StrokeThickness="2" MouseEnter="ChildHover" MouseLeave="OnChildLeave" MouseDown="double8_MouseDown">
+                    <Path.RenderTransform>
+                        <TransformGroup>
+                            <ScaleTransform/>
+                            <SkewTransform/>
+                            <RotateTransform Angle="-108.282"/>
+                            <TranslateTransform X="-55.334" Y="29.88"/>
+                        </TransformGroup>
+                    </Path.RenderTransform>
+                </Path>
+                <Path x:Name="double16" Data="M-2.1681129,5.8336073 L52.498692,2.5002639 109.16585,6.500276 107.16584,21.167321 51.165432,17.167237 -0.16810149,21.167321 z" Margin="204.501,665.667,984.166,395.666" Stretch="Fill" RenderTransformOrigin="0.5,0.5" Grid.ColumnSpan="2" Stroke="Transparent" StrokeThickness="2" MouseEnter="ChildHover" MouseLeave="OnChildLeave" MouseDown="double16_MouseDown">
+                    <Path.RenderTransform>
+                        <TransformGroup>
+                            <ScaleTransform/>
+                            <SkewTransform/>
+                            <RotateTransform Angle="-125.49"/>
+                            <TranslateTransform X="97.211" Y="79.959"/>
+                        </TransformGroup>
+                    </Path.RenderTransform>
+                </Path>
+                <Path x:Name="double7" Data="M-2.1681129,5.8336073 L52.498692,2.5002639 109.16585,6.500276 107.16584,21.167321 51.165432,17.167237 -0.16810149,21.167321 z" Margin="196.566,767.002,728.833,294.331" Stretch="Fill" RenderTransformOrigin="0.5,0.5" Grid.Column="1" Stroke="Transparent" StrokeThickness="2" MouseEnter="ChildHover" MouseLeave="OnChildLeave" MouseDown="double7_MouseDown">
+                    <Path.RenderTransform>
+                        <TransformGroup>
+                            <ScaleTransform/>
+                            <SkewTransform/>
+                            <RotateTransform Angle="-144.173"/>
+                            <TranslateTransform X="-77.562" Y="58.283"/>
+                        </TransformGroup>
+                    </Path.RenderTransform>
+                </Path>
+                <Path x:Name="double19" Data="M-2.1681129,5.8336073 L52.498692,2.5002639 109.16585,6.500276 107.16584,21.167321 51.165432,17.167237 -0.16810149,21.167321 z" Margin="95.9,817.668,829.499,243.665" Stretch="Fill" RenderTransformOrigin="0.5,0.5" Stroke="Transparent" StrokeThickness="2" Grid.Column="1" MouseEnter="ChildHover" MouseLeave="OnChildLeave" MouseDown="double19_MouseDown">
+                    <Path.RenderTransform>
+                        <TransformGroup>
+                            <ScaleTransform/>
+                            <SkewTransform/>
+                            <RotateTransform Angle="-162.864"/>
+                            <TranslateTransform X="124.975" Y="58.567"/>
+                        </TransformGroup>
+                    </Path.RenderTransform>
+                </Path>
+                <Path x:Name="double3" Data="M-2.1681129,5.8336073 L52.498692,2.5002639 109.16585,6.500276 107.16584,21.167321 51.165432,17.167237 -0.16810149,21.167321 z" Margin="206.566,835.001,718.833,226.332" Stretch="Fill" RenderTransformOrigin="0.5,0.5" Stroke="Transparent" StrokeThickness="2" Grid.Column="1" MouseEnter="ChildHover" MouseLeave="OnChildLeave" MouseDown="double3_MouseDown">
+                    <Path.RenderTransform>
+                        <TransformGroup>
+                            <ScaleTransform/>
+                            <SkewTransform/>
+                            <RotateTransform Angle="-179.067"/>
+                            <TranslateTransform X="124.975" Y="58.567"/>
+                        </TransformGroup>
+                    </Path.RenderTransform>
+                </Path>
+                <Path x:Name="double17" Grid.Column="1" Data="M-2.1681129,5.8336073 L52.498692,2.5002639 109.16585,6.500276 107.16584,21.167321 51.165432,17.167237 -0.16810149,21.167321 z" Margin="649.733,187,275.666,874.333" Stretch="Fill" RenderTransformOrigin="0.5,0.5" Stroke="Transparent" StrokeThickness="2" MouseEnter="ChildHover" MouseLeave="OnChildLeave" MouseDown="double17_MouseDown">
+                    <Path.RenderTransform>
+                        <TransformGroup>
+                            <ScaleTransform/>
+                            <SkewTransform/>
+                            <RotateTransform Angle="162.341"/>
+                            <TranslateTransform X="-204.793" Y="689.868"/>
+                        </TransformGroup>
+                    </Path.RenderTransform>
+                </Path>
+                <Path x:Name="double2" Grid.Column="1" Data="M-2.1681129,5.8336073 L52.498692,2.5002639 109.16585,6.500276 107.16584,21.167321 51.165432,17.167237 -0.16810149,21.167321 z" Margin="548.488,235.939,377.841,825.394" Stretch="Fill" RenderTransformOrigin="0.5,0.5" Stroke="Transparent" StrokeThickness="2" MouseEnter="ChildHover" MouseLeave="OnChildLeave" MouseDown="double2_MouseDown">
+                    <Path.RenderTransform>
+                        <TransformGroup>
+                            <ScaleTransform/>
+                            <SkewTransform/>
+                            <RotateTransform Angle="144.134"/>
+                            <TranslateTransform X="-2.047" Y="588.695"/>
+                        </TransformGroup>
+                    </Path.RenderTransform>
+                </Path>
+                <Path x:Name="double15" Grid.Column="1" Data="M-2.1681129,5.8336073 L52.498692,2.5002639 109.16585,6.500276 107.16584,21.167321 51.165432,17.167237 -0.16810149,21.167321 z" Margin="549.899,382.333,375.5,679" Stretch="Fill" RenderTransformOrigin="0.5,0.5" Stroke="Transparent" StrokeThickness="2" MouseEnter="ChildHover" MouseLeave="OnChildLeave" MouseDown="double15_MouseDown">
+                    <Path.RenderTransform>
+                        <TransformGroup>
+                            <ScaleTransform/>
+                            <SkewTransform/>
+                            <RotateTransform Angle="125.833"/>
+                            <TranslateTransform X="76.46" Y="361.763"/>
+                        </TransformGroup>
+                    </Path.RenderTransform>
+                </Path>
+                <Path x:Name="double10" Data="M-2.1681129,5.8336073 L52.498692,2.5002639 109.16585,6.500276 107.16584,21.167321 51.165432,17.167237 -0.16810149,21.167321 z" Margin="438.399,398.334,487,662.999" Stretch="Fill" RenderTransformOrigin="0.5,0.5" Grid.Column="1" Stroke="Transparent" StrokeThickness="2" MouseEnter="ChildHover" MouseLeave="OnChildLeave" MouseDown="double10_MouseDown">
+                    <Path.RenderTransform>
+                        <TransformGroup>
+                            <ScaleTransform/>
+                            <SkewTransform/>
+                            <RotateTransform Angle="107.492"/>
+                            <TranslateTransform X="240.49" Y="243.898"/>
+                        </TransformGroup>
+                    </Path.RenderTransform>
+                </Path>
+                <Path x:Name="double6" Data="M-2.1681129,5.8336073 L52.498692,2.5002639 109.16585,6.500276 107.16584,21.167321 51.165432,17.167237 -0.16810149,21.167321 z" Margin="338.4,452.333,586.999,609" Stretch="Fill" RenderTransformOrigin="0.5,0.5" Stroke="Transparent" StrokeThickness="2" Grid.Column="1" MouseEnter="ChildHover" MouseLeave="OnChildLeave" MouseDown="double6_MouseDown">
+                    <Path.RenderTransform>
+                        <TransformGroup>
+                            <ScaleTransform/>
+                            <SkewTransform/>
+                            <RotateTransform Angle="90.284"/>
+                            <TranslateTransform X="358.737" Y="78.752"/>
+                        </TransformGroup>
+                    </Path.RenderTransform>
+                </Path>
+                <Path x:Name="double13" Data="M-2.1681129,5.8336073 L52.498692,2.5002639 109.16585,6.500276 107.16584,21.167321 51.165432,17.167237 -0.16810149,21.167321 z" Margin="469.066,613.001,456.333,448.332" Stretch="Fill" RenderTransformOrigin="0.5,0.5" Grid.Column="1" Stroke="Transparent" StrokeThickness="2" MouseEnter="ChildHover" MouseLeave="OnChildLeave" MouseDown="double13_MouseDown">
+                    <Path.RenderTransform>
+                        <TransformGroup>
+                            <ScaleTransform/>
+                            <SkewTransform/>
+                            <RotateTransform Angle="71.809"/>
+                            <TranslateTransform X="208.601" Y="-195.64"/>
+                        </TransformGroup>
+                    </Path.RenderTransform>
+                </Path>
+                <Path x:Name="double4" Data="M-2.1681129,5.8336073 L52.498692,2.5002639 109.16585,6.500276 107.16584,21.167321 51.165432,17.167237 -0.16810149,21.167321 z" Margin="369.067,667,556.332,394.333" Stretch="Fill" RenderTransformOrigin="0.5,0.5" Stroke="Transparent" StrokeThickness="2" Grid.Column="1" MouseEnter="ChildHover" MouseLeave="OnChildLeave" MouseDown="double4_MouseDown">
+                    <Path.RenderTransform>
+                        <TransformGroup>
+                            <ScaleTransform/>
+                            <SkewTransform/>
+                            <RotateTransform Angle="53.775"/>
+                            <TranslateTransform X="257.551" Y="-349.8"/>
+                        </TransformGroup>
+                    </Path.RenderTransform>
+                </Path>
+                <Path x:Name="double18" Data="M-2.1681129,5.8336073 L52.498692,2.5002639 109.16585,6.500276 107.16584,21.167321 51.165432,17.167237 -0.16810149,21.167321 z" Margin="624.4,767.669,300.999,293.664" Stretch="Fill" RenderTransformOrigin="0.5,0.5" Grid.Column="1" Stroke="Transparent" StrokeThickness="2" MouseEnter="ChildHover" MouseLeave="OnChildLeave" MouseDown="double18_MouseDown">
+                    <Path.RenderTransform>
+                        <TransformGroup>
+                            <ScaleTransform/>
+                            <SkewTransform/>
+                            <RotateTransform Angle="35.918"/>
+                            <TranslateTransform X="-78.216" Y="-530.922"/>
+                        </TransformGroup>
+                    </Path.RenderTransform>
+                </Path>
+                <Path x:Name="double1" Data="M-2.1681129,5.8336073 L52.498692,2.5002639 109.16585,6.500276 107.16584,21.167321 51.165432,17.167237 -0.16810149,21.167321 z" Margin="524.4,817.667,400.999,243.666" Stretch="Fill" RenderTransformOrigin="0.5,0.5" Stroke="Transparent" StrokeThickness="2" Grid.Column="1" MouseEnter="ChildHover" MouseLeave="OnChildLeave" MouseDown="double1_MouseDown">
+                    <Path.RenderTransform>
+                        <TransformGroup>
+                            <ScaleTransform/>
+                            <SkewTransform/>
+                            <RotateTransform Angle="17.227"/>
+                            <TranslateTransform X="-79.339" Y="-632.701"/>
+                        </TransformGroup>
+                    </Path.RenderTransform>
+                </Path>
+                <Path Grid.Column="1" Data="M653,320.33333" HorizontalAlignment="Left" Height="2" Margin="388.732,319.333,0,0" Stretch="Fill" Stroke="Transparent" StrokeThickness="2" VerticalAlignment="Top" Width="2"/>
+                <Path x:Name="triple5" Grid.Column="1" Data="M-1.3343306,1.3336667 L14.207437,-0.45798397 32.082603,-1.4579999 49.582263,-0.58298597 66.247336,0.93527828 64.082192,15.292268 50.707257,13.792244 33.905858,13.153291 16.957423,13.833911 1,15.667 z" HorizontalAlignment="Left" Height="19.125" Margin="285.815,320.125,0,0" Stretch="Fill" Stroke="Transparent" StrokeThickness="2" VerticalAlignment="Top" Width="69.582" RenderTransformOrigin="0.5,0.5" MouseEnter="ChildHover" MouseLeave="OnChildLeave" MouseDown="triple5_MouseDown">
+                    <Path.RenderTransform>
+                        <TransformGroup>
+                            <ScaleTransform/>
+                            <SkewTransform/>
+                            <RotateTransform Angle="-17.86"/>
+                            <TranslateTransform/>
+                        </TransformGroup>
+                    </Path.RenderTransform>
+                </Path>
+                <Path x:Name="triple12" Grid.Column="1" Data="M-1.3343306,1.3336667 L14.207437,-0.45798397 32.082603,-1.4579999 49.582263,-0.58298597 66.247336,0.93527828 64.082192,15.292268 50.707257,13.792244 33.905858,13.153291 16.957423,13.833911 1,15.667 z" HorizontalAlignment="Left" Height="19.125" Margin="224.482,351.791,0,0" Stretch="Fill" Stroke="Transparent" StrokeThickness="2" VerticalAlignment="Top" Width="69.582" RenderTransformOrigin="0.5,0.5" MouseEnter="ChildHover" MouseLeave="OnChildLeave" MouseDown="triple12_MouseDown">
+                    <Path.RenderTransform>
+                        <TransformGroup>
+                            <ScaleTransform/>
+                            <SkewTransform/>
+                            <RotateTransform Angle="-35.938"/>
+                            <TranslateTransform/>
+                        </TransformGroup>
+                    </Path.RenderTransform>
+                </Path>
+                <Path x:Name="triple9" Grid.Column="1" Data="M-1.3343306,1.3336667 L14.207437,-0.45798397 32.082603,-1.4579999 49.582263,-0.58298597 66.247336,0.93527828 64.082192,15.292268 50.707257,13.792244 33.905858,13.153291 16.957423,13.833911 1,15.667 z" HorizontalAlignment="Left" Height="19.125" Margin="174.982,400.458,0,0" Stretch="Fill" Stroke="Transparent" StrokeThickness="2" VerticalAlignment="Top" Width="69.582" RenderTransformOrigin="0.5,0.5" MouseEnter="ChildHover" MouseLeave="OnChildLeave" MouseDown="triple9_MouseDown">
+                    <Path.RenderTransform>
+                        <TransformGroup>
+                            <ScaleTransform/>
+                            <SkewTransform/>
+                            <RotateTransform Angle="-53.255"/>
+                            <TranslateTransform/>
+                        </TransformGroup>
+                    </Path.RenderTransform>
+                </Path>
+                <Path x:Name="triple14" Grid.Column="1" Data="M-1.3343306,1.3336667 L14.207437,-0.45798397 32.082603,-1.4579999 49.582263,-0.58298597 66.247336,0.93527828 64.082192,15.292268 50.707257,13.792244 33.905858,13.153291 16.957423,13.833911 1,15.667 z" HorizontalAlignment="Left" Height="19.125" Margin="143.316,462.958,0,0" Stretch="Fill" Stroke="Transparent" StrokeThickness="2" VerticalAlignment="Top" Width="69.582" RenderTransformOrigin="0.5,0.5" MouseEnter="ChildHover" MouseLeave="OnChildLeave" MouseDown="triple14_MouseDown">
+                    <Path.RenderTransform>
+                        <TransformGroup>
+                            <ScaleTransform/>
+                            <SkewTransform/>
+                            <RotateTransform Angle="-71.87"/>
+                            <TranslateTransform/>
+                        </TransformGroup>
+                    </Path.RenderTransform>
+                </Path>
+                <Path x:Name="triple11" Grid.Column="1" Data="M-1.3343306,1.3336667 L14.207437,-0.45798397 32.082603,-1.4579999 49.582263,-0.58298597 66.247336,0.93527828 64.082192,15.292268 50.707257,13.792244 33.905858,13.153291 16.957423,13.833911 1,15.667 z" HorizontalAlignment="Left" Height="19.125" Margin="133.149,530.792,0,0" Stretch="Fill" Stroke="Transparent" StrokeThickness="2" VerticalAlignment="Top" Width="69.582" RenderTransformOrigin="0.5,0.5" MouseEnter="ChildHover" MouseLeave="OnChildLeave" MouseDown="triple11_MouseDown">
+                    <Path.RenderTransform>
+                        <TransformGroup>
+                            <ScaleTransform/>
+                            <SkewTransform/>
+                            <RotateTransform Angle="-89.738"/>
+                            <TranslateTransform/>
+                        </TransformGroup>
+                    </Path.RenderTransform>
+                </Path>
+                <Path x:Name="triple8" Grid.Column="1" Data="M-1.3343306,1.3336667 L14.207437,-0.45798397 32.082603,-1.4579999 49.582263,-0.58298597 66.247336,0.93527828 64.082192,15.292268 50.707257,13.792244 33.905858,13.153291 16.957423,13.833911 1,15.667 z" HorizontalAlignment="Left" Height="19.125" Margin="143.816,598.958,0,0" Stretch="Fill" Stroke="Transparent" StrokeThickness="2" VerticalAlignment="Top" Width="69.582" RenderTransformOrigin="0.5,0.5" MouseEnter="ChildHover" MouseLeave="OnChildLeave" MouseDown="triple8_MouseDown">
+                    <Path.RenderTransform>
+                        <TransformGroup>
+                            <ScaleTransform/>
+                            <SkewTransform/>
+                            <RotateTransform Angle="-106.701"/>
+                            <TranslateTransform/>
+                        </TransformGroup>
+                    </Path.RenderTransform>
+                </Path>
+                <Path x:Name="triple16" Grid.Column="1" Data="M-1.3343306,1.3336667 L14.207437,-0.45798397 32.082603,-1.4579999 49.582263,-0.58298597 66.247336,0.93527828 64.082192,15.292268 50.707257,13.792244 33.905858,13.153291 16.957423,13.833911 1,15.667 z" HorizontalAlignment="Left" Height="19.125" Margin="174.982,660.625,0,0" Stretch="Fill" Stroke="Transparent" StrokeThickness="2" VerticalAlignment="Top" Width="69.582" RenderTransformOrigin="0.5,0.5" MouseEnter="ChildHover" MouseLeave="OnChildLeave" MouseDown="triple16_MouseDown">
+                    <Path.RenderTransform>
+                        <TransformGroup>
+                            <ScaleTransform/>
+                            <SkewTransform/>
+                            <RotateTransform Angle="-125.916"/>
+                            <TranslateTransform/>
+                        </TransformGroup>
+                    </Path.RenderTransform>
+                </Path>
+                <Path x:Name="triple7" Grid.Column="1" Data="M-1.3343306,1.3336667 L14.207437,-0.45798397 32.082603,-1.4579999 49.582263,-0.58298597 66.247336,0.93527828 64.082192,15.292268 50.707257,13.792244 33.905858,13.153291 16.957423,13.833911 1,15.667 z" HorizontalAlignment="Left" Height="19.125" Margin="223.65,709.624,0,0" Stretch="Fill" Stroke="Transparent" StrokeThickness="2" VerticalAlignment="Top" Width="69.582" RenderTransformOrigin="0.5,0.5" MouseEnter="ChildHover" MouseLeave="OnChildLeave" MouseDown="triple7_MouseDown">
+                    <Path.RenderTransform>
+                        <TransformGroup>
+                            <ScaleTransform/>
+                            <SkewTransform/>
+                            <RotateTransform Angle="-143.404"/>
+                            <TranslateTransform/>
+                        </TransformGroup>
+                    </Path.RenderTransform>
+                </Path>
+                <Path x:Name="triple19" Grid.Column="1" Data="M-1.3343306,1.3336667 L14.207437,-0.45798397 32.082603,-1.4579999 49.582263,-0.58298597 66.247336,0.93527828 64.082192,15.292268 50.707257,13.792244 33.905858,13.153291 16.957423,13.833911 1,15.667 z" HorizontalAlignment="Left" Height="19.125" Margin="285.65,740.957,0,0" Stretch="Fill" Stroke="Transparent" StrokeThickness="2" VerticalAlignment="Top" Width="69.582" RenderTransformOrigin="0.5,0.5" MouseEnter="ChildHover" MouseLeave="OnChildLeave" MouseDown="triple19_MouseDown">
+                    <Path.RenderTransform>
+                        <TransformGroup>
+                            <ScaleTransform/>
+                            <SkewTransform/>
+                            <RotateTransform Angle="-161.87"/>
+                            <TranslateTransform/>
+                        </TransformGroup>
+                    </Path.RenderTransform>
+                </Path>
+                <Path x:Name="triple3" Grid.Column="1" Data="M-1.3343306,1.3336667 L14.207437,-0.45798397 32.082603,-1.4579999 49.582263,-0.58298597 66.247336,0.93527828 64.082192,15.292268 50.707257,13.792244 33.905858,13.153291 16.957423,13.833911 1,15.667 z" HorizontalAlignment="Left" Height="19.125" Margin="353.817,751.29,0,0" Stretch="Fill" Stroke="Transparent" StrokeThickness="2" VerticalAlignment="Top" Width="69.582" RenderTransformOrigin="0.5,0.5" MouseEnter="ChildHover" MouseLeave="OnChildLeave" MouseDown="triple3_MouseDown">
+                    <Path.RenderTransform>
+                        <TransformGroup>
+                            <ScaleTransform/>
+                            <SkewTransform/>
+                            <RotateTransform Angle="-179.488"/>
+                            <TranslateTransform/>
+                        </TransformGroup>
+                    </Path.RenderTransform>
+                </Path>
+                <Path x:Name="triple17" Grid.Column="1" Data="M-1.3343306,1.3336667 L14.207437,-0.45798397 32.082603,-1.4579999 49.582263,-0.58298597 66.247336,0.93527828 64.082192,15.292268 50.707257,13.792244 33.905858,13.153291 16.957423,13.833911 1,15.667 z" HorizontalAlignment="Left" Height="19.125" Margin="550.316,320.458,0,0" Stretch="Fill" Stroke="Transparent" StrokeThickness="2" VerticalAlignment="Top" Width="69.582" RenderTransformOrigin="0.5,0.5" MouseEnter="ChildHover" MouseLeave="OnChildLeave" MouseDown="triple17_MouseDown">
+                    <Path.RenderTransform>
+                        <TransformGroup>
+                            <ScaleTransform/>
+                            <SkewTransform/>
+                            <RotateTransform Angle="162.567"/>
+                            <TranslateTransform X="-127.845" Y="420.396"/>
+                        </TransformGroup>
+                    </Path.RenderTransform>
+                </Path>
+                <Path x:Name="triple2" Grid.Column="1" Data="M-1.3343306,1.3336667 L14.207437,-0.45798397 32.082603,-1.4579999 49.582263,-0.58298597 66.247336,0.93527828 64.082192,15.292268 50.707257,13.792244 33.905858,13.153291 16.957423,13.833911 1,15.667 z" HorizontalAlignment="Left" Height="19.125" Margin="488.149,351.791,0,0" Stretch="Fill" Stroke="Transparent" StrokeThickness="2" VerticalAlignment="Top" Width="69.582" RenderTransformOrigin="0.5,0.5" MouseEnter="ChildHover" MouseLeave="OnChildLeave" MouseDown="triple2_MouseDown">
+                    <Path.RenderTransform>
+                        <TransformGroup>
+                            <ScaleTransform/>
+                            <SkewTransform/>
+                            <RotateTransform Angle="144.489"/>
+                            <TranslateTransform X="-4.944" Y="357.522"/>
+                        </TransformGroup>
+                    </Path.RenderTransform>
+                </Path>
+                <Path x:Name="triple15" Grid.Column="1" Data="M-1.3343306,1.3336667 L14.207437,-0.45798397 32.082603,-1.4579999 49.582263,-0.58298597 66.247336,0.93527828 64.082192,15.292268 50.707257,13.792244 33.905858,13.153291 16.957423,13.833911 1,15.667 z" HorizontalAlignment="Left" Height="19.125" Margin="437.482,399.791,0,0" Stretch="Fill" Stroke="Transparent" StrokeThickness="2" VerticalAlignment="Top" Width="69.582" RenderTransformOrigin="0.5,0.5" MouseEnter="ChildHover" MouseLeave="OnChildLeave" MouseDown="triple15_MouseDown">
+                    <Path.RenderTransform>
+                        <TransformGroup>
+                            <ScaleTransform/>
+                            <SkewTransform/>
+                            <RotateTransform Angle="127.172"/>
+                            <TranslateTransform X="94.419" Y="260.56"/>
+                        </TransformGroup>
+                    </Path.RenderTransform>
+                </Path>
+                <Path x:Name="triple10" Grid.Column="1" Data="M-1.3343306,1.3336667 L14.207437,-0.45798397 32.082603,-1.4579999 49.582263,-0.58298597 66.247336,0.93527828 64.082192,15.292268 50.707257,13.792244 33.905858,13.153291 16.957423,13.833911 1,15.667 z" HorizontalAlignment="Left" Height="19.125" Margin="405.483,463.791,0,0" Stretch="Fill" Stroke="Transparent" StrokeThickness="2" VerticalAlignment="Top" Width="69.582" RenderTransformOrigin="0.5,0.5" MouseEnter="ChildHover" MouseLeave="OnChildLeave" MouseDown="triple10_MouseDown">
+                    <Path.RenderTransform>
+                        <TransformGroup>
+                            <ScaleTransform/>
+                            <SkewTransform/>
+                            <RotateTransform Angle="108.557"/>
+                            <TranslateTransform X="158.214" Y="135.797"/>
+                        </TransformGroup>
+                    </Path.RenderTransform>
+                </Path>
+                <Path x:Name="triple6" Grid.Column="1" Data="M-1.3343306,1.3336667 L14.207437,-0.45798397 32.082603,-1.4579999 49.582263,-0.58298597 66.247336,0.93527828 64.082192,15.292268 50.707257,13.792244 33.905858,13.153291 16.957423,13.833911 1,15.667 z" HorizontalAlignment="Left" Height="19.125" Margin="394.816,530.292,0,0" Stretch="Fill" Stroke="Transparent" StrokeThickness="2" VerticalAlignment="Top" Width="69.582" RenderTransformOrigin="0.5,0.5" MouseEnter="ChildHover" MouseLeave="OnChildLeave" MouseDown="triple6_MouseDown">
+                    <Path.RenderTransform>
+                        <TransformGroup>
+                            <ScaleTransform/>
+                            <SkewTransform/>
+                            <RotateTransform Angle="90.187"/>
+                            <TranslateTransform X="179.051" Y="0.207"/>
+                        </TransformGroup>
+                    </Path.RenderTransform>
+                </Path>
+                <Path x:Name="triple13" Grid.Column="1" Data="M-1.3343306,1.3336667 L14.207437,-0.45798397 32.082603,-1.4579999 49.582263,-0.58298597 66.247336,0.93527828 64.082192,15.292268 50.707257,13.792244 33.905858,13.153291 16.957423,13.833911 1,15.667 z" HorizontalAlignment="Left" Height="19.125" Margin="405.15,598.958,0,0" Stretch="Fill" Stroke="Transparent" StrokeThickness="2" VerticalAlignment="Top" Width="69.582" RenderTransformOrigin="0.5,0.5" MouseEnter="ChildHover" MouseLeave="OnChildLeave" MouseDown="triple13_MouseDown">
+                    <Path.RenderTransform>
+                        <TransformGroup>
+                            <ScaleTransform/>
+                            <SkewTransform/>
+                            <RotateTransform Angle="73.726"/>
+                            <TranslateTransform X="158.228" Y="-136.204"/>
+                        </TransformGroup>
+                    </Path.RenderTransform>
+                </Path>
+                <Path x:Name="triple4" Grid.Column="1" Data="M-1.3343306,1.3336667 L14.207437,-0.45798397 32.082603,-1.4579999 49.582263,-0.58298597 66.247336,0.93527828 64.082192,15.292268 50.707257,13.792244 33.905858,13.153291 16.957423,13.833911 1,15.667 z" HorizontalAlignment="Left" Height="19.125" Margin="435.983,660.791,0,0" Stretch="Fill" Stroke="Transparent" StrokeThickness="2" VerticalAlignment="Top" Width="69.582" RenderTransformOrigin="0.5,0.5" MouseEnter="ChildHover" MouseLeave="OnChildLeave" MouseDown="triple4_MouseDown">
+                    <Path.RenderTransform>
+                        <TransformGroup>
+                            <ScaleTransform/>
+                            <SkewTransform/>
+                            <RotateTransform Angle="54.511"/>
+                            <TranslateTransform X="96.355" Y="-259.769"/>
+                        </TransformGroup>
+                    </Path.RenderTransform>
+                </Path>
+                <Path x:Name="triple18" Grid.Column="1" Data="M-1.3343306,1.3336667 L14.207437,-0.45798397 32.082603,-1.4579999 49.582263,-0.58298597 66.247336,0.93527828 64.082192,15.292268 50.707257,13.792244 33.905858,13.153291 16.957423,13.833911 1,15.667 z" HorizontalAlignment="Left" Height="19.125" Margin="483.984,710.29,0,0" Stretch="Fill" Stroke="Transparent" StrokeThickness="2" VerticalAlignment="Top" Width="69.582" RenderTransformOrigin="0.5,0.5" MouseEnter="ChildHover" MouseLeave="OnChildLeave" MouseDown="triple18_MouseDown">
+                    <Path.RenderTransform>
+                        <TransformGroup>
+                            <ScaleTransform/>
+                            <SkewTransform/>
+                            <RotateTransform Angle="37.023"/>
+                            <TranslateTransform X="-0.615" Y="-358.128"/>
+                        </TransformGroup>
+                    </Path.RenderTransform>
+                </Path>
+                <Path x:Name="triple1" Grid.Column="1" Data="M-1.3343306,1.3336667 L14.207437,-0.45798397 32.082603,-1.4579999 49.582263,-0.58298597 66.247336,0.93527828 64.082192,15.292268 50.707257,13.792244 33.905858,13.153291 16.957423,13.833911 1,15.667 z" HorizontalAlignment="Left" Height="19.125" Margin="546.484,741.79,0,0" Stretch="Fill" Stroke="Transparent" StrokeThickness="2" VerticalAlignment="Top" Width="69.582" RenderTransformOrigin="0.5,0.5" MouseEnter="ChildHover" MouseLeave="OnChildLeave" MouseDown="triple1_MouseDown">
+                    <Path.RenderTransform>
+                        <TransformGroup>
+                            <ScaleTransform/>
+                            <SkewTransform/>
+                            <RotateTransform Angle="18.557"/>
+                            <TranslateTransform X="-124.378" Y="-421.253"/>
+                        </TransformGroup>
+                    </Path.RenderTransform>
+                </Path>
+                <Path x:Name="triple20" Grid.Column="1" Data="M-1.3343306,1.3336667 L14.207437,-0.45798397 32.082603,-1.4579999 49.582263,-0.58298597 66.247336,0.93527828 64.082192,15.292268 50.707257,13.792244 33.905858,13.153291 16.957423,13.833911 1,15.667 z" HorizontalAlignment="Left" Height="19.125" Margin="354.107,309.375,0,0" Stretch="Fill" Stroke="Transparent" StrokeThickness="2" VerticalAlignment="Top" Width="69.582"  MouseEnter="ChildHover" MouseLeave="OnChildLeave" MouseDown="triple20_MouseDown"/>
+
+
+
+            </Grid>
+
+
+        </StackPanel>
+        <Path x:Name="noPoints" Data="M-30.358791,806.82199 L-96.942233,756.23864 -132.91793,717.83403 -170.00149,667.33401 -191.41811,633.08399 -218.73464,569.79562 -234.66824,521.83394 -243.6114,482.3483 -249.86141,398.34826 -244.91828,339.33386 -235.35423,282.24965 -211.33495,217.33381 -192.00156,176.00046 -161.66813,125.6671 -126.66766,83.333283 -74.667855,34.667062 -15.667375,-9.6668061 90.091155,-56.11952 153.99953,-70.332985 217.33306,-76.916321 254.43078,-76.435996 295.33312,29.833727 275.33307,26.833725 247.33299,25.333725&#xD;&#xA;215.8329,25.833725 179.8328,29.333726 140.83269,36.83373 106.83259,46.333734 74.332503,58.833739 34.332391,80.833749 3.6259315,100.83169 -18.667757,120.33377 -35.167804,135.83377 -56.667864,158.33378 -73.667911,179.33379 -86.667948,197.8338 -97.667979,216.83381 -109.16801,238.83382 -121.66805,265.83383 -135.16808,304.83385 -143.66811,349.83387 -146.66812,389.83389 -146.66812,422.3339 -143.80061,453.51379 -137.52122,489.00076 -128.16806,523.33395 -115.16803,556.83396&#xD;&#xA;-99.667984,587.83397 -75.167916,625.83399 -55.16786,651.334 -23.667771,684.83402 13.332332,714.33403 65.999146,745.33404 124.66598,767.33405 178.66613,779.33406 241.33297,784.00073 291.99978,779.33406 346.6666,765.33405 394.66673,746.00071 439.83353,719.83403 484.33365,687.83402 519.13056,649.34483 545.33382,614.66732 563.83387,583.83397 585.33393,539.33395 598.6673,498.0006 607.33399,437.33391 610.00067,394.66722 604.66732,336.6672 592.00062,286.66717&#xD;&#xA;575.3339,244.66716 545.33382,192.00047 530.00044,171.33379 508.00038,144.00044 470.00028,109.33376 444.83354,91.833754 423.33348,77.333748 391.33339,61.333741 367.83332,50.333736 343.6627,42.203414 317.27419,35.051394 294.33312,28.833726 256.83319,-76.16632 361.66664,-58.666313 431.66684,-31.332967 497.33397,4.6670482 553.66718,49.000402 596.6676,93.333754 635.33438,146.66711 666.37761,203.34517 696.00123,280.66696 708.00094,345.33387 709.33428,401.33389&#xD;&#xA;710.00127,429.3339 706.33492,471.00059 698.31715,514.74829 686.00124,554.66718 658.37947,624.56911 637.33438,659.33401 599.00093,713.33403 547.66743,764.33405 488.66756,807.33404 438.33375,836.66742 365.66686,865.00076 292.29457,880.71847 215.99972,885.33411 139.66615,876.3341 83.170413,861.40718 16.332431,833.33408 z" Fill="Transparent"  HorizontalAlignment="Left" Height="963.25" Margin="790.307,58.25,0,0" Stretch="Fill" Stroke="Transparent" VerticalAlignment="Top" Width="960.86" MouseEnter="OnHover" MouseLeave="OnMouseLeave" MouseDown="noPoints_MouseDown"/>
+        <Path x:Name="bull25" Data="M0.24947628,20.875039 L2.7240771,15.220646 6.2241081,10.304378 11.499564,6.6671313 17.499607,4.0001011 22.249641,2.5004773 27.547756,1.9904789 28.499686,14.499984 22.749644,14.87544 17.99961,17.250432 14.249583,21.25042 11.999567,25.000409 10.99956,30.500392 11.374563,35.500207 12.874574,38.875219 14.666253,42.333689 17.832942,45.667012 22.374642,47.875249 26.624672,48.750252 31.624708,48.750252 36.624744,47.125246 39.831914,44.271407 42.749786,40.87536 44.6248,37.125372&#xD;&#xA;45.499806,32.500386 45.374805,28.625398 44.499799,24.62541 43.124789,22.000418 40.49977,18.750428 38.249754,17.125433 36.124739,15.750437 31.624707,14.62544 28.556208,14.609907 27.499678,2.0008974 31.249704,2.1254785 36.24974,3.0004758 39.749765,4.5004712 42.999788,6.0004666 46.124811,8.0004605 48.249826,9.7504552 51.124846,12.125448 53.12486,14.250441 54.874873,16.500435 56.499885,19.750425 57.499892,22.875415 58.249898,27.625401 57.999895,32.625385&#xD;&#xA;57.374891,36.375374 56.874887,39.500364 55.749879,43.000354 54.249868,45.750345 51.858958,49.567344 49.233939,52.442335 46.999817,54.833651 43.12479,57.500281 38.749759,59.375288 35.374735,60.375294 30.124697,61.375298 25.124662,60.875295 19.999625,60.375291 15.499593,58.750286 11.624565,56.374939 8.4995425,54.124945 4.4995138,50.624955 1.9994959,46.499967 -0.50052205,41.499981 -1.6255301,36.999993 -1.6255302,30.625011 -1.0006567,24.625028 z" Fill="Transparent" HorizontalAlignment="Left" Height="60.385" Margin="1241.375,509.99,0,0" Stretch="Fill" Stroke="Transparent" VerticalAlignment="Top" Width="60.875" MouseEnter="OnHover" MouseLeave="OnMouseLeave" MouseDown="bull25_MouseDown"/>
+        <Rectangle x:Name="bull50" Fill="Transparent" HorizontalAlignment="Left" Height="28.25" Stroke="Transparent" VerticalAlignment="Top" Width="28.75" Margin="1257.375,525.448,0,0" RadiusY="100" RadiusX="100" MouseEnter="BullseyeEnter" MouseLeave="BullseyeLeave" MouseDown="bull50_MouseDown"/>
+
+    </Grid>
+</Window>
