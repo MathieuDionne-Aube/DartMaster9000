@@ -5,9 +5,14 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:ct="clr-namespace:DartMaster9000.CustomControls"
         xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
+        xmlns:t="clr-namespace:DartMaster9000.Tools"
         mc:Ignorable="d"
-        Title="MainWindow" Width="1920" Height="1080"  MinWidth="1920"  MinHeight="1080" WindowState="Maximized"
-        >
+        Title="MainWindow" Width="1920" Height="1080"  MinWidth="1920"  MinHeight="1080" WindowState="Maximized">
+    <i:Interaction.Triggers>
+        <i:EventTrigger EventName="Closed">
+            <i:InvokeCommandAction Command="{Binding OnExitGameCommand}"/>
+        </i:EventTrigger>
+    </i:Interaction.Triggers>
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition/>
@@ -19,7 +24,11 @@
                     <Label Margin="20,0,0,0">CURRENT GAME</Label>
                     <ct:StackPanelScores PlayersSource="{Binding Players}"
                                          CurrentPlayer="{Binding CurrentPlayer}"
-                                         LastTurn="{Binding LastTurn}" x:Name="spScore" Margin="20,20,20,20" Orientation="Horizontal"/>
+                                         LastTurn="{Binding LastTurn}" 
+                                         ResetGame="{Binding CurrentGame.IsOver}"
+                                         x:Name="spScore" 
+                                         Margin="20,20,20,20" 
+                                         Orientation="Horizontal"/>
 
 
                     <Grid>
@@ -31,7 +40,7 @@
                                     <StackPanel  Orientation="Horizontal">
                                         <StackPanel FocusManager.FocusedElement="{Binding ElementName=textbox1}">
                                             <Label>Dart1</Label>
-                                            <ct:CustomTextbox x:Name="textbox1"  Text="{Binding Dart1.Value,Mode=TwoWay}" Width="50">
+                                            <ct:CustomTextbox t:FocusExtension.IsFocused="{Binding Dart1.IsCurrentDart}"  x:Name="textbox1" Text="{Binding Dart1.Value,Mode=TwoWay}" Width="50">
                                                 <TextBox.InputBindings>
                                                     <KeyBinding Command="{Binding AddScoreCommand}" CommandParameter="{Binding ElementName=textbox1,Path=Text}" Key="Enter" />
                                                 </TextBox.InputBindings>
@@ -39,7 +48,7 @@
                                         </StackPanel>
                                         <StackPanel Margin="10,0,0,0">
                                             <Label>Dart2</Label>
-                                            <ct:CustomTextbox  x:Name="textbox2" Text="{Binding Dart2.Value,Mode=TwoWay}"  Width="50">
+                                            <ct:CustomTextbox t:FocusExtension.IsFocused="{Binding Dart2.IsCurrentDart}"  x:Name="textbox2" Text="{Binding Dart2.Value,Mode=TwoWay}"  Width="50">
                                                 <TextBox.InputBindings>
                                                     <KeyBinding Command="{Binding AddScoreCommand}" CommandParameter="{Binding ElementName=textbox2,Path=Text}" Key="Enter" />
                                                 </TextBox.InputBindings>
@@ -47,20 +56,28 @@
                                         </StackPanel>
                                         <StackPanel Margin="10,0,0,0">
                                             <Label>Dart3</Label>
-                                            <ct:CustomTextbox x:Name="textbox3" Text="{Binding Dart3.Value,Mode=TwoWay}"  Width="50">
+                                            <ct:CustomTextbox t:FocusExtension.IsFocused="{Binding Dart3.IsCurrentDart}" x:Name="textbox3" Text="{Binding Dart3.Value,Mode=TwoWay}"  Width="50">
                                                 <TextBox.InputBindings>
                                                     <KeyBinding Command="{Binding AddScoreCommand}" CommandParameter="{Binding ElementName=textbox3,Path=Text}" Key="Enter" />
                                                 </TextBox.InputBindings>
                                             </ct:CustomTextbox>
                                         </StackPanel>
                                     </StackPanel>
-                                    <Button Margin="0,10,0,0" Click="Button_Click_1">WINNER</Button>
+                                    <Button Margin="0,10,0,0" Content="Winner">
+                                        <i:Interaction.Triggers>
+                                            <i:EventTrigger EventName="Click">
+                                                <i:InvokeCommandAction Command="{Binding EndGameCommand}"/>
+                                            </i:EventTrigger>
+                                        </i:Interaction.Triggers>
+                                        
+                                    </Button>
                                 </StackPanel>
                             </Border>
 
-                            <StackPanel Orientation="Vertical" x:Name="spStandoffs" HorizontalAlignment="Center" Margin="0,20,0,0">
-                                <Label>WINNING STANDOFFS</Label>
-                            </StackPanel>
+                            <!--<StackPanel Orientation="Vertical" x:Name="spStandoffs" HorizontalAlignment="Center" Margin="0,20,0,0">
+                                <Label>WINNING STANDINGS</Label>
+                            </StackPanel>-->
+                            <ct:WinningStandings PlayersSource="{Binding Players}" ResetGame="{Binding CurrentGame.IsOver}" HorizontalAlignment="Center" Margin="0,20,0,0" Orientation="Vertical" />
                         </StackPanel>
                     </Grid>
                 </StackPanel>

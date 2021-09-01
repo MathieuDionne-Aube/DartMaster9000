@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace DartMaster9000.ViewModels
+namespace DartMaster9000.ViewModel
 {
     public class ViewModelBase : INotifyPropertyChanged
     {

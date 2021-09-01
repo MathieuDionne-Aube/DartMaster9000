@@ -47,7 +47,6 @@ namespace DartMaster9000.CustomControls
     /// </summary>
     public class StackPanelScores : StackPanel
     {
-        private const int CHEIGHT = 25;
         #region DependencyProperties
         public static readonly DependencyProperty PlayersSourceProperty =
                                DependencyProperty.Register(
@@ -91,12 +90,24 @@ namespace DartMaster9000.CustomControls
             }
         }
 
+        public static readonly DependencyProperty ResetGameProperty =
+                              DependencyProperty.Register(
+                              nameof(ResetGame), typeof(bool),
+                              typeof(StackPanelScores)
+                               );
+        public bool ResetGame
+        {
+            get { return (bool)GetValue(ResetGameProperty); }
+            set
+            {
+                SetValue(ResetGameProperty, value);
+            }
+        }
         #endregion
 
+        private const int CHEIGHT = 25;
         private int _turnNumber = 0;
-
         public Dictionary<Player, StackPanel> ScorePanels { get; set; } = new Dictionary<Player, StackPanel>();
-        public Dictionary<Player, Label> standoffsLabel { get; set; } = new Dictionary<Player, Label>();
         private StackPanel spTurn;
 
         //static StackPanelScores()
@@ -116,11 +127,17 @@ namespace DartMaster9000.CustomControls
                 if (spTurn != null)
                     AddPlayerTurn();
             }
+
+            if (e.Property.Name == nameof(ResetGame))
+            {
+                if (ResetGame == true)
+                    ResetScoreBoard();
+            }
             base.OnPropertyChanged(e);
         }
-
-        protected override void OnInitialized(EventArgs e)
+        private void InitSPTurn()
         {
+
             spTurn = new StackPanel();
             Label turns = new Label
             {
@@ -135,6 +152,11 @@ namespace DartMaster9000.CustomControls
             spTurn.Children.Add(turns);
             spTurn.Children.Add(total);
             this.Children.Insert(0, spTurn);
+
+        }
+        protected override void OnInitialized(EventArgs e)
+        {
+            InitSPTurn();
             base.OnInitialized(e);
         }
 
@@ -168,16 +190,10 @@ namespace DartMaster9000.CustomControls
 
                 this.Children.Add(s);
                 ScorePanels.Add(p, s);
-
-                //StackPanel standoffs = (StackPanel)this.FindName("spStandoffs");
-                //Label lb = new Label
-                //{
-                //    Content = $"{p.Name}  : {p.Victories}"
-                //};
-                //standoffs.Children.Add(lb);
-                //standoffsLabel.Add(p, lb);
             }
         }
+
+
 
 
         private void AddPlayerTurn()
@@ -208,6 +224,14 @@ namespace DartMaster9000.CustomControls
                         Content = _turnNumber
                     });
             }
+        }
+
+        private void ResetScoreBoard()
+        {
+            this.Children.Clear();
+            InitSPTurn();
+            ScorePanels = new Dictionary<Player, StackPanel>();
+            LoadPlayersPanels();
         }
     }
 }

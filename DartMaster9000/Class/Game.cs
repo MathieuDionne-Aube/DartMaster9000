@@ -11,7 +11,14 @@ namespace DartMaster9000.Class
 
         public List<Player> Players { get; set; }
         public Dictionary<Player,List<Turn>> PlayersTurns { get; set; }
+        public bool IsOver { get; set; }
 
+        public Game(List<Player> p)
+        {
+            Players = p;
+            InitializePlayerTurns();
+            IsOver = false;
+        }
 
         public void InitializePlayerTurns()
         {

@@ -13,5 +13,7 @@ namespace DartMaster9000.Class
             Value = score;
         }
         public int Value { get; set; }
+
+        public bool IsCurrentDart { get; set; }
     }
 }

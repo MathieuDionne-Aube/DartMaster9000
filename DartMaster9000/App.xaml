@@ -3,7 +3,6 @@
     <ResourceDictionary>
       <ResourceDictionary.MergedDictionaries>
       </ResourceDictionary.MergedDictionaries>
-      <vm:ViewModelLocator x:Key="Locator" d:IsDataSource="True" xmlns:vm="clr-namespace:DartMaster9000.ViewModel" />
     </ResourceDictionary>
   </Application.Resources>
 </Application>
