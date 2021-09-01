@@ -103,8 +103,8 @@ namespace DartMaster9000.CustomControls
         {
             Label l = new Label();
             l.Content = "WINNING STANDINGS";
-            this.Children.Add(l);
             LoadStandings();
+            this.Children.Insert(0,l);
         }
 
 

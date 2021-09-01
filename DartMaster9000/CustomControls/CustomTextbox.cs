@@ -7,6 +7,7 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
 using System.Windows.Documents;
+
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
@@ -50,6 +51,15 @@ namespace DartMaster9000.CustomControls
         {
             //DefaultStyleKeyProperty.OverrideMetadata(typeof(CustomTextbox), new FrameworkPropertyMetadata(typeof(CustomTextbox)));
         }
+
+        protected override void OnInitialized(EventArgs e)
+        {
+            this.CaretBrush = new SolidColorBrush(Color.FromArgb(0, 0, 0, 0));
+            this.BorderThickness = new Thickness(3);
+            this.Cursor = Cursors.Hand;
+            base.OnInitialized(e);
+        }
+
 
         protected override void OnKeyDown(KeyEventArgs e)
         {

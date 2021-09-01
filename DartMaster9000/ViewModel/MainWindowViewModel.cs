@@ -9,11 +9,13 @@ using System.Threading.Tasks;
 using Newtonsoft.Json;
 using System.IO;
 using DartMaster9000.Tools;
+using System.Windows;
 
 namespace DartMaster9000.ViewModel
 {
     public class MainWindowViewModel : ViewModelBase
     {
+        const int MAX_SCORE = 501;
         #region Props
         private Game _currentGame;
         public Game CurrentGame
@@ -93,6 +95,16 @@ namespace DartMaster9000.ViewModel
             }
         }
 
+        private Dart _currentDart = null;
+        public Dart CurrentDart
+        {
+            get { return _currentDart; }
+            set
+            {
+                _currentDart = value;
+                NotifyPropertyChanged(nameof(CurrentDart));
+            }
+        }
         #endregion
 
 
@@ -100,6 +112,8 @@ namespace DartMaster9000.ViewModel
         public RelayCommand<string> AddScoreCommand { get; set; }
         public RelayCommand EndGameCommand { get; set; }
         public RelayCommand OnExitGameCommand { get; set; }
+        public RelayCommand NextTurnCommand { get; set; }
+        public RelayCommand<string> SetCurrentDartCommand { get; set; }
         #endregion
 
         public MainWindowViewModel()
@@ -107,7 +121,8 @@ namespace DartMaster9000.ViewModel
             AddScoreCommand = new RelayCommand<string>((s) => AddScore(int.Parse(s)));
             EndGameCommand = new RelayCommand(() => EndGame());
             OnExitGameCommand = new RelayCommand(() => OnExitGame());
-
+            NextTurnCommand = new RelayCommand(() => EndTurn());
+            SetCurrentDartCommand = new RelayCommand<string>((i) => SetCurrentDart(i));
 
             //temp
             Players = new List<Player>();
@@ -116,7 +131,7 @@ namespace DartMaster9000.ViewModel
             Players.Add(new Player("Player3"));
             Players.Add(new Player("Player4"));
             //======
-
+            CurrentDart = Dart1;
             LoadPlayers();
             CurrentGame = new Game(Players);
             NotifyPropertyChanged(nameof(Players));
@@ -126,44 +141,97 @@ namespace DartMaster9000.ViewModel
             CurrentTurn = new Turn(CurrentPlayer);
         }
 
-        private void SetThrownDarts()
+        /// <summary>
+        /// Set the next active dart
+        /// automatically from the last one. 
+        /// If its the third dart it doesnt set 
+        /// another one.
+        /// </summary>
+        private void SetNextDart()
         {
-            if (CurrentTurn.DartsThrown.Count == 1)
+            Dart1.IsCurrentDart = false;
+            Dart2.IsCurrentDart = false;
+            Dart3.IsCurrentDart = false;
+
+            if (CurrentDart == Dart1)
             {
                 Dart1 = CurrentTurn.DartsThrown[0];
                 Dart2.IsCurrentDart = true;
-                NotifyPropertyChanged(nameof(Dart2));
+                CurrentDart = Dart2;
             }
-            else if (CurrentTurn.DartsThrown.Count == 2)
+            else if (CurrentDart == Dart2)
             {
                 Dart2 = CurrentTurn.DartsThrown[1];
                 Dart3.IsCurrentDart = true;
-                NotifyPropertyChanged(nameof(Dart3));
+                CurrentDart = Dart3;
             }
-            else if (CurrentTurn.DartsThrown.Count == 3)
+            else if (CurrentDart == Dart3)
             {
                 Dart3 = CurrentTurn.DartsThrown[2];
-                Dart1.IsCurrentDart = true;
-                NotifyPropertyChanged(nameof(Dart1));
+                NotifyPropertyChanged(nameof(CurrentTurn));
             }
+            NotifyPropertyChanged(nameof(Dart1));
+            NotifyPropertyChanged(nameof(Dart2));
+            NotifyPropertyChanged(nameof(Dart3));
+
+        }
+
+        /// <summary>
+        /// Set the current dart on demand.
+        /// </summary>
+        /// <param name="index"></param>
+        private void SetCurrentDart(string index)
+        {
+            Dart1.IsCurrentDart = false;
+            Dart2.IsCurrentDart = false;
+            Dart3.IsCurrentDart = false;
+            switch (index)
+            {
+                case "1":
+                    CurrentDart = Dart1;
+                    Dart1.IsCurrentDart = true;
+
+                    break;
+                case "2":
+                    CurrentDart = Dart2;
+                    Dart2.IsCurrentDart = true;
+                    break;
+                case "3":
+                    CurrentDart = Dart3;
+                    Dart3.IsCurrentDart = true;
+                    break;
+                default:
+                    throw new NotImplementedException();
+            }
+            NotifyPropertyChanged(nameof(Dart1));
+            NotifyPropertyChanged(nameof(Dart2));
+            NotifyPropertyChanged(nameof(Dart3));
         }
 
         private void ResetDarts()
         {
             Dart1 = new Dart(0);
+            Dart1.IsCurrentDart = true;
+            NotifyPropertyChanged(nameof(Dart1));
             Dart2 = new Dart(0);
             Dart3 = new Dart(0);
         }
 
         private void AddScore(int score)
         {
-            Dart d = new Dart(score);
-            CurrentTurn.AddDartThrown(d);
-            SetThrownDarts();
-            if (CurrentTurn.IsOver)
-            {
-                EndTurn();
-            }
+            CurrentDart.Value = score;
+
+            if (_currentDart == _dart1) 
+                NotifyPropertyChanged(nameof(Dart1));
+            else if (_currentDart == _dart2)
+                NotifyPropertyChanged(nameof(Dart2));
+            if (_currentDart == _dart3)
+                NotifyPropertyChanged(nameof(Dart3));
+
+            if (CurrentTurn.DartsThrown.Contains(CurrentDart) == false)
+                CurrentTurn.AddDartThrown(CurrentDart);
+
+            SetNextDart();
         }
 
         private void NextPlayer()
@@ -182,6 +250,12 @@ namespace DartMaster9000.ViewModel
         private void EndTurn()
         {
             CurrentGame.PlayersTurns[CurrentPlayer].Add(CurrentTurn);
+            int player_score = CurrentGame.PlayersTurns[CurrentPlayer].Sum(x => x.score);
+            if (player_score > MAX_SCORE)
+            {
+                MessageBox.Show("Player is busting.", "Warning", MessageBoxButton.OK);
+                return;
+            }
             LastTurn = CurrentTurn;
             ResetDarts();
             NextPlayer();
@@ -190,6 +264,11 @@ namespace DartMaster9000.ViewModel
 
         private void EndGame()
         {
+            if (MessageBox.Show($"You are gonna crown {CurrentPlayer.Name} as the winner, Continues?",
+                                "Winner",
+                                MessageBoxButton.YesNo) == MessageBoxResult.No)
+                return;
+
             CurrentPlayer.MyStats.Victories++;
             CurrentGame.IsOver = true;
             NotifyPropertyChanged(nameof(CurrentGame));

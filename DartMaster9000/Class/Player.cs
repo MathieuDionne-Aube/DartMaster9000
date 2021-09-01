@@ -16,8 +16,6 @@ namespace DartMaster9000.Class
 
         public Stats MyStats { get; set; }
         public string Name { get; set; }
-        public int Score { get; set; }
-        public bool HasWon { get; set; }
 
         public override bool Equals(object obj)
         {

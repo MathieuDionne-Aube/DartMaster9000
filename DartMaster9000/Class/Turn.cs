@@ -16,13 +16,16 @@ namespace DartMaster9000.Class
         }
         public Player Owner { get; set; }
 
-        private List<Dart> _dartsThrown;
+        private List<Dart> _dartsThrown ;
 
-        public List<Dart> DartsThrown 
+        public List<Dart> DartsThrown
         {
             get { return _dartsThrown; }
         }
-        public int score { get; set; }
+        public int score
+        {
+            get { return DartsThrown.Sum(x=> x.Value); }
+        }
 
         private bool _isOver;
 
@@ -34,12 +37,13 @@ namespace DartMaster9000.Class
 
         public void AddDartThrown(Dart d)
         {
-                _dartsThrown.Add(d);
-
-            if (_dartsThrown.Count > 2)
+            if (!_isOver)
             {
-                score = _dartsThrown.Sum(x => x.Value);
-                _isOver = true;
+                _dartsThrown.Add(d);
+                if (_dartsThrown.Count > 2)
+                {
+                    _isOver = true;
+                }
             }
         }
     }

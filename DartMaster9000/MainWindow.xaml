@@ -40,26 +40,44 @@
                                     <StackPanel  Orientation="Horizontal">
                                         <StackPanel FocusManager.FocusedElement="{Binding ElementName=textbox1}">
                                             <Label>Dart1</Label>
-                                            <ct:CustomTextbox t:FocusExtension.IsFocused="{Binding Dart1.IsCurrentDart}"  x:Name="textbox1" Text="{Binding Dart1.Value,Mode=TwoWay}" Width="50">
+                                            <ct:CustomTextbox t:FocusExtension.IsFocused="{Binding Dart1.IsCurrentDart}"  IsReadOnly="True"  x:Name="textbox1" Text="{Binding Dart1.Value,Mode=TwoWay}" Width="50">
                                                 <TextBox.InputBindings>
                                                     <KeyBinding Command="{Binding AddScoreCommand}" CommandParameter="{Binding ElementName=textbox1,Path=Text}" Key="Enter" />
                                                 </TextBox.InputBindings>
+                                                <i:Interaction.Triggers>
+                                                    <i:EventTrigger EventName="GotFocus">
+                                                        <i:InvokeCommandAction Command="{Binding SetCurrentDartCommand}"
+                                                                               CommandParameter="1"/>
+                                                    </i:EventTrigger>
+                                                </i:Interaction.Triggers>
                                             </ct:CustomTextbox>
                                         </StackPanel>
                                         <StackPanel Margin="10,0,0,0">
                                             <Label>Dart2</Label>
-                                            <ct:CustomTextbox t:FocusExtension.IsFocused="{Binding Dart2.IsCurrentDart}"  x:Name="textbox2" Text="{Binding Dart2.Value,Mode=TwoWay}"  Width="50">
+                                            <ct:CustomTextbox t:FocusExtension.IsFocused="{Binding Dart2.IsCurrentDart}"  IsReadOnly="True"  x:Name="textbox2" Text="{Binding Dart2.Value,Mode=TwoWay}"  Width="50">
                                                 <TextBox.InputBindings>
                                                     <KeyBinding Command="{Binding AddScoreCommand}" CommandParameter="{Binding ElementName=textbox2,Path=Text}" Key="Enter" />
                                                 </TextBox.InputBindings>
+                                                <i:Interaction.Triggers>
+                                                    <i:EventTrigger EventName="GotFocus">
+                                                        <i:InvokeCommandAction Command="{Binding SetCurrentDartCommand}"
+                                                                               CommandParameter="2"/>
+                                                    </i:EventTrigger>
+                                                </i:Interaction.Triggers>
                                             </ct:CustomTextbox>
                                         </StackPanel>
                                         <StackPanel Margin="10,0,0,0">
                                             <Label>Dart3</Label>
-                                            <ct:CustomTextbox t:FocusExtension.IsFocused="{Binding Dart3.IsCurrentDart}" x:Name="textbox3" Text="{Binding Dart3.Value,Mode=TwoWay}"  Width="50">
+                                            <ct:CustomTextbox t:FocusExtension.IsFocused="{Binding Dart3.IsCurrentDart}"  IsReadOnly="True" x:Name="textbox3" Text="{Binding Dart3.Value,Mode=TwoWay}"  Width="50">
                                                 <TextBox.InputBindings>
                                                     <KeyBinding Command="{Binding AddScoreCommand}" CommandParameter="{Binding ElementName=textbox3,Path=Text}" Key="Enter" />
                                                 </TextBox.InputBindings>
+                                                <i:Interaction.Triggers>
+                                                    <i:EventTrigger EventName="GotFocus">
+                                                        <i:InvokeCommandAction Command="{Binding SetCurrentDartCommand}"
+                                                                               CommandParameter="3"/>
+                                                    </i:EventTrigger>
+                                                </i:Interaction.Triggers>
                                             </ct:CustomTextbox>
                                         </StackPanel>
                                     </StackPanel>
@@ -69,7 +87,7 @@
                                                 <i:InvokeCommandAction Command="{Binding EndGameCommand}"/>
                                             </i:EventTrigger>
                                         </i:Interaction.Triggers>
-                                        
+
                                     </Button>
                                 </StackPanel>
                             </Border>
@@ -84,21 +102,20 @@
             </Grid>
             <Grid MaxWidth="1300" Width="1300" Height="1080" HorizontalAlignment="Left" Margin="0,0,-9,0">
                 <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="145*"/>
-                    <ColumnDefinition Width="571*"/>
+                    <ColumnDefinition/>
                 </Grid.ColumnDefinitions>
                 <Grid.Background>
                     <ImageBrush  ImageSource="/Images/dart-board-11361989.jpg" Stretch="UniformToFill"/>
                 </Grid.Background>
 
-                <Path x:Name="section20"  Grid.Column="1" Data="M3.3583806,2.6869786 L57.962188,-2.2533316 113.94975,2.6869786 63.492366,339.33383 55.333425,339.33382 z" Fill="Transparent" HorizontalAlignment="Left" Height="323.667" Margin="334.899,183.833,0,0" Stretch="Fill" Stroke="transparent" VerticalAlignment="Top" Width="107.667"  MouseLeave="OnMouseLeave" MouseEnter="OnHover">
+                <Path x:Name="section20" Data="M3.3583806,2.6869786 L57.962188,-2.2533316 113.94975,2.6869786 63.492366,339.33383 55.333425,339.33382 z" Fill="Transparent" HorizontalAlignment="Left" Height="323.667" Margin="597.899,183.833,0,0" Stretch="Fill" Stroke="transparent" VerticalAlignment="Top" Width="107.667"  MouseLeave="OnMouseLeave" MouseEnter="OnHover">
                     <i:Interaction.Triggers>
                         <i:EventTrigger EventName="MouseDown">
                             <i:InvokeCommandAction Command="{Binding AddScoreCommand}" CommandParameter="20"/>
                         </i:EventTrigger>
                     </i:Interaction.Triggers>
                 </Path>
-                <Path x:Name="section5"  Grid.Column="1" Data="M3.3583806,2.6869786 L57.962188,-2.2533316 113.94975,2.6869786 63.492366,339.33383 55.333425,339.33382 z" Fill="Transparent" HorizontalAlignment="Left" Height="323.667" Margin="273.899,194.499,0,0" Stretch="Fill" Stroke="transparent" VerticalAlignment="Top" Width="107.667" RenderTransformOrigin="0.5,0.5" MouseLeave="OnMouseLeave" MouseEnter="OnHover">
+                <Path x:Name="section5" Data="M3.3583806,2.6869786 L57.962188,-2.2533316 113.94975,2.6869786 63.492366,339.33383 55.333425,339.33382 z" Fill="Transparent" HorizontalAlignment="Left" Height="323.667" Margin="536.899,194.499,0,0" Stretch="Fill" Stroke="transparent" VerticalAlignment="Top" Width="107.667" RenderTransformOrigin="0.5,0.5" MouseLeave="OnMouseLeave" MouseEnter="OnHover">
                     <Path.RenderTransform>
                         <TransformGroup>
                             <ScaleTransform/>
@@ -115,7 +132,7 @@
                 </Path>
 
 
-                <Path x:Name="secion12"  Grid.Column="1" Data="M3.3583806,2.6869786 L57.962188,-2.2533316 113.94975,2.6869786 63.492366,339.33383 55.333425,339.33382 z" Fill="Transparent" HorizontalAlignment="Left" Height="323.667" Margin="219.232,221.166,0,0" Stretch="Fill" Stroke="transparent" VerticalAlignment="Top" Width="107.667" RenderTransformOrigin="0.5,0.5"  MouseLeave="OnMouseLeave" MouseEnter="OnHover">
+                <Path x:Name="secion12" Data="M3.3583806,2.6869786 L57.962188,-2.2533316 113.94975,2.6869786 63.492366,339.33383 55.333425,339.33382 z" Fill="Transparent" HorizontalAlignment="Left" Height="323.667" Margin="482.232,221.166,0,0" Stretch="Fill" Stroke="transparent" VerticalAlignment="Top" Width="107.667" RenderTransformOrigin="0.5,0.5"  MouseLeave="OnMouseLeave" MouseEnter="OnHover">
                     <Path.RenderTransform>
                         <TransformGroup>
                             <ScaleTransform/>
@@ -132,7 +149,7 @@
                 </Path>
 
 
-                <Path x:Name="section9"  Grid.Column="1" Data="M3.3583806,2.6869786 L57.962188,-2.2533316 113.94975,2.6869786 63.492366,339.33383 55.333425,339.33382 z" Fill="Transparent" HorizontalAlignment="Left" Height="323.667" Margin="175.898,264.499,0,0" Stretch="Fill" Stroke="transparent" VerticalAlignment="Top" Width="107.667" RenderTransformOrigin="0.5,0.5" MouseLeave="OnMouseLeave" MouseEnter="OnHover">
+                <Path x:Name="section9" Data="M3.3583806,2.6869786 L57.962188,-2.2533316 113.94975,2.6869786 63.492366,339.33383 55.333425,339.33382 z" Fill="Transparent" HorizontalAlignment="Left" Height="323.667" Margin="438.898,264.499,0,0" Stretch="Fill" Stroke="transparent" VerticalAlignment="Top" Width="107.667" RenderTransformOrigin="0.5,0.5" MouseLeave="OnMouseLeave" MouseEnter="OnHover">
                     <Path.RenderTransform>
                         <TransformGroup>
                             <ScaleTransform/>
@@ -141,15 +158,15 @@
                             <TranslateTransform/>
                         </TransformGroup>
                     </Path.RenderTransform>
-                        <i:Interaction.Triggers>
-                            <i:EventTrigger EventName="MouseDown">
-                                <i:InvokeCommandAction Command="{Binding AddScoreCommand}" CommandParameter="9"/>
-                            </i:EventTrigger>
-                        </i:Interaction.Triggers>
-                    </Path>
+                    <i:Interaction.Triggers>
+                        <i:EventTrigger EventName="MouseDown">
+                            <i:InvokeCommandAction Command="{Binding AddScoreCommand}" CommandParameter="9"/>
+                        </i:EventTrigger>
+                    </i:Interaction.Triggers>
+                </Path>
 
 
-                <Path x:Name="section14"  Grid.Column="1" Data="M3.3583806,2.6869786 L57.962188,-2.2533316 113.94975,2.6869786 63.492366,339.33383 55.333425,339.33382 z" Fill="Transparent" HorizontalAlignment="Left" Height="323.667" Margin="149.233,318.499,0,0" Stretch="Fill" Stroke="transparent" VerticalAlignment="Top" Width="107.667" RenderTransformOrigin="0.5,0.5" MouseLeave="OnMouseLeave" MouseEnter="OnHover">
+                <Path x:Name="section14" Data="M3.3583806,2.6869786 L57.962188,-2.2533316 113.94975,2.6869786 63.492366,339.33383 55.333425,339.33382 z" Fill="Transparent" HorizontalAlignment="Left" Height="323.667" Margin="412.233,318.499,0,0" Stretch="Fill" Stroke="transparent" VerticalAlignment="Top" Width="107.667" RenderTransformOrigin="0.5,0.5" MouseLeave="OnMouseLeave" MouseEnter="OnHover">
                     <Path.RenderTransform>
                         <TransformGroup>
                             <ScaleTransform/>
@@ -166,7 +183,7 @@
                 </Path>
 
 
-                <Path x:Name="section11"  Grid.Column="1" Data="M3.3583806,2.6869786 L57.962188,-2.2533316 113.94975,2.6869786 63.492366,339.33383 55.333425,339.33382 z" Fill="Transparent" HorizontalAlignment="Left" Height="323.667" Margin="139.9,379.832,0,0" Stretch="Fill" Stroke="transparent" VerticalAlignment="Top" Width="107.667" RenderTransformOrigin="0.5,0.5"  MouseLeave="OnMouseLeave" MouseEnter="OnHover">
+                <Path x:Name="section11" Data="M3.3583806,2.6869786 L57.962188,-2.2533316 113.94975,2.6869786 63.492366,339.33383 55.333425,339.33382 z" Fill="Transparent" HorizontalAlignment="Left" Height="323.667" Margin="402.9,379.832,0,0" Stretch="Fill" Stroke="transparent" VerticalAlignment="Top" Width="107.667" RenderTransformOrigin="0.5,0.5"  MouseLeave="OnMouseLeave" MouseEnter="OnHover">
                     <Path.RenderTransform>
                         <TransformGroup>
                             <ScaleTransform/>
@@ -183,7 +200,7 @@
                 </Path>
 
 
-                <Path x:Name="section8"  Grid.Column="1" Data="M3.3583806,2.6869786 L57.962188,-2.2533316 113.94975,2.6869786 63.492366,339.33383 55.333425,339.33382 z" Fill="Transparent" HorizontalAlignment="Left" Height="323.667" Margin="148.567,439.166,0,0" Stretch="Fill" Stroke="transparent" VerticalAlignment="Top" Width="107.667" RenderTransformOrigin="0.5,0.5"  MouseLeave="OnMouseLeave" MouseEnter="OnHover">
+                <Path x:Name="section8" Data="M3.3583806,2.6869786 L57.962188,-2.2533316 113.94975,2.6869786 63.492366,339.33383 55.333425,339.33382 z" Fill="Transparent" HorizontalAlignment="Left" Height="323.667" Margin="411.567,439.166,0,0" Stretch="Fill" Stroke="transparent" VerticalAlignment="Top" Width="107.667" RenderTransformOrigin="0.5,0.5"  MouseLeave="OnMouseLeave" MouseEnter="OnHover">
                     <Path.RenderTransform>
                         <TransformGroup>
                             <ScaleTransform/>
@@ -200,7 +217,7 @@
                 </Path>
 
 
-                <Path x:Name="section16"  Grid.Column="1" Data="M3.3583806,2.6869786 L57.962188,-2.2533316 113.94975,2.6869786 63.492366,339.33383 55.333425,339.33382 z" Fill="Transparent" HorizontalAlignment="Left" Height="323.667" Margin="176.567,494.499,0,0" Stretch="Fill" Stroke="transparent" VerticalAlignment="Top" Width="107.667" RenderTransformOrigin="0.5,0.5"  MouseLeave="OnMouseLeave" MouseEnter="OnHover">
+                <Path x:Name="section16" Data="M3.3583806,2.6869786 L57.962188,-2.2533316 113.94975,2.6869786 63.492366,339.33383 55.333425,339.33382 z" Fill="Transparent" HorizontalAlignment="Left" Height="323.667" Margin="439.567,494.499,0,0" Stretch="Fill" Stroke="transparent" VerticalAlignment="Top" Width="107.667" RenderTransformOrigin="0.5,0.5"  MouseLeave="OnMouseLeave" MouseEnter="OnHover">
                     <Path.RenderTransform>
                         <TransformGroup>
                             <ScaleTransform/>
@@ -217,7 +234,7 @@
                 </Path>
 
 
-                <Path x:Name="section7"  Grid.Column="1" Data="M3.3583806,2.6869786 L57.962188,-2.2533316 113.94975,2.6869786 63.492366,339.33383 55.333425,339.33382 z" Fill="Transparent" HorizontalAlignment="Left" Height="323.667" Margin="219.234,537.165,0,0" Stretch="Fill" Stroke="transparent" VerticalAlignment="Top" Width="107.667" RenderTransformOrigin="0.5,0.5"  MouseLeave="OnMouseLeave" MouseEnter="OnHover">
+                <Path x:Name="section7" Data="M3.3583806,2.6869786 L57.962188,-2.2533316 113.94975,2.6869786 63.492366,339.33383 55.333425,339.33382 z" Fill="Transparent" HorizontalAlignment="Left" Height="323.667" Margin="482.234,537.165,0,0" Stretch="Fill" Stroke="transparent" VerticalAlignment="Top" Width="107.667" RenderTransformOrigin="0.5,0.5"  MouseLeave="OnMouseLeave" MouseEnter="OnHover">
                     <Path.RenderTransform>
                         <TransformGroup>
                             <ScaleTransform/>
@@ -234,7 +251,7 @@
                 </Path>
 
 
-                <Path x:Name="section19"  Grid.Column="1" Data="M3.3583806,2.6869786 L57.962188,-2.2533316 113.94975,2.6869786 63.492366,339.33383 55.333425,339.33382 z" Fill="Transparent" HorizontalAlignment="Left" Height="323.667" Margin="275.901,563.165,0,0" Stretch="Fill" Stroke="transparent" VerticalAlignment="Top" Width="107.667" RenderTransformOrigin="0.5,0.5"  MouseLeave="OnMouseLeave" MouseEnter="OnHover">
+                <Path x:Name="section19" Data="M3.3583806,2.6869786 L57.962188,-2.2533316 113.94975,2.6869786 63.492366,339.33383 55.333425,339.33382 z" Fill="Transparent" HorizontalAlignment="Left" Height="323.667" Margin="538.901,563.165,0,0" Stretch="Fill" Stroke="transparent" VerticalAlignment="Top" Width="107.667" RenderTransformOrigin="0.5,0.5"  MouseLeave="OnMouseLeave" MouseEnter="OnHover">
                     <Path.RenderTransform>
                         <TransformGroup>
                             <ScaleTransform/>
@@ -251,7 +268,7 @@
                 </Path>
 
 
-                <Path x:Name="section3"  Grid.Column="1" Data="M3.3583806,2.6869786 L57.962188,-2.2533316 113.94975,2.6869786 63.492366,339.33383 55.333425,339.33382 z" Fill="Transparent" HorizontalAlignment="Left" Height="323.667" Margin="334.567,573.832,0,0" Stretch="Fill" Stroke="transparent" VerticalAlignment="Top" Width="107.667" RenderTransformOrigin="0.5,0.5"  MouseLeave="OnMouseLeave" MouseEnter="OnHover">
+                <Path x:Name="section3" Data="M3.3583806,2.6869786 L57.962188,-2.2533316 113.94975,2.6869786 63.492366,339.33383 55.333425,339.33382 z" Fill="Transparent" HorizontalAlignment="Left" Height="323.667" Margin="597.567,573.832,0,0" Stretch="Fill" Stroke="transparent" VerticalAlignment="Top" Width="107.667" RenderTransformOrigin="0.5,0.5"  MouseLeave="OnMouseLeave" MouseEnter="OnHover">
                     <Path.RenderTransform>
                         <TransformGroup>
                             <ScaleTransform/>
@@ -268,7 +285,7 @@
                 </Path>
 
 
-                <Path x:Name="section17"  Grid.Column="1" Data="M3.3583806,2.6869786 L57.962188,-2.2533316 113.94975,2.6869786 63.492366,339.33383 55.333425,339.33382 z" Fill="Transparent" HorizontalAlignment="Left" Height="323.667" Margin="586.232,194.332,0,0" Stretch="Fill" Stroke="transparent" VerticalAlignment="Top" Width="107.667" RenderTransformOrigin="0.5,0.5"  MouseLeave="OnMouseLeave" MouseEnter="OnHover">
+                <Path x:Name="section17" Data="M3.3583806,2.6869786 L57.962188,-2.2533316 113.94975,2.6869786 63.492366,339.33383 55.333425,339.33382 z" Fill="Transparent" HorizontalAlignment="Left" Height="323.667" Margin="849.232,194.332,0,0" Stretch="Fill" Stroke="transparent" VerticalAlignment="Top" Width="107.667" RenderTransformOrigin="0.5,0.5"  MouseLeave="OnMouseLeave" MouseEnter="OnHover">
                     <Path.RenderTransform>
                         <TransformGroup>
                             <ScaleTransform/>
@@ -285,7 +302,7 @@
                 </Path>
 
 
-                <Path x:Name="section2"  Grid.Column="1" Data="M3.3583806,2.6869786 L57.962188,-2.2533316 113.94975,2.6869786 63.492366,339.33383 55.333425,339.33382 z" Fill="Transparent" HorizontalAlignment="Left" Height="323.667" Margin="530.899,220.999,0,0" Stretch="Fill" Stroke="transparent" VerticalAlignment="Top" Width="107.667" RenderTransformOrigin="0.5,0.5" MouseLeave="OnMouseLeave" MouseEnter="OnHover">
+                <Path x:Name="section2" Data="M3.3583806,2.6869786 L57.962188,-2.2533316 113.94975,2.6869786 63.492366,339.33383 55.333425,339.33382 z" Fill="Transparent" HorizontalAlignment="Left" Height="323.667" Margin="793.899,220.999,0,0" Stretch="Fill" Stroke="transparent" VerticalAlignment="Top" Width="107.667" RenderTransformOrigin="0.5,0.5" MouseLeave="OnMouseLeave" MouseEnter="OnHover">
                     <Path.RenderTransform>
                         <TransformGroup>
                             <ScaleTransform/>
@@ -302,7 +319,7 @@
                 </Path>
 
 
-                <Path x:Name="section15"  Grid.Column="1" Data="M3.3583806,2.6869786 L57.962188,-2.2533316 113.94975,2.6869786 63.492366,339.33383 55.333425,339.33382 z" Fill="Transparent" HorizontalAlignment="Left" Height="323.667" Margin="488.231,264.332,0,0" Stretch="Fill" Stroke="transparent" VerticalAlignment="Top" Width="107.667" RenderTransformOrigin="0.5,0.5" MouseLeave="OnMouseLeave" MouseEnter="OnHover">
+                <Path x:Name="section15" Data="M3.3583806,2.6869786 L57.962188,-2.2533316 113.94975,2.6869786 63.492366,339.33383 55.333425,339.33382 z" Fill="Transparent" HorizontalAlignment="Left" Height="323.667" Margin="751.231,264.332,0,0" Stretch="Fill" Stroke="transparent" VerticalAlignment="Top" Width="107.667" RenderTransformOrigin="0.5,0.5" MouseLeave="OnMouseLeave" MouseEnter="OnHover">
                     <Path.RenderTransform>
                         <TransformGroup>
                             <ScaleTransform/>
@@ -319,7 +336,7 @@
                 </Path>
 
 
-                <Path x:Name="section10"  Grid.Column="1" Data="M3.3583806,2.6869786 L57.962188,-2.2533316 113.94975,2.6869786 63.492366,339.33383 55.333425,339.33382 z" Fill="Transparent" HorizontalAlignment="Left" Height="323.667" Margin="464.233,318.332,0,0" Stretch="Fill" Stroke="transparent" VerticalAlignment="Top" Width="107.667" RenderTransformOrigin="0.5,0.5"  MouseLeave="OnMouseLeave" MouseEnter="OnHover">
+                <Path x:Name="section10" Data="M3.3583806,2.6869786 L57.962188,-2.2533316 113.94975,2.6869786 63.492366,339.33383 55.333425,339.33382 z" Fill="Transparent" HorizontalAlignment="Left" Height="323.667" Margin="727.233,318.332,0,0" Stretch="Fill" Stroke="transparent" VerticalAlignment="Top" Width="107.667" RenderTransformOrigin="0.5,0.5"  MouseLeave="OnMouseLeave" MouseEnter="OnHover">
                     <Path.RenderTransform>
                         <TransformGroup>
                             <ScaleTransform/>
@@ -336,7 +353,7 @@
                 </Path>
 
 
-                <Path x:Name="section6"  Grid.Column="1" Data="M3.3583806,2.6869786 L57.962188,-2.2533316 113.94975,2.6869786 63.492366,339.33383 55.333425,339.33382 z" Fill="Transparent" HorizontalAlignment="Left" Height="323.667" Margin="454.9,379.665,0,0" Stretch="Fill" Stroke="transparent" VerticalAlignment="Top" Width="107.667" RenderTransformOrigin="0.5,0.5" MouseLeave="OnMouseLeave" MouseEnter="OnHover">
+                <Path x:Name="section6" Data="M3.3583806,2.6869786 L57.962188,-2.2533316 113.94975,2.6869786 63.492366,339.33383 55.333425,339.33382 z" Fill="Transparent" HorizontalAlignment="Left" Height="323.667" Margin="717.9,379.665,0,0" Stretch="Fill" Stroke="transparent" VerticalAlignment="Top" Width="107.667" RenderTransformOrigin="0.5,0.5" MouseLeave="OnMouseLeave" MouseEnter="OnHover">
                     <Path.RenderTransform>
                         <TransformGroup>
                             <ScaleTransform/>
@@ -353,7 +370,7 @@
                 </Path>
 
 
-                <Path x:Name="section13"  Grid.Column="1" Data="M3.3583806,2.6869786 L57.962188,-2.2533316 113.94975,2.6869786 63.492366,339.33383 55.333425,339.33382 z" Fill="Transparent" HorizontalAlignment="Left" Height="323.667" Margin="463.567,438.999,0,0" Stretch="Fill" Stroke="transparent" VerticalAlignment="Top" Width="107.667" RenderTransformOrigin="0.5,0.5"  MouseLeave="OnMouseLeave" MouseEnter="OnHover">
+                <Path x:Name="section13" Data="M3.3583806,2.6869786 L57.962188,-2.2533316 113.94975,2.6869786 63.492366,339.33383 55.333425,339.33382 z" Fill="Transparent" HorizontalAlignment="Left" Height="323.667" Margin="726.567,438.999,0,0" Stretch="Fill" Stroke="transparent" VerticalAlignment="Top" Width="107.667" RenderTransformOrigin="0.5,0.5"  MouseLeave="OnMouseLeave" MouseEnter="OnHover">
                     <Path.RenderTransform>
                         <TransformGroup>
                             <ScaleTransform/>
@@ -370,7 +387,7 @@
                 </Path>
 
 
-                <Path x:Name="section4"  Grid.Column="1" Data="M3.3583806,2.6869786 L57.962188,-2.2533316 113.94975,2.6869786 63.492366,339.33383 55.333425,339.33382 z" Fill="Transparent" HorizontalAlignment="Left" Height="323.667" Margin="491.567,494.332,0,0" Stretch="Fill" Stroke="transparent" VerticalAlignment="Top" Width="107.667" RenderTransformOrigin="0.5,0.5"  MouseLeave="OnMouseLeave" MouseEnter="OnHover">
+                <Path x:Name="section4" Data="M3.3583806,2.6869786 L57.962188,-2.2533316 113.94975,2.6869786 63.492366,339.33383 55.333425,339.33382 z" Fill="Transparent" HorizontalAlignment="Left" Height="323.667" Margin="754.567,494.332,0,0" Stretch="Fill" Stroke="transparent" VerticalAlignment="Top" Width="107.667" RenderTransformOrigin="0.5,0.5"  MouseLeave="OnMouseLeave" MouseEnter="OnHover">
                     <Path.RenderTransform>
                         <TransformGroup>
                             <ScaleTransform/>
@@ -387,7 +404,7 @@
                 </Path>
 
 
-                <Path x:Name="section18"  Grid.Column="1" Data="M3.3583806,2.6869786 L57.962188,-2.2533316 113.94975,2.6869786 63.492366,339.33383 55.333425,339.33382 z" Fill="Transparent" HorizontalAlignment="Left" Height="323.667" Margin="534.234,536.998,0,0" Stretch="Fill" Stroke="transparent" VerticalAlignment="Top" Width="107.667" RenderTransformOrigin="0.5,0.5"  MouseLeave="OnMouseLeave" MouseEnter="OnHover">
+                <Path x:Name="section18" Data="M3.3583806,2.6869786 L57.962188,-2.2533316 113.94975,2.6869786 63.492366,339.33383 55.333425,339.33382 z" Fill="Transparent" HorizontalAlignment="Left" Height="323.667" Margin="797.234,536.998,0,0" Stretch="Fill" Stroke="transparent" VerticalAlignment="Top" Width="107.667" RenderTransformOrigin="0.5,0.5"  MouseLeave="OnMouseLeave" MouseEnter="OnHover">
                     <Path.RenderTransform>
                         <TransformGroup>
                             <ScaleTransform/>
@@ -404,7 +421,7 @@
                 </Path>
 
 
-                <Path x:Name="section1"  Grid.Column="1" Data="M3.3583806,2.6869786 L57.962188,-2.2533316 113.94975,2.6869786 63.492366,339.33383 55.333425,339.33382 z" Fill="Transparent" HorizontalAlignment="Left" Height="323.667" Margin="590.901,562.998,0,0" Stretch="Fill" Stroke="transparent" VerticalAlignment="Top" Width="107.667" RenderTransformOrigin="0.5,0.5" MouseLeave="OnMouseLeave" MouseEnter="OnHover">
+                <Path x:Name="section1" Data="M3.3583806,2.6869786 L57.962188,-2.2533316 113.94975,2.6869786 63.492366,339.33383 55.333425,339.33382 z" Fill="Transparent" HorizontalAlignment="Left" Height="323.667" Margin="853.901,562.998,0,0" Stretch="Fill" Stroke="transparent" VerticalAlignment="Top" Width="107.667" RenderTransformOrigin="0.5,0.5" MouseLeave="OnMouseLeave" MouseEnter="OnHover">
                     <Path.RenderTransform>
                         <TransformGroup>
                             <ScaleTransform/>
@@ -419,14 +436,14 @@
                         </i:EventTrigger>
                     </i:Interaction.Triggers>
                 </Path>
-                <Path x:Name="double20" Grid.Column="1" Data="M-2.1681129,5.8336073 L52.498692,2.5002639 109.16585,6.500276 107.16584,21.167321 51.165432,17.167237 -0.16810149,21.167321 z" Margin="332.732,167,592.667,894.333" Stretch="Fill" Stroke="Transparent" StrokeThickness="2" MouseEnter="ChildHover" MouseLeave="OnChildLeave">
+                <Path x:Name="double20" Data="M-2.1681129,5.8336073 L52.498692,2.5002639 109.16585,6.500276 107.16584,21.167321 51.165432,17.167237 -0.16810149,21.167321 z" Margin="595.732,167,592.667,894.333" Stretch="Fill" Stroke="Transparent" StrokeThickness="2" MouseEnter="ChildHover" MouseLeave="OnChildLeave">
                     <i:Interaction.Triggers>
                         <i:EventTrigger EventName="MouseDown">
                             <i:InvokeCommandAction Command="{Binding AddScoreCommand}" CommandParameter="40"/>
                         </i:EventTrigger>
                     </i:Interaction.Triggers>
                 </Path>
-                <Path x:Name="double5" Grid.Column="1" Data="M-2.1681129,5.8336073 L52.498692,2.5002639 109.16585,6.500276 107.16584,21.167321 51.165432,17.167237 -0.16810149,21.167321 z" Margin="220.566,185.667,704.833,875.666" Stretch="Fill" RenderTransformOrigin="0.5,0.5" Stroke="Transparent" StrokeThickness="2" MouseEnter="ChildHover" MouseLeave="OnChildLeave">
+                <Path x:Name="double5" Data="M-2.1681129,5.8336073 L52.498692,2.5002639 109.16585,6.500276 107.16584,21.167321 51.165432,17.167237 -0.16810149,21.167321 z" Margin="483.566,185.667,704.833,875.666" Stretch="Fill" RenderTransformOrigin="0.5,0.5" Stroke="Transparent" StrokeThickness="2" MouseEnter="ChildHover" MouseLeave="OnChildLeave">
                     <Path.RenderTransform>
                         <TransformGroup>
                             <ScaleTransform/>
@@ -441,7 +458,7 @@
                         </i:EventTrigger>
                     </i:Interaction.Triggers>
                 </Path>
-                <Path x:Name="double12" Grid.Column="1" Data="M-2.1681129,5.8336073 L52.498692,2.5002639 109.16585,6.500276 107.16584,21.167321 51.165432,17.167237 -0.16810149,21.167321 z" Margin="119.233,236.333,806.166,825" Stretch="Fill" RenderTransformOrigin="0.5,0.5" Stroke="Transparent" StrokeThickness="2" MouseEnter="ChildHover" MouseLeave="OnChildLeave">
+                <Path x:Name="double12" Data="M-2.1681129,5.8336073 L52.498692,2.5002639 109.16585,6.500276 107.16584,21.167321 51.165432,17.167237 -0.16810149,21.167321 z" Margin="382.233,236.333,806.166,825" Stretch="Fill" RenderTransformOrigin="0.5,0.5" Stroke="Transparent" StrokeThickness="2" MouseEnter="ChildHover" MouseLeave="OnChildLeave">
                     <Path.RenderTransform>
                         <TransformGroup>
                             <ScaleTransform/>
@@ -456,7 +473,7 @@
                         </i:EventTrigger>
                     </i:Interaction.Triggers>
                 </Path>
-                <Path x:Name="double9" Grid.Column="1" Data="M-2.1681129,5.8336073 L52.498692,2.5002639 109.16585,6.500276 107.16584,21.167321 51.165432,17.167237 -0.16810149,21.167321 z" Margin="122.065,381.667,803.334,679.666" Stretch="Fill" RenderTransformOrigin="0.5,0.5" Stroke="Transparent" StrokeThickness="2" MouseEnter="ChildHover" MouseLeave="OnChildLeave">
+                <Path x:Name="double9" Data="M-2.1681129,5.8336073 L52.498692,2.5002639 109.16585,6.500276 107.16584,21.167321 51.165432,17.167237 -0.16810149,21.167321 z" Margin="385.065,381.667,803.334,679.666" Stretch="Fill" RenderTransformOrigin="0.5,0.5" Stroke="Transparent" StrokeThickness="2" MouseEnter="ChildHover" MouseLeave="OnChildLeave">
                     <Path.RenderTransform>
                         <TransformGroup>
                             <ScaleTransform/>
@@ -471,7 +488,7 @@
                         </i:EventTrigger>
                     </i:Interaction.Triggers>
                 </Path>
-                <Path x:Name="double14" Data="M-2.1681129,5.8336073 L52.498692,2.5002639 109.16585,6.500276 107.16584,21.167321 51.165432,17.167237 -0.16810149,21.167321 z" Margin="9.232,399.001,916.167,662.332" Stretch="Fill" RenderTransformOrigin="0.5,0.5" Grid.Column="1" Stroke="Transparent" StrokeThickness="2" MouseEnter="ChildHover" MouseLeave="OnChildLeave">
+                <Path x:Name="double14" Data="M-2.1681129,5.8336073 L52.498692,2.5002639 109.16585,6.500276 107.16584,21.167321 51.165432,17.167237 -0.16810149,21.167321 z" Margin="272.232,399.001,916.167,662.332" Stretch="Fill" RenderTransformOrigin="0.5,0.5" Stroke="Transparent" StrokeThickness="2" MouseEnter="ChildHover" MouseLeave="OnChildLeave">
                     <Path.RenderTransform>
                         <TransformGroup>
                             <ScaleTransform/>
@@ -486,7 +503,7 @@
                         </i:EventTrigger>
                     </i:Interaction.Triggers>
                 </Path>
-                <Path x:Name="double11" Data="M-2.1681129,5.8336073 L52.498692,2.5002639 109.16585,6.500276 107.16584,21.167321 51.165432,17.167237 -0.16810149,21.167321 z" Margin="171.834,451,1016.833,610.333" Stretch="Fill" RenderTransformOrigin="0.5,0.5" Grid.ColumnSpan="2" Stroke="Transparent" StrokeThickness="2" MouseEnter="ChildHover" MouseLeave="OnChildLeave">
+                <Path x:Name="double11" Data="M-2.1681129,5.8336073 L52.498692,2.5002639 109.16585,6.500276 107.16584,21.167321 51.165432,17.167237 -0.16810149,21.167321 z" Margin="171.834,451,1016.833,610.333" Stretch="Fill" RenderTransformOrigin="0.5,0.5" Stroke="Transparent" StrokeThickness="2" MouseEnter="ChildHover" MouseLeave="OnChildLeave">
                     <Path.RenderTransform>
                         <TransformGroup>
                             <ScaleTransform/>
@@ -501,7 +518,7 @@
                         </i:EventTrigger>
                     </i:Interaction.Triggers>
                 </Path>
-                <Path x:Name="double8" Data="M-2.1681129,5.8336073 L52.498692,2.5002639 109.16585,6.500276 107.16584,21.167321 51.165432,17.167237 -0.16810149,21.167321 z" Margin="41.899,613.668,883.5,447.665" Stretch="Fill" RenderTransformOrigin="0.5,0.5" Grid.Column="1" Stroke="Transparent" StrokeThickness="2" MouseEnter="ChildHover" MouseLeave="OnChildLeave">
+                <Path x:Name="double8" Data="M-2.1681129,5.8336073 L52.498692,2.5002639 109.16585,6.500276 107.16584,21.167321 51.165432,17.167237 -0.16810149,21.167321 z" Margin="304.899,613.668,883.5,447.665" Stretch="Fill" RenderTransformOrigin="0.5,0.5" Stroke="Transparent" StrokeThickness="2" MouseEnter="ChildHover" MouseLeave="OnChildLeave">
                     <Path.RenderTransform>
                         <TransformGroup>
                             <ScaleTransform/>
@@ -516,7 +533,7 @@
                         </i:EventTrigger>
                     </i:Interaction.Triggers>
                 </Path>
-                <Path x:Name="double16" Data="M-2.1681129,5.8336073 L52.498692,2.5002639 109.16585,6.500276 107.16584,21.167321 51.165432,17.167237 -0.16810149,21.167321 z" Margin="204.501,665.667,984.166,395.666" Stretch="Fill" RenderTransformOrigin="0.5,0.5" Grid.ColumnSpan="2" Stroke="Transparent" StrokeThickness="2" MouseEnter="ChildHover" MouseLeave="OnChildLeave">
+                <Path x:Name="double16" Data="M-2.1681129,5.8336073 L52.498692,2.5002639 109.16585,6.500276 107.16584,21.167321 51.165432,17.167237 -0.16810149,21.167321 z" Margin="204.501,665.667,984.166,395.666" Stretch="Fill" RenderTransformOrigin="0.5,0.5" Stroke="Transparent" StrokeThickness="2" MouseEnter="ChildHover" MouseLeave="OnChildLeave">
                     <Path.RenderTransform>
                         <TransformGroup>
                             <ScaleTransform/>
@@ -531,7 +548,7 @@
                         </i:EventTrigger>
                     </i:Interaction.Triggers>
                 </Path>
-                <Path x:Name="double7" Data="M-2.1681129,5.8336073 L52.498692,2.5002639 109.16585,6.500276 107.16584,21.167321 51.165432,17.167237 -0.16810149,21.167321 z" Margin="196.566,767.002,728.833,294.331" Stretch="Fill" RenderTransformOrigin="0.5,0.5" Grid.Column="1" Stroke="Transparent" StrokeThickness="2" MouseEnter="ChildHover" MouseLeave="OnChildLeave">
+                <Path x:Name="double7" Data="M-2.1681129,5.8336073 L52.498692,2.5002639 109.16585,6.500276 107.16584,21.167321 51.165432,17.167237 -0.16810149,21.167321 z" Margin="459.566,767.002,728.833,294.331" Stretch="Fill" RenderTransformOrigin="0.5,0.5" Stroke="Transparent" StrokeThickness="2" MouseEnter="ChildHover" MouseLeave="OnChildLeave">
                     <Path.RenderTransform>
                         <TransformGroup>
                             <ScaleTransform/>
@@ -546,7 +563,7 @@
                         </i:EventTrigger>
                     </i:Interaction.Triggers>
                 </Path>
-                <Path x:Name="double19" Data="M-2.1681129,5.8336073 L52.498692,2.5002639 109.16585,6.500276 107.16584,21.167321 51.165432,17.167237 -0.16810149,21.167321 z" Margin="95.9,817.668,829.499,243.665" Stretch="Fill" RenderTransformOrigin="0.5,0.5" Stroke="Transparent" StrokeThickness="2" Grid.Column="1" MouseEnter="ChildHover" MouseLeave="OnChildLeave">
+                <Path x:Name="double19" Data="M-2.1681129,5.8336073 L52.498692,2.5002639 109.16585,6.500276 107.16584,21.167321 51.165432,17.167237 -0.16810149,21.167321 z" Margin="358.9,817.668,829.499,243.665" Stretch="Fill" RenderTransformOrigin="0.5,0.5" Stroke="Transparent" StrokeThickness="2" MouseEnter="ChildHover" MouseLeave="OnChildLeave">
                     <Path.RenderTransform>
                         <TransformGroup>
                             <ScaleTransform/>
@@ -561,7 +578,7 @@
                         </i:EventTrigger>
                     </i:Interaction.Triggers>
                 </Path>
-                <Path x:Name="double3" Data="M-2.1681129,5.8336073 L52.498692,2.5002639 109.16585,6.500276 107.16584,21.167321 51.165432,17.167237 -0.16810149,21.167321 z" Margin="206.566,835.001,718.833,226.332" Stretch="Fill" RenderTransformOrigin="0.5,0.5" Stroke="Transparent" StrokeThickness="2" Grid.Column="1" MouseEnter="ChildHover" MouseLeave="OnChildLeave">
+                <Path x:Name="double3" Data="M-2.1681129,5.8336073 L52.498692,2.5002639 109.16585,6.500276 107.16584,21.167321 51.165432,17.167237 -0.16810149,21.167321 z" Margin="469.566,835.001,718.833,226.332" Stretch="Fill" RenderTransformOrigin="0.5,0.5" Stroke="Transparent" StrokeThickness="2" MouseEnter="ChildHover" MouseLeave="OnChildLeave">
                     <Path.RenderTransform>
                         <TransformGroup>
                             <ScaleTransform/>
@@ -576,7 +593,7 @@
                         </i:EventTrigger>
                     </i:Interaction.Triggers>
                 </Path>
-                <Path x:Name="double17" Grid.Column="1" Data="M-2.1681129,5.8336073 L52.498692,2.5002639 109.16585,6.500276 107.16584,21.167321 51.165432,17.167237 -0.16810149,21.167321 z" Margin="649.733,187,275.666,874.333" Stretch="Fill" RenderTransformOrigin="0.5,0.5" Stroke="Transparent" StrokeThickness="2" MouseEnter="ChildHover" MouseLeave="OnChildLeave">
+                <Path x:Name="double17" Data="M-2.1681129,5.8336073 L52.498692,2.5002639 109.16585,6.500276 107.16584,21.167321 51.165432,17.167237 -0.16810149,21.167321 z" Margin="912.733,187,275.666,874.333" Stretch="Fill" RenderTransformOrigin="0.5,0.5" Stroke="Transparent" StrokeThickness="2" MouseEnter="ChildHover" MouseLeave="OnChildLeave">
                     <Path.RenderTransform>
                         <TransformGroup>
                             <ScaleTransform/>
@@ -591,7 +608,7 @@
                         </i:EventTrigger>
                     </i:Interaction.Triggers>
                 </Path>
-                <Path x:Name="double2" Grid.Column="1" Data="M-2.1681129,5.8336073 L52.498692,2.5002639 109.16585,6.500276 107.16584,21.167321 51.165432,17.167237 -0.16810149,21.167321 z" Margin="548.488,235.939,377.841,825.394" Stretch="Fill" RenderTransformOrigin="0.5,0.5" Stroke="Transparent" StrokeThickness="2" MouseEnter="ChildHover" MouseLeave="OnChildLeave">
+                <Path x:Name="double2" Data="M-2.1681129,5.8336073 L52.498692,2.5002639 109.16585,6.500276 107.16584,21.167321 51.165432,17.167237 -0.16810149,21.167321 z" Margin="811.488,235.939,377.841,825.394" Stretch="Fill" RenderTransformOrigin="0.5,0.5" Stroke="Transparent" StrokeThickness="2" MouseEnter="ChildHover" MouseLeave="OnChildLeave">
                     <Path.RenderTransform>
                         <TransformGroup>
                             <ScaleTransform/>
@@ -606,7 +623,7 @@
                         </i:EventTrigger>
                     </i:Interaction.Triggers>
                 </Path>
-                <Path x:Name="double15" Grid.Column="1" Data="M-2.1681129,5.8336073 L52.498692,2.5002639 109.16585,6.500276 107.16584,21.167321 51.165432,17.167237 -0.16810149,21.167321 z" Margin="549.899,382.333,375.5,679" Stretch="Fill" RenderTransformOrigin="0.5,0.5" Stroke="Transparent" StrokeThickness="2" MouseEnter="ChildHover" MouseLeave="OnChildLeave">
+                <Path x:Name="double15" Data="M-2.1681129,5.8336073 L52.498692,2.5002639 109.16585,6.500276 107.16584,21.167321 51.165432,17.167237 -0.16810149,21.167321 z" Margin="812.899,382.333,375.5,679" Stretch="Fill" RenderTransformOrigin="0.5,0.5" Stroke="Transparent" StrokeThickness="2" MouseEnter="ChildHover" MouseLeave="OnChildLeave">
                     <Path.RenderTransform>
                         <TransformGroup>
                             <ScaleTransform/>
@@ -621,7 +638,7 @@
                         </i:EventTrigger>
                     </i:Interaction.Triggers>
                 </Path>
-                <Path x:Name="double10" Data="M-2.1681129,5.8336073 L52.498692,2.5002639 109.16585,6.500276 107.16584,21.167321 51.165432,17.167237 -0.16810149,21.167321 z" Margin="438.399,398.334,487,662.999" Stretch="Fill" RenderTransformOrigin="0.5,0.5" Grid.Column="1" Stroke="Transparent" StrokeThickness="2" MouseEnter="ChildHover" MouseLeave="OnChildLeave">
+                <Path x:Name="double10" Data="M-2.1681129,5.8336073 L52.498692,2.5002639 109.16585,6.500276 107.16584,21.167321 51.165432,17.167237 -0.16810149,21.167321 z" Margin="701.399,398.334,487,662.999" Stretch="Fill" RenderTransformOrigin="0.5,0.5" Stroke="Transparent" StrokeThickness="2" MouseEnter="ChildHover" MouseLeave="OnChildLeave">
                     <Path.RenderTransform>
                         <TransformGroup>
                             <ScaleTransform/>
@@ -636,7 +653,7 @@
                         </i:EventTrigger>
                     </i:Interaction.Triggers>
                 </Path>
-                <Path x:Name="double6" Data="M-2.1681129,5.8336073 L52.498692,2.5002639 109.16585,6.500276 107.16584,21.167321 51.165432,17.167237 -0.16810149,21.167321 z" Margin="338.4,452.333,586.999,609" Stretch="Fill" RenderTransformOrigin="0.5,0.5" Stroke="Transparent" StrokeThickness="2" Grid.Column="1" MouseEnter="ChildHover" MouseLeave="OnChildLeave">
+                <Path x:Name="double6" Data="M-2.1681129,5.8336073 L52.498692,2.5002639 109.16585,6.500276 107.16584,21.167321 51.165432,17.167237 -0.16810149,21.167321 z" Margin="601.4,452.333,586.999,609" Stretch="Fill" RenderTransformOrigin="0.5,0.5" Stroke="Transparent" StrokeThickness="2" MouseEnter="ChildHover" MouseLeave="OnChildLeave">
                     <Path.RenderTransform>
                         <TransformGroup>
                             <ScaleTransform/>
@@ -651,7 +668,7 @@
                         </i:EventTrigger>
                     </i:Interaction.Triggers>
                 </Path>
-                <Path x:Name="double13" Data="M-2.1681129,5.8336073 L52.498692,2.5002639 109.16585,6.500276 107.16584,21.167321 51.165432,17.167237 -0.16810149,21.167321 z" Margin="469.066,613.001,456.333,448.332" Stretch="Fill" RenderTransformOrigin="0.5,0.5" Grid.Column="1" Stroke="Transparent" StrokeThickness="2" MouseEnter="ChildHover" MouseLeave="OnChildLeave">
+                <Path x:Name="double13" Data="M-2.1681129,5.8336073 L52.498692,2.5002639 109.16585,6.500276 107.16584,21.167321 51.165432,17.167237 -0.16810149,21.167321 z" Margin="732.066,613.001,456.333,448.332" Stretch="Fill" RenderTransformOrigin="0.5,0.5" Stroke="Transparent" StrokeThickness="2" MouseEnter="ChildHover" MouseLeave="OnChildLeave">
                     <Path.RenderTransform>
                         <TransformGroup>
                             <ScaleTransform/>
@@ -666,7 +683,7 @@
                         </i:EventTrigger>
                     </i:Interaction.Triggers>
                 </Path>
-                <Path x:Name="double4" Data="M-2.1681129,5.8336073 L52.498692,2.5002639 109.16585,6.500276 107.16584,21.167321 51.165432,17.167237 -0.16810149,21.167321 z" Margin="369.067,667,556.332,394.333" Stretch="Fill" RenderTransformOrigin="0.5,0.5" Stroke="Transparent" StrokeThickness="2" Grid.Column="1" MouseEnter="ChildHover" MouseLeave="OnChildLeave">
+                <Path x:Name="double4" Data="M-2.1681129,5.8336073 L52.498692,2.5002639 109.16585,6.500276 107.16584,21.167321 51.165432,17.167237 -0.16810149,21.167321 z" Margin="632.067,667,556.332,394.333" Stretch="Fill" RenderTransformOrigin="0.5,0.5" Stroke="Transparent" StrokeThickness="2" MouseEnter="ChildHover" MouseLeave="OnChildLeave">
                     <Path.RenderTransform>
                         <TransformGroup>
                             <ScaleTransform/>
@@ -681,7 +698,7 @@
                         </i:EventTrigger>
                     </i:Interaction.Triggers>
                 </Path>
-                <Path x:Name="double18" Data="M-2.1681129,5.8336073 L52.498692,2.5002639 109.16585,6.500276 107.16584,21.167321 51.165432,17.167237 -0.16810149,21.167321 z" Margin="624.4,767.669,300.999,293.664" Stretch="Fill" RenderTransformOrigin="0.5,0.5" Grid.Column="1" Stroke="Transparent" StrokeThickness="2" MouseEnter="ChildHover" MouseLeave="OnChildLeave">
+                <Path x:Name="double18" Data="M-2.1681129,5.8336073 L52.498692,2.5002639 109.16585,6.500276 107.16584,21.167321 51.165432,17.167237 -0.16810149,21.167321 z" Margin="887.4,767.669,300.999,293.664" Stretch="Fill" RenderTransformOrigin="0.5,0.5" Stroke="Transparent" StrokeThickness="2" MouseEnter="ChildHover" MouseLeave="OnChildLeave">
                     <Path.RenderTransform>
                         <TransformGroup>
                             <ScaleTransform/>
@@ -696,7 +713,7 @@
                         </i:EventTrigger>
                     </i:Interaction.Triggers>
                 </Path>
-                <Path x:Name="double1" Data="M-2.1681129,5.8336073 L52.498692,2.5002639 109.16585,6.500276 107.16584,21.167321 51.165432,17.167237 -0.16810149,21.167321 z" Margin="524.4,817.667,400.999,243.666" Stretch="Fill" RenderTransformOrigin="0.5,0.5" Stroke="Transparent" StrokeThickness="2" Grid.Column="1" MouseEnter="ChildHover" MouseLeave="OnChildLeave">
+                <Path x:Name="double1" Data="M-2.1681129,5.8336073 L52.498692,2.5002639 109.16585,6.500276 107.16584,21.167321 51.165432,17.167237 -0.16810149,21.167321 z" Margin="787.4,817.667,400.999,243.666" Stretch="Fill" RenderTransformOrigin="0.5,0.5" Stroke="Transparent" StrokeThickness="2" MouseEnter="ChildHover" MouseLeave="OnChildLeave">
                     <Path.RenderTransform>
                         <TransformGroup>
                             <ScaleTransform/>
@@ -711,8 +728,8 @@
                         </i:EventTrigger>
                     </i:Interaction.Triggers>
                 </Path>
-                <Path Grid.Column="1" Data="M653,320.33333" HorizontalAlignment="Left" Height="2" Margin="388.732,319.333,0,0" Stretch="Fill" Stroke="Transparent" StrokeThickness="2" VerticalAlignment="Top" Width="2"/>
-                <Path x:Name="triple5" Grid.Column="1" Data="M-1.3343306,1.3336667 L14.207437,-0.45798397 32.082603,-1.4579999 49.582263,-0.58298597 66.247336,0.93527828 64.082192,15.292268 50.707257,13.792244 33.905858,13.153291 16.957423,13.833911 1,15.667 z" HorizontalAlignment="Left" Height="19.125" Margin="285.815,320.125,0,0" Stretch="Fill" Stroke="Transparent" StrokeThickness="2" VerticalAlignment="Top" Width="69.582" RenderTransformOrigin="0.5,0.5" MouseEnter="ChildHover" MouseLeave="OnChildLeave">
+                <Path Data="M653,320.33333" HorizontalAlignment="Left" Height="2" Margin="651.732,319.333,0,0" Stretch="Fill" Stroke="Transparent" StrokeThickness="2" VerticalAlignment="Top" Width="2"/>
+                <Path x:Name="triple5" Data="M-1.3343306,1.3336667 L14.207437,-0.45798397 32.082603,-1.4579999 49.582263,-0.58298597 66.247336,0.93527828 64.082192,15.292268 50.707257,13.792244 33.905858,13.153291 16.957423,13.833911 1,15.667 z" HorizontalAlignment="Left" Height="19.125" Margin="548.815,320.125,0,0" Stretch="Fill" Stroke="Transparent" StrokeThickness="2" VerticalAlignment="Top" Width="69.582" RenderTransformOrigin="0.5,0.5" MouseEnter="ChildHover" MouseLeave="OnChildLeave">
                     <Path.RenderTransform>
                         <TransformGroup>
                             <ScaleTransform/>
@@ -727,7 +744,7 @@
                         </i:EventTrigger>
                     </i:Interaction.Triggers>
                 </Path>
-                <Path x:Name="triple12" Grid.Column="1" Data="M-1.3343306,1.3336667 L14.207437,-0.45798397 32.082603,-1.4579999 49.582263,-0.58298597 66.247336,0.93527828 64.082192,15.292268 50.707257,13.792244 33.905858,13.153291 16.957423,13.833911 1,15.667 z" HorizontalAlignment="Left" Height="19.125" Margin="224.482,351.791,0,0" Stretch="Fill" Stroke="Transparent" StrokeThickness="2" VerticalAlignment="Top" Width="69.582" RenderTransformOrigin="0.5,0.5" MouseEnter="ChildHover" MouseLeave="OnChildLeave">
+                <Path x:Name="triple12" Data="M-1.3343306,1.3336667 L14.207437,-0.45798397 32.082603,-1.4579999 49.582263,-0.58298597 66.247336,0.93527828 64.082192,15.292268 50.707257,13.792244 33.905858,13.153291 16.957423,13.833911 1,15.667 z" HorizontalAlignment="Left" Height="19.125" Margin="487.482,351.791,0,0" Stretch="Fill" Stroke="Transparent" StrokeThickness="2" VerticalAlignment="Top" Width="69.582" RenderTransformOrigin="0.5,0.5" MouseEnter="ChildHover" MouseLeave="OnChildLeave">
                     <Path.RenderTransform>
                         <TransformGroup>
                             <ScaleTransform/>
@@ -742,7 +759,7 @@
                         </i:EventTrigger>
                     </i:Interaction.Triggers>
                 </Path>
-                <Path x:Name="triple9" Grid.Column="1" Data="M-1.3343306,1.3336667 L14.207437,-0.45798397 32.082603,-1.4579999 49.582263,-0.58298597 66.247336,0.93527828 64.082192,15.292268 50.707257,13.792244 33.905858,13.153291 16.957423,13.833911 1,15.667 z" HorizontalAlignment="Left" Height="19.125" Margin="174.982,400.458,0,0" Stretch="Fill" Stroke="Transparent" StrokeThickness="2" VerticalAlignment="Top" Width="69.582" RenderTransformOrigin="0.5,0.5" MouseEnter="ChildHover" MouseLeave="OnChildLeave">
+                <Path x:Name="triple9" Data="M-1.3343306,1.3336667 L14.207437,-0.45798397 32.082603,-1.4579999 49.582263,-0.58298597 66.247336,0.93527828 64.082192,15.292268 50.707257,13.792244 33.905858,13.153291 16.957423,13.833911 1,15.667 z" HorizontalAlignment="Left" Height="19.125" Margin="437.982,400.458,0,0" Stretch="Fill" Stroke="Transparent" StrokeThickness="2" VerticalAlignment="Top" Width="69.582" RenderTransformOrigin="0.5,0.5" MouseEnter="ChildHover" MouseLeave="OnChildLeave">
                     <Path.RenderTransform>
                         <TransformGroup>
                             <ScaleTransform/>
@@ -757,7 +774,7 @@
                         </i:EventTrigger>
                     </i:Interaction.Triggers>
                 </Path>
-                <Path x:Name="triple14" Grid.Column="1" Data="M-1.3343306,1.3336667 L14.207437,-0.45798397 32.082603,-1.4579999 49.582263,-0.58298597 66.247336,0.93527828 64.082192,15.292268 50.707257,13.792244 33.905858,13.153291 16.957423,13.833911 1,15.667 z" HorizontalAlignment="Left" Height="19.125" Margin="143.316,462.958,0,0" Stretch="Fill" Stroke="Transparent" StrokeThickness="2" VerticalAlignment="Top" Width="69.582" RenderTransformOrigin="0.5,0.5" MouseEnter="ChildHover" MouseLeave="OnChildLeave">
+                <Path x:Name="triple14" Data="M-1.3343306,1.3336667 L14.207437,-0.45798397 32.082603,-1.4579999 49.582263,-0.58298597 66.247336,0.93527828 64.082192,15.292268 50.707257,13.792244 33.905858,13.153291 16.957423,13.833911 1,15.667 z" HorizontalAlignment="Left" Height="19.125" Margin="406.316,462.958,0,0" Stretch="Fill" Stroke="Transparent" StrokeThickness="2" VerticalAlignment="Top" Width="69.582" RenderTransformOrigin="0.5,0.5" MouseEnter="ChildHover" MouseLeave="OnChildLeave">
                     <Path.RenderTransform>
                         <TransformGroup>
                             <ScaleTransform/>
@@ -772,7 +789,7 @@
                         </i:EventTrigger>
                     </i:Interaction.Triggers>
                 </Path>
-                <Path x:Name="triple11" Grid.Column="1" Data="M-1.3343306,1.3336667 L14.207437,-0.45798397 32.082603,-1.4579999 49.582263,-0.58298597 66.247336,0.93527828 64.082192,15.292268 50.707257,13.792244 33.905858,13.153291 16.957423,13.833911 1,15.667 z" HorizontalAlignment="Left" Height="19.125" Margin="133.149,530.792,0,0" Stretch="Fill" Stroke="Transparent" StrokeThickness="2" VerticalAlignment="Top" Width="69.582" RenderTransformOrigin="0.5,0.5" MouseEnter="ChildHover" MouseLeave="OnChildLeave">
+                <Path x:Name="triple11" Data="M-1.3343306,1.3336667 L14.207437,-0.45798397 32.082603,-1.4579999 49.582263,-0.58298597 66.247336,0.93527828 64.082192,15.292268 50.707257,13.792244 33.905858,13.153291 16.957423,13.833911 1,15.667 z" HorizontalAlignment="Left" Height="19.125" Margin="396.149,530.792,0,0" Stretch="Fill" Stroke="Transparent" StrokeThickness="2" VerticalAlignment="Top" Width="69.582" RenderTransformOrigin="0.5,0.5" MouseEnter="ChildHover" MouseLeave="OnChildLeave">
                     <Path.RenderTransform>
                         <TransformGroup>
                             <ScaleTransform/>
@@ -787,7 +804,7 @@
                         </i:EventTrigger>
                     </i:Interaction.Triggers>
                 </Path>
-                <Path x:Name="triple8" Grid.Column="1" Data="M-1.3343306,1.3336667 L14.207437,-0.45798397 32.082603,-1.4579999 49.582263,-0.58298597 66.247336,0.93527828 64.082192,15.292268 50.707257,13.792244 33.905858,13.153291 16.957423,13.833911 1,15.667 z" HorizontalAlignment="Left" Height="19.125" Margin="143.816,598.958,0,0" Stretch="Fill" Stroke="Transparent" StrokeThickness="2" VerticalAlignment="Top" Width="69.582" RenderTransformOrigin="0.5,0.5" MouseEnter="ChildHover" MouseLeave="OnChildLeave">
+                <Path x:Name="triple8" Data="M-1.3343306,1.3336667 L14.207437,-0.45798397 32.082603,-1.4579999 49.582263,-0.58298597 66.247336,0.93527828 64.082192,15.292268 50.707257,13.792244 33.905858,13.153291 16.957423,13.833911 1,15.667 z" HorizontalAlignment="Left" Height="19.125" Margin="406.816,598.958,0,0" Stretch="Fill" Stroke="Transparent" StrokeThickness="2" VerticalAlignment="Top" Width="69.582" RenderTransformOrigin="0.5,0.5" MouseEnter="ChildHover" MouseLeave="OnChildLeave">
                     <Path.RenderTransform>
                         <TransformGroup>
                             <ScaleTransform/>
@@ -802,7 +819,7 @@
                         </i:EventTrigger>
                     </i:Interaction.Triggers>
                 </Path>
-                <Path x:Name="triple16" Grid.Column="1" Data="M-1.3343306,1.3336667 L14.207437,-0.45798397 32.082603,-1.4579999 49.582263,-0.58298597 66.247336,0.93527828 64.082192,15.292268 50.707257,13.792244 33.905858,13.153291 16.957423,13.833911 1,15.667 z" HorizontalAlignment="Left" Height="19.125" Margin="174.982,660.625,0,0" Stretch="Fill" Stroke="Transparent" StrokeThickness="2" VerticalAlignment="Top" Width="69.582" RenderTransformOrigin="0.5,0.5" MouseEnter="ChildHover" MouseLeave="OnChildLeave">
+                <Path x:Name="triple16" Data="M-1.3343306,1.3336667 L14.207437,-0.45798397 32.082603,-1.4579999 49.582263,-0.58298597 66.247336,0.93527828 64.082192,15.292268 50.707257,13.792244 33.905858,13.153291 16.957423,13.833911 1,15.667 z" HorizontalAlignment="Left" Height="19.125" Margin="437.982,660.625,0,0" Stretch="Fill" Stroke="Transparent" StrokeThickness="2" VerticalAlignment="Top" Width="69.582" RenderTransformOrigin="0.5,0.5" MouseEnter="ChildHover" MouseLeave="OnChildLeave">
                     <Path.RenderTransform>
                         <TransformGroup>
                             <ScaleTransform/>
@@ -817,7 +834,7 @@
                         </i:EventTrigger>
                     </i:Interaction.Triggers>
                 </Path>
-                <Path x:Name="triple7" Grid.Column="1" Data="M-1.3343306,1.3336667 L14.207437,-0.45798397 32.082603,-1.4579999 49.582263,-0.58298597 66.247336,0.93527828 64.082192,15.292268 50.707257,13.792244 33.905858,13.153291 16.957423,13.833911 1,15.667 z" HorizontalAlignment="Left" Height="19.125" Margin="223.65,709.624,0,0" Stretch="Fill" Stroke="Transparent" StrokeThickness="2" VerticalAlignment="Top" Width="69.582" RenderTransformOrigin="0.5,0.5" MouseEnter="ChildHover" MouseLeave="OnChildLeave">
+                <Path x:Name="triple7" Data="M-1.3343306,1.3336667 L14.207437,-0.45798397 32.082603,-1.4579999 49.582263,-0.58298597 66.247336,0.93527828 64.082192,15.292268 50.707257,13.792244 33.905858,13.153291 16.957423,13.833911 1,15.667 z" HorizontalAlignment="Left" Height="19.125" Margin="486.65,709.624,0,0" Stretch="Fill" Stroke="Transparent" StrokeThickness="2" VerticalAlignment="Top" Width="69.582" RenderTransformOrigin="0.5,0.5" MouseEnter="ChildHover" MouseLeave="OnChildLeave">
                     <Path.RenderTransform>
                         <TransformGroup>
                             <ScaleTransform/>
@@ -832,7 +849,7 @@
                         </i:EventTrigger>
                     </i:Interaction.Triggers>
                 </Path>
-                <Path x:Name="triple19" Grid.Column="1" Data="M-1.3343306,1.3336667 L14.207437,-0.45798397 32.082603,-1.4579999 49.582263,-0.58298597 66.247336,0.93527828 64.082192,15.292268 50.707257,13.792244 33.905858,13.153291 16.957423,13.833911 1,15.667 z" HorizontalAlignment="Left" Height="19.125" Margin="285.65,740.957,0,0" Stretch="Fill" Stroke="Transparent" StrokeThickness="2" VerticalAlignment="Top" Width="69.582" RenderTransformOrigin="0.5,0.5" MouseEnter="ChildHover" MouseLeave="OnChildLeave">
+                <Path x:Name="triple19" Data="M-1.3343306,1.3336667 L14.207437,-0.45798397 32.082603,-1.4579999 49.582263,-0.58298597 66.247336,0.93527828 64.082192,15.292268 50.707257,13.792244 33.905858,13.153291 16.957423,13.833911 1,15.667 z" HorizontalAlignment="Left" Height="19.125" Margin="548.65,740.957,0,0" Stretch="Fill" Stroke="Transparent" StrokeThickness="2" VerticalAlignment="Top" Width="69.582" RenderTransformOrigin="0.5,0.5" MouseEnter="ChildHover" MouseLeave="OnChildLeave">
                     <Path.RenderTransform>
                         <TransformGroup>
                             <ScaleTransform/>
@@ -847,7 +864,7 @@
                         </i:EventTrigger>
                     </i:Interaction.Triggers>
                 </Path>
-                <Path x:Name="triple3" Grid.Column="1" Data="M-1.3343306,1.3336667 L14.207437,-0.45798397 32.082603,-1.4579999 49.582263,-0.58298597 66.247336,0.93527828 64.082192,15.292268 50.707257,13.792244 33.905858,13.153291 16.957423,13.833911 1,15.667 z" HorizontalAlignment="Left" Height="19.125" Margin="353.817,751.29,0,0" Stretch="Fill" Stroke="Transparent" StrokeThickness="2" VerticalAlignment="Top" Width="69.582" RenderTransformOrigin="0.5,0.5" MouseEnter="ChildHover" MouseLeave="OnChildLeave">
+                <Path x:Name="triple3" Data="M-1.3343306,1.3336667 L14.207437,-0.45798397 32.082603,-1.4579999 49.582263,-0.58298597 66.247336,0.93527828 64.082192,15.292268 50.707257,13.792244 33.905858,13.153291 16.957423,13.833911 1,15.667 z" HorizontalAlignment="Left" Height="19.125" Margin="616.817,751.29,0,0" Stretch="Fill" Stroke="Transparent" StrokeThickness="2" VerticalAlignment="Top" Width="69.582" RenderTransformOrigin="0.5,0.5" MouseEnter="ChildHover" MouseLeave="OnChildLeave">
                     <Path.RenderTransform>
                         <TransformGroup>
                             <ScaleTransform/>
@@ -862,7 +879,7 @@
                         </i:EventTrigger>
                     </i:Interaction.Triggers>
                 </Path>
-                <Path x:Name="triple17" Grid.Column="1" Data="M-1.3343306,1.3336667 L14.207437,-0.45798397 32.082603,-1.4579999 49.582263,-0.58298597 66.247336,0.93527828 64.082192,15.292268 50.707257,13.792244 33.905858,13.153291 16.957423,13.833911 1,15.667 z" HorizontalAlignment="Left" Height="19.125" Margin="550.316,320.458,0,0" Stretch="Fill" Stroke="Transparent" StrokeThickness="2" VerticalAlignment="Top" Width="69.582" RenderTransformOrigin="0.5,0.5" MouseEnter="ChildHover" MouseLeave="OnChildLeave">
+                <Path x:Name="triple17" Data="M-1.3343306,1.3336667 L14.207437,-0.45798397 32.082603,-1.4579999 49.582263,-0.58298597 66.247336,0.93527828 64.082192,15.292268 50.707257,13.792244 33.905858,13.153291 16.957423,13.833911 1,15.667 z" HorizontalAlignment="Left" Height="19.125" Margin="813.316,320.458,0,0" Stretch="Fill" Stroke="Transparent" StrokeThickness="2" VerticalAlignment="Top" Width="69.582" RenderTransformOrigin="0.5,0.5" MouseEnter="ChildHover" MouseLeave="OnChildLeave">
                     <Path.RenderTransform>
                         <TransformGroup>
                             <ScaleTransform/>
@@ -877,7 +894,7 @@
                         </i:EventTrigger>
                     </i:Interaction.Triggers>
                 </Path>
-                <Path x:Name="triple2" Grid.Column="1" Data="M-1.3343306,1.3336667 L14.207437,-0.45798397 32.082603,-1.4579999 49.582263,-0.58298597 66.247336,0.93527828 64.082192,15.292268 50.707257,13.792244 33.905858,13.153291 16.957423,13.833911 1,15.667 z" HorizontalAlignment="Left" Height="19.125" Margin="488.149,351.791,0,0" Stretch="Fill" Stroke="Transparent" StrokeThickness="2" VerticalAlignment="Top" Width="69.582" RenderTransformOrigin="0.5,0.5" MouseEnter="ChildHover" MouseLeave="OnChildLeave">
+                <Path x:Name="triple2" Data="M-1.3343306,1.3336667 L14.207437,-0.45798397 32.082603,-1.4579999 49.582263,-0.58298597 66.247336,0.93527828 64.082192,15.292268 50.707257,13.792244 33.905858,13.153291 16.957423,13.833911 1,15.667 z" HorizontalAlignment="Left" Height="19.125" Margin="751.149,351.791,0,0" Stretch="Fill" Stroke="Transparent" StrokeThickness="2" VerticalAlignment="Top" Width="69.582" RenderTransformOrigin="0.5,0.5" MouseEnter="ChildHover" MouseLeave="OnChildLeave">
                     <Path.RenderTransform>
                         <TransformGroup>
                             <ScaleTransform/>
@@ -892,7 +909,7 @@
                         </i:EventTrigger>
                     </i:Interaction.Triggers>
                 </Path>
-                <Path x:Name="triple15" Grid.Column="1" Data="M-1.3343306,1.3336667 L14.207437,-0.45798397 32.082603,-1.4579999 49.582263,-0.58298597 66.247336,0.93527828 64.082192,15.292268 50.707257,13.792244 33.905858,13.153291 16.957423,13.833911 1,15.667 z" HorizontalAlignment="Left" Height="19.125" Margin="437.482,399.791,0,0" Stretch="Fill" Stroke="Transparent" StrokeThickness="2" VerticalAlignment="Top" Width="69.582" RenderTransformOrigin="0.5,0.5" MouseEnter="ChildHover" MouseLeave="OnChildLeave">
+                <Path x:Name="triple15" Data="M-1.3343306,1.3336667 L14.207437,-0.45798397 32.082603,-1.4579999 49.582263,-0.58298597 66.247336,0.93527828 64.082192,15.292268 50.707257,13.792244 33.905858,13.153291 16.957423,13.833911 1,15.667 z" HorizontalAlignment="Left" Height="19.125" Margin="700.482,399.791,0,0" Stretch="Fill" Stroke="Transparent" StrokeThickness="2" VerticalAlignment="Top" Width="69.582" RenderTransformOrigin="0.5,0.5" MouseEnter="ChildHover" MouseLeave="OnChildLeave">
                     <Path.RenderTransform>
                         <TransformGroup>
                             <ScaleTransform/>
@@ -907,7 +924,7 @@
                         </i:EventTrigger>
                     </i:Interaction.Triggers>
                 </Path>
-                <Path x:Name="triple10" Grid.Column="1" Data="M-1.3343306,1.3336667 L14.207437,-0.45798397 32.082603,-1.4579999 49.582263,-0.58298597 66.247336,0.93527828 64.082192,15.292268 50.707257,13.792244 33.905858,13.153291 16.957423,13.833911 1,15.667 z" HorizontalAlignment="Left" Height="19.125" Margin="405.483,463.791,0,0" Stretch="Fill" Stroke="Transparent" StrokeThickness="2" VerticalAlignment="Top" Width="69.582" RenderTransformOrigin="0.5,0.5" MouseEnter="ChildHover" MouseLeave="OnChildLeave">
+                <Path x:Name="triple10" Data="M-1.3343306,1.3336667 L14.207437,-0.45798397 32.082603,-1.4579999 49.582263,-0.58298597 66.247336,0.93527828 64.082192,15.292268 50.707257,13.792244 33.905858,13.153291 16.957423,13.833911 1,15.667 z" HorizontalAlignment="Left" Height="19.125" Margin="668.483,463.791,0,0" Stretch="Fill" Stroke="Transparent" StrokeThickness="2" VerticalAlignment="Top" Width="69.582" RenderTransformOrigin="0.5,0.5" MouseEnter="ChildHover" MouseLeave="OnChildLeave">
                     <Path.RenderTransform>
                         <TransformGroup>
                             <ScaleTransform/>
@@ -922,7 +939,7 @@
                         </i:EventTrigger>
                     </i:Interaction.Triggers>
                 </Path>
-                <Path x:Name="triple6" Grid.Column="1" Data="M-1.3343306,1.3336667 L14.207437,-0.45798397 32.082603,-1.4579999 49.582263,-0.58298597 66.247336,0.93527828 64.082192,15.292268 50.707257,13.792244 33.905858,13.153291 16.957423,13.833911 1,15.667 z" HorizontalAlignment="Left" Height="19.125" Margin="394.816,530.292,0,0" Stretch="Fill" Stroke="Transparent" StrokeThickness="2" VerticalAlignment="Top" Width="69.582" RenderTransformOrigin="0.5,0.5" MouseEnter="ChildHover" MouseLeave="OnChildLeave">
+                <Path x:Name="triple6" Data="M-1.3343306,1.3336667 L14.207437,-0.45798397 32.082603,-1.4579999 49.582263,-0.58298597 66.247336,0.93527828 64.082192,15.292268 50.707257,13.792244 33.905858,13.153291 16.957423,13.833911 1,15.667 z" HorizontalAlignment="Left" Height="19.125" Margin="657.816,530.292,0,0" Stretch="Fill" Stroke="Transparent" StrokeThickness="2" VerticalAlignment="Top" Width="69.582" RenderTransformOrigin="0.5,0.5" MouseEnter="ChildHover" MouseLeave="OnChildLeave">
                     <Path.RenderTransform>
                         <TransformGroup>
                             <ScaleTransform/>
@@ -937,7 +954,7 @@
                         </i:EventTrigger>
                     </i:Interaction.Triggers>
                 </Path>
-                <Path x:Name="triple13" Grid.Column="1" Data="M-1.3343306,1.3336667 L14.207437,-0.45798397 32.082603,-1.4579999 49.582263,-0.58298597 66.247336,0.93527828 64.082192,15.292268 50.707257,13.792244 33.905858,13.153291 16.957423,13.833911 1,15.667 z" HorizontalAlignment="Left" Height="19.125" Margin="405.15,598.958,0,0" Stretch="Fill" Stroke="Transparent" StrokeThickness="2" VerticalAlignment="Top" Width="69.582" RenderTransformOrigin="0.5,0.5" MouseEnter="ChildHover" MouseLeave="OnChildLeave">
+                <Path x:Name="triple13" Data="M-1.3343306,1.3336667 L14.207437,-0.45798397 32.082603,-1.4579999 49.582263,-0.58298597 66.247336,0.93527828 64.082192,15.292268 50.707257,13.792244 33.905858,13.153291 16.957423,13.833911 1,15.667 z" HorizontalAlignment="Left" Height="19.125" Margin="668.15,598.958,0,0" Stretch="Fill" Stroke="Transparent" StrokeThickness="2" VerticalAlignment="Top" Width="69.582" RenderTransformOrigin="0.5,0.5" MouseEnter="ChildHover" MouseLeave="OnChildLeave">
                     <Path.RenderTransform>
                         <TransformGroup>
                             <ScaleTransform/>
@@ -952,7 +969,7 @@
                         </i:EventTrigger>
                     </i:Interaction.Triggers>
                 </Path>
-                <Path x:Name="triple4" Grid.Column="1" Data="M-1.3343306,1.3336667 L14.207437,-0.45798397 32.082603,-1.4579999 49.582263,-0.58298597 66.247336,0.93527828 64.082192,15.292268 50.707257,13.792244 33.905858,13.153291 16.957423,13.833911 1,15.667 z" HorizontalAlignment="Left" Height="19.125" Margin="435.983,660.791,0,0" Stretch="Fill" Stroke="Transparent" StrokeThickness="2" VerticalAlignment="Top" Width="69.582" RenderTransformOrigin="0.5,0.5" MouseEnter="ChildHover" MouseLeave="OnChildLeave">
+                <Path x:Name="triple4" Data="M-1.3343306,1.3336667 L14.207437,-0.45798397 32.082603,-1.4579999 49.582263,-0.58298597 66.247336,0.93527828 64.082192,15.292268 50.707257,13.792244 33.905858,13.153291 16.957423,13.833911 1,15.667 z" HorizontalAlignment="Left" Height="19.125" Margin="698.983,660.791,0,0" Stretch="Fill" Stroke="Transparent" StrokeThickness="2" VerticalAlignment="Top" Width="69.582" RenderTransformOrigin="0.5,0.5" MouseEnter="ChildHover" MouseLeave="OnChildLeave">
                     <Path.RenderTransform>
                         <TransformGroup>
                             <ScaleTransform/>
@@ -967,7 +984,7 @@
                         </i:EventTrigger>
                     </i:Interaction.Triggers>
                 </Path>
-                <Path x:Name="triple18" Grid.Column="1" Data="M-1.3343306,1.3336667 L14.207437,-0.45798397 32.082603,-1.4579999 49.582263,-0.58298597 66.247336,0.93527828 64.082192,15.292268 50.707257,13.792244 33.905858,13.153291 16.957423,13.833911 1,15.667 z" HorizontalAlignment="Left" Height="19.125" Margin="483.984,710.29,0,0" Stretch="Fill" Stroke="Transparent" StrokeThickness="2" VerticalAlignment="Top" Width="69.582" RenderTransformOrigin="0.5,0.5" MouseEnter="ChildHover" MouseLeave="OnChildLeave">
+                <Path x:Name="triple18" Data="M-1.3343306,1.3336667 L14.207437,-0.45798397 32.082603,-1.4579999 49.582263,-0.58298597 66.247336,0.93527828 64.082192,15.292268 50.707257,13.792244 33.905858,13.153291 16.957423,13.833911 1,15.667 z" HorizontalAlignment="Left" Height="19.125" Margin="746.984,710.29,0,0" Stretch="Fill" Stroke="Transparent" StrokeThickness="2" VerticalAlignment="Top" Width="69.582" RenderTransformOrigin="0.5,0.5" MouseEnter="ChildHover" MouseLeave="OnChildLeave">
                     <Path.RenderTransform>
                         <TransformGroup>
                             <ScaleTransform/>
@@ -982,7 +999,7 @@
                         </i:EventTrigger>
                     </i:Interaction.Triggers>
                 </Path>
-                <Path x:Name="triple1" Grid.Column="1" Data="M-1.3343306,1.3336667 L14.207437,-0.45798397 32.082603,-1.4579999 49.582263,-0.58298597 66.247336,0.93527828 64.082192,15.292268 50.707257,13.792244 33.905858,13.153291 16.957423,13.833911 1,15.667 z" HorizontalAlignment="Left" Height="19.125" Margin="546.484,741.79,0,0" Stretch="Fill" Stroke="Transparent" StrokeThickness="2" VerticalAlignment="Top" Width="69.582" RenderTransformOrigin="0.5,0.5" MouseEnter="ChildHover" MouseLeave="OnChildLeave">
+                <Path x:Name="triple1" Data="M-1.3343306,1.3336667 L14.207437,-0.45798397 32.082603,-1.4579999 49.582263,-0.58298597 66.247336,0.93527828 64.082192,15.292268 50.707257,13.792244 33.905858,13.153291 16.957423,13.833911 1,15.667 z" HorizontalAlignment="Left" Height="19.125" Margin="809.484,741.79,0,0" Stretch="Fill" Stroke="Transparent" StrokeThickness="2" VerticalAlignment="Top" Width="69.582" RenderTransformOrigin="0.5,0.5" MouseEnter="ChildHover" MouseLeave="OnChildLeave">
                     <Path.RenderTransform>
                         <TransformGroup>
                             <ScaleTransform/>
@@ -997,19 +1014,21 @@
                         </i:EventTrigger>
                     </i:Interaction.Triggers>
                 </Path>
-                <Path x:Name="triple20" Grid.Column="1" Data="M-1.3343306,1.3336667 L14.207437,-0.45798397 32.082603,-1.4579999 49.582263,-0.58298597 66.247336,0.93527828 64.082192,15.292268 50.707257,13.792244 33.905858,13.153291 16.957423,13.833911 1,15.667 z" HorizontalAlignment="Left" Height="19.125" Margin="354.107,309.375,0,0" Stretch="Fill" Stroke="Transparent" StrokeThickness="2" VerticalAlignment="Top" Width="69.582"  MouseEnter="ChildHover" MouseLeave="OnChildLeave">
+                <Path x:Name="triple20" Data="M-1.3343306,1.3336667 L14.207437,-0.45798397 32.082603,-1.4579999 49.582263,-0.58298597 66.247336,0.93527828 64.082192,15.292268 50.707257,13.792244 33.905858,13.153291 16.957423,13.833911 1,15.667 z" HorizontalAlignment="Left" Height="19.125" Margin="617.107,309.375,0,0" Stretch="Fill" Stroke="Transparent" StrokeThickness="2" VerticalAlignment="Top" Width="69.582"  MouseEnter="ChildHover" MouseLeave="OnChildLeave">
                     <i:Interaction.Triggers>
                         <i:EventTrigger EventName="MouseDown">
                             <i:InvokeCommandAction Command="{Binding AddScoreCommand}" CommandParameter="60"/>
                         </i:EventTrigger>
                     </i:Interaction.Triggers>
                 </Path>
-
-
-
+                <Button IsEnabled="{Binding CurrentTurn.IsOver}" Content="Next Turn" HorizontalAlignment="Left" Margin="1032,24,0,0" VerticalAlignment="Top" Width="218" Height="94">
+                    <i:Interaction.Triggers>
+                        <i:EventTrigger EventName="Click">
+                            <i:InvokeCommandAction Command="{Binding NextTurnCommand}"/>
+                        </i:EventTrigger>
+                    </i:Interaction.Triggers>
+                </Button>
             </Grid>
-
-
         </StackPanel>
         <Path x:Name="noPoints" Data="M-30.358791,806.82199 L-96.942233,756.23864 -132.91793,717.83403 -170.00149,667.33401 -191.41811,633.08399 -218.73464,569.79562 -234.66824,521.83394 -243.6114,482.3483 -249.86141,398.34826 -244.91828,339.33386 -235.35423,282.24965 -211.33495,217.33381 -192.00156,176.00046 -161.66813,125.6671 -126.66766,83.333283 -74.667855,34.667062 -15.667375,-9.6668061 90.091155,-56.11952 153.99953,-70.332985 217.33306,-76.916321 254.43078,-76.435996 295.33312,29.833727 275.33307,26.833725 247.33299,25.333725&#xD;&#xA;215.8329,25.833725 179.8328,29.333726 140.83269,36.83373 106.83259,46.333734 74.332503,58.833739 34.332391,80.833749 3.6259315,100.83169 -18.667757,120.33377 -35.167804,135.83377 -56.667864,158.33378 -73.667911,179.33379 -86.667948,197.8338 -97.667979,216.83381 -109.16801,238.83382 -121.66805,265.83383 -135.16808,304.83385 -143.66811,349.83387 -146.66812,389.83389 -146.66812,422.3339 -143.80061,453.51379 -137.52122,489.00076 -128.16806,523.33395 -115.16803,556.83396&#xD;&#xA;-99.667984,587.83397 -75.167916,625.83399 -55.16786,651.334 -23.667771,684.83402 13.332332,714.33403 65.999146,745.33404 124.66598,767.33405 178.66613,779.33406 241.33297,784.00073 291.99978,779.33406 346.6666,765.33405 394.66673,746.00071 439.83353,719.83403 484.33365,687.83402 519.13056,649.34483 545.33382,614.66732 563.83387,583.83397 585.33393,539.33395 598.6673,498.0006 607.33399,437.33391 610.00067,394.66722 604.66732,336.6672 592.00062,286.66717&#xD;&#xA;575.3339,244.66716 545.33382,192.00047 530.00044,171.33379 508.00038,144.00044 470.00028,109.33376 444.83354,91.833754 423.33348,77.333748 391.33339,61.333741 367.83332,50.333736 343.6627,42.203414 317.27419,35.051394 294.33312,28.833726 254.33301,-75.999654 361.66664,-58.666313 431.66684,-31.332967 497.33397,4.6670482 553.66718,49.000402 596.6676,93.333754 635.33438,146.66711 666.37761,203.34517 696.00123,280.66696 708.00094,345.33387 709.33428,401.33389&#xD;&#xA;710.00127,429.3339 706.33492,471.00059 698.31715,514.74829 686.00124,554.66718 658.37947,624.56911 637.33438,659.33401 599.00093,713.33403 547.66743,764.33405 488.66756,807.33404 438.33375,836.66742 365.66686,865.00076 292.29457,880.71847 215.99972,885.33411 139.66615,876.3341 83.170413,861.40718 16.332431,833.33408 z" Fill="Transparent"  HorizontalAlignment="Left" Height="963.25" Margin="790.307,58.25,0,0" Stretch="Fill" Stroke="Transparent" VerticalAlignment="Top" Width="960.86" MouseEnter="OnHover" MouseLeave="OnMouseLeave">
             <i:Interaction.Triggers>
