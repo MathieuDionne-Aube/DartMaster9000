@@ -12,6 +12,7 @@ namespace DartMaster9000.Class
         public Player(string n)
         {
             Name = n;
+            MyStats = new Stats();
         }
 
         public Stats MyStats { get; set; }
@@ -29,6 +30,11 @@ namespace DartMaster9000.Class
         public override int GetHashCode()
         {
             return base.GetHashCode();
+        }
+
+        public override string ToString()
+        {
+            return Name;
         }
     }
 }

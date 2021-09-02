@@ -81,13 +81,14 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="Class\Dart.cs" />
-    <Compile Include="Class\Stats.cs" />
+    <Compile Include="Model\Dart.cs" />
+    <Compile Include="Model\Stats.cs" />
     <Compile Include="CustomControls\StackPanelScores.cs" />
     <Compile Include="CustomControls\WinningStandings.cs" />
     <Compile Include="Tools\FocusExtension.cs" />
     <Compile Include="Tools\SaveManager.cs" />
     <Compile Include="ViewModel\MainWindowViewModel.cs" />
+    <Compile Include="ViewModel\PlayerGestionViewModel.cs" />
     <Compile Include="ViewModel\ViewModelBase.cs" />
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
@@ -97,9 +98,9 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Class\Game.cs" />
-    <Compile Include="Class\Player.cs" />
-    <Compile Include="Class\Turn.cs" />
+    <Compile Include="Model\Game.cs" />
+    <Compile Include="Model\Player.cs" />
+    <Compile Include="Model\Turn.cs" />
     <Compile Include="CustomControls\CustomTextbox.cs" />
     <Compile Include="MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>

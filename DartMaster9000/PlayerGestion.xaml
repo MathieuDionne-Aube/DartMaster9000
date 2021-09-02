@@ -3,10 +3,49 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+         xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
         xmlns:local="clr-namespace:DartMaster9000"
         mc:Ignorable="d"
-        Title="PlayerGestion" Height="450" Width="800">
+        Title="PlayerGestion" Height="472.5" Width="414.688" ResizeMode="NoResize">
     <Grid>
-        
+        <ListView ItemsSource="{Binding AvailablePlayers}" x:Name="lbxAvailable" HorizontalAlignment="Left" Height="313" Margin="23,104,0,0" VerticalAlignment="Top" Width="171">
+            <i:Interaction.Triggers>
+                <i:EventTrigger EventName="SelectionChanged">
+                    <i:InvokeCommandAction Command="{Binding AddToInGameCommand}"
+                                           CommandParameter="{Binding ElementName=lbxAvailable,Path=SelectedItem}"/>
+                </i:EventTrigger>
+            </i:Interaction.Triggers>
+        </ListView>
+        <ListView ItemsSource="{Binding InGamePlayers}" x:Name="lbxInGame" HorizontalAlignment="Left" Height="313" Margin="217,104,0,0" VerticalAlignment="Top" Width="172">
+            <i:Interaction.Triggers>
+                <i:EventTrigger EventName="SelectionChanged">
+                    <i:InvokeCommandAction Command="{Binding RemoveFromInGameCommand}"
+                                           CommandParameter="{Binding ElementName=lbxInGame,Path=SelectedItem}"/>
+                </i:EventTrigger>
+            </i:Interaction.Triggers>
+        </ListView>
+        <Label Content="In game" HorizontalAlignment="Left" Margin="217,78,0,0" VerticalAlignment="Top" Width="113"/>
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="23*"/>
+                <ColumnDefinition Width="384*"/>
+            </Grid.ColumnDefinitions>
+            <Label Content="Create new" HorizontalAlignment="Left" Margin="0,9,0,0" VerticalAlignment="Top" Width="113" Grid.Column="1" Height="26"/>
+            <TextBox Text="{Binding NewPlayerName,Mode=TwoWay}" x:Name="txtNewPlayer" HorizontalAlignment="Left" Height="23" Margin="0,40,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="101" Grid.Column="1"/>
+            <Button Content="Add" Grid.Column="1" HorizontalAlignment="Left" Margin="106,40,0,0" VerticalAlignment="Top" Width="49" RenderTransformOrigin="0.702,-0.703" Height="23">
+                <i:Interaction.Triggers>
+                    <i:EventTrigger EventName="Click">
+                        <i:InvokeCommandAction Command="{Binding AddNewPlayerCommand}"
+                                               CommandParameter="{Binding ElementName=txtNewPlayer,Path=Text}"/>
+                    </i:EventTrigger>
+                </i:Interaction.Triggers>
+            </Button>
+            <Button Content="Start Game" Grid.Column="1" HorizontalAlignment="Left" Margin="229,36,0,0" VerticalAlignment="Top" Width="88" Height="32" Click="Button_Click">
+     
+            </Button>
+
+        </Grid>
+        <Label Content="Available" HorizontalAlignment="Left" Margin="23,78,0,0" VerticalAlignment="Top" Width="113"/>
+
     </Grid>
 </Window>

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using DartMaster9000.ViewModel;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -19,9 +20,24 @@ namespace DartMaster9000
     /// </summary>
     public partial class PlayerGestion : Window
     {
+        public PlayerGestionViewModel vm { get; set; }
         public PlayerGestion()
         {
+            vm = new PlayerGestionViewModel();
+            DataContext = vm;
             InitializeComponent();
+        }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            if(vm.InGamePlayers.Count == 0)
+            {
+                MessageBox.Show("No players selected");
+                return;
+            }
+            MainWindow main = new MainWindow(vm.InGamePlayers.ToList());
+            main.Show();
+            this.Close();
         }
     }
 }

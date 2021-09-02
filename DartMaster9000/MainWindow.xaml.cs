@@ -25,9 +25,9 @@ namespace DartMaster9000
     {
         private MainWindowViewModel vm;
 
-        public MainWindow()
+        public MainWindow(List<Player> players)
         {
-            vm = new MainWindowViewModel();
+            vm = new MainWindowViewModel(players);
             DataContext = vm;
             InitializeComponent();
         }

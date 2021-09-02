@@ -50,5 +50,17 @@ namespace DartMaster9000.Tools
             p.MyStats = stats;
             return p;
         }
+
+        public static List<Player> GetPlayers()
+        {
+            List<Player> players = new List<Player>();
+            foreach (var item in LoadPlayers())
+            {
+                Player p = new Player(item.Key);
+                p.MyStats = item.Value;
+                players.Add(p);
+            }
+            return players;
+        }
     }
 }

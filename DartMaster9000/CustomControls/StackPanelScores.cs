@@ -183,7 +183,8 @@ namespace DartMaster9000.CustomControls
                 {
                     Height = CHEIGHT,
                     Text = 501.ToString(),
-                    IsReadOnly = true
+                    IsReadOnly = true,
+                    IsEnabled = false
                 };
                 s.Children.Add(l);
                 s.Children.Add(t);
@@ -205,7 +206,9 @@ namespace DartMaster9000.CustomControls
             CustomTextbox txt = new CustomTextbox
             {
                 Height = CHEIGHT,
-                Text = LastTurn.score.ToString()
+                Text = LastTurn.score.ToString(),
+                IsEnabled = false
+
             };
 
             sp.Children.Insert(sp.Children.Count - 1, txt);

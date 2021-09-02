@@ -116,7 +116,7 @@ namespace DartMaster9000.ViewModel
         public RelayCommand<string> SetCurrentDartCommand { get; set; }
         #endregion
 
-        public MainWindowViewModel()
+        public MainWindowViewModel(List<Player> players)
         {
             AddScoreCommand = new RelayCommand<string>((s) => AddScore(int.Parse(s)));
             EndGameCommand = new RelayCommand(() => EndGame());
@@ -124,13 +124,7 @@ namespace DartMaster9000.ViewModel
             NextTurnCommand = new RelayCommand(() => EndTurn());
             SetCurrentDartCommand = new RelayCommand<string>((i) => SetCurrentDart(i));
 
-            //temp
-            Players = new List<Player>();
-            Players.Add(new Player("Player1"));
-            Players.Add(new Player("Player2"));
-            Players.Add(new Player("Player3"));
-            Players.Add(new Player("Player4"));
-            //======
+            Players = players;
             CurrentDart = Dart1;
             LoadPlayers();
             CurrentGame = new Game(Players);
@@ -212,6 +206,7 @@ namespace DartMaster9000.ViewModel
         {
             Dart1 = new Dart(0);
             Dart1.IsCurrentDart = true;
+            CurrentDart = Dart1;
             NotifyPropertyChanged(nameof(Dart1));
             Dart2 = new Dart(0);
             Dart3 = new Dart(0);
@@ -249,13 +244,13 @@ namespace DartMaster9000.ViewModel
 
         private void EndTurn()
         {
-            CurrentGame.PlayersTurns[CurrentPlayer].Add(CurrentTurn);
-            int player_score = CurrentGame.PlayersTurns[CurrentPlayer].Sum(x => x.score);
+            int player_score = CurrentGame.PlayersTurns[CurrentPlayer].Sum(x => x.score) + CurrentTurn.score;
             if (player_score > MAX_SCORE)
             {
                 MessageBox.Show("Player is busting.", "Warning", MessageBoxButton.OK);
                 return;
             }
+            CurrentGame.PlayersTurns[CurrentPlayer].Add(CurrentTurn);
             LastTurn = CurrentTurn;
             ResetDarts();
             NextPlayer();
