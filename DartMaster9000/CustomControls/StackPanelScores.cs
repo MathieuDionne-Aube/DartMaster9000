@@ -156,19 +156,23 @@ namespace DartMaster9000.CustomControls
         }
         protected override void OnInitialized(EventArgs e)
         {
-            InitSPTurn();
+            //InitSPTurn();
             base.OnInitialized(e);
         }
 
         private void LoadPlayersPanels()
         {
+            this.Children.Clear();
+            ScorePanels.Clear();
+            InitSPTurn();
+
             if (PlayersSource == null)
                 return;
 
             foreach (Player p in PlayersSource)
             {
-                if (ScorePanels.ContainsKey(p))
-                    continue;
+                //if (ScorePanels.ContainsKey(p))
+                //    continue;
 
                 StackPanel s = new StackPanel()
                 {
@@ -232,9 +236,9 @@ namespace DartMaster9000.CustomControls
         private void ResetScoreBoard()
         {
             this.Children.Clear();
-            InitSPTurn();
-            ScorePanels = new Dictionary<Player, StackPanel>();
+            //InitSPTurn();
             LoadPlayersPanels();
+            ScorePanels = new Dictionary<Player, StackPanel>();
         }
     }
 }

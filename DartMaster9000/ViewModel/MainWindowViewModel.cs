@@ -268,8 +268,21 @@ namespace DartMaster9000.ViewModel
             CurrentGame.IsOver = true;
             NotifyPropertyChanged(nameof(CurrentGame));
             ResetDarts();
+            ReorderPlayersByScore();
             CurrentPlayer = Players[0];
             CurrentGame = new Game(Players);
+        }
+
+
+        private void ReorderPlayersByScore()
+        {
+            List<Player> new_order = new List<Player>();
+            foreach (Player p in CurrentGame.PlayersTurns.OrderByDescending(x => x.Value.Sum(y => y.score)).Select(x=> x.Key))
+            {
+                new_order.Add(p);
+            }
+            Players = new_order;
+            NotifyPropertyChanged(nameof(Players));
         }
 
         public void LoadPlayers()
