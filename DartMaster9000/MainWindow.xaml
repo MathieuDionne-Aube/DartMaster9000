@@ -19,9 +19,12 @@
         </Grid.ColumnDefinitions>
 
         <StackPanel Orientation="Horizontal">
-            <Grid Width="620" Background="Gray">
-                <StackPanel>
-                    <Label Margin="20,0,0,0">CURRENT GAME</Label>
+            <Grid Width="616">
+                <Grid.Background>
+                    <ImageBrush  ImageSource="/Images/scoreboard_background2.png" Stretch="Fill"/>
+                </Grid.Background>
+                <StackPanel Margin="50,50,50,20">
+                    <Label Margin="0,0,0,0" Foreground="White">CURRENT GAME</Label>
                     <ct:StackPanelScores 
                                          MaxScore="{Binding Max_score,Mode=OneWay}"
                                          x:Name="spScore" 
@@ -29,7 +32,7 @@
                                          CurrentPlayer="{Binding CurrentPlayer}"
                                          LastTurn="{Binding LastTurn}" 
                                          ResetGame="{Binding CurrentGame.IsOver}"
-                                         Margin="20,20,20,20" 
+                                         Margin="0,0,0,0" 
                                          Orientation="Horizontal"
                                          />
 
@@ -38,11 +41,11 @@
                         <StackPanel  Orientation="Vertical">
                             <Border Margin="0,20,0,0" HorizontalAlignment="Center" BorderBrush="Black" BorderThickness="1">
                                 <StackPanel Margin="50,10,50,10" HorizontalAlignment="Center">
-                                    <Label HorizontalAlignment="Center">Current player</Label>
-                                    <Label x:Name="lbCurrentPlayer" Content="{Binding CurrentPlayer.Name}" HorizontalAlignment="Center"></Label>
+                                    <Label HorizontalAlignment="Center" Foreground="White">Current player</Label>
+                                    <Label x:Name="lbCurrentPlayer" Foreground="White" Content="{Binding CurrentPlayer.Name}" HorizontalAlignment="Center"></Label>
                                     <StackPanel  Orientation="Horizontal">
                                         <StackPanel FocusManager.FocusedElement="{Binding ElementName=textbox1}">
-                                            <Label>Dart1</Label>
+                                            <Label Foreground="White">Dart1</Label>
                                             <ct:CustomTextbox t:FocusExtension.IsFocused="{Binding Dart1.IsCurrentDart}"  IsReadOnly="True"  x:Name="textbox1" Text="{Binding Dart1.Value,Mode=TwoWay}" Width="50">
                                                 <TextBox.InputBindings>
                                                     <KeyBinding Command="{Binding AddScoreCommand}" CommandParameter="{Binding ElementName=textbox1,Path=Text}" Key="Enter" />
@@ -56,7 +59,7 @@
                                             </ct:CustomTextbox>
                                         </StackPanel>
                                         <StackPanel Margin="10,0,0,0">
-                                            <Label>Dart2</Label>
+                                            <Label Foreground="White">Dart2</Label>
                                             <ct:CustomTextbox t:FocusExtension.IsFocused="{Binding Dart2.IsCurrentDart}"  IsReadOnly="True"  x:Name="textbox2" Text="{Binding Dart2.Value,Mode=TwoWay}"  Width="50">
                                                 <TextBox.InputBindings>
                                                     <KeyBinding Command="{Binding AddScoreCommand}" CommandParameter="{Binding ElementName=textbox2,Path=Text}" Key="Enter" />
@@ -70,7 +73,7 @@
                                             </ct:CustomTextbox>
                                         </StackPanel>
                                         <StackPanel Margin="10,0,0,0">
-                                            <Label>Dart3</Label>
+                                            <Label Foreground="White">Dart3</Label>
                                             <ct:CustomTextbox t:FocusExtension.IsFocused="{Binding Dart3.IsCurrentDart}"  IsReadOnly="True" x:Name="textbox3" Text="{Binding Dart3.Value,Mode=TwoWay}"  Width="50">
                                                 <TextBox.InputBindings>
                                                     <KeyBinding Command="{Binding AddScoreCommand}" CommandParameter="{Binding ElementName=textbox3,Path=Text}" Key="Enter" />

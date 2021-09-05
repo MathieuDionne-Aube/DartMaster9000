@@ -103,6 +103,7 @@ namespace DartMaster9000.CustomControls
         {
             Label l = new Label();
             l.Content = "WINNING STANDINGS";
+            l.Foreground =  new SolidColorBrush(Color.FromRgb(255, 255, 255));
             LoadStandings();
             this.Children.Insert(0,l);
         }
@@ -125,6 +126,7 @@ namespace DartMaster9000.CustomControls
                 {
                     Label lb = new Label
                     {
+                        Foreground = new SolidColorBrush(Color.FromRgb(255, 255, 255)),
                         Content = lbcontent
                     };
                     standoffsLabel.Add(p, lb);

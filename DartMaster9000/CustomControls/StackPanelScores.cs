@@ -155,10 +155,12 @@ namespace DartMaster9000.CustomControls
             spTurn = new StackPanel();
             Label turns = new Label
             {
+                Foreground = new SolidColorBrush(Color.FromRgb(255, 255, 255)),
                 Content = "Turns"
             };
             Label total = new Label
             {
+                Foreground = new SolidColorBrush(Color.FromRgb(255, 255, 255)),
                 Content = "Total",
                 Height = CHEIGHT
             };
@@ -195,14 +197,14 @@ namespace DartMaster9000.CustomControls
                 };
                 Label l = new Label
                 {
+                    Foreground = new SolidColorBrush(Color.FromRgb(255, 255, 255)),
                     Content = p.Name
                 };
-                CustomTextbox t = new CustomTextbox
+                TextBox t = new TextBox
                 {
                     Height = CHEIGHT,
                     Text = MaxScore.ToString(),
-                    IsReadOnly = true,
-                    IsEnabled = false
+                    IsReadOnly = true
                 };
                 s.Children.Add(l);
                 s.Children.Add(t);
@@ -221,17 +223,16 @@ namespace DartMaster9000.CustomControls
                 return;
             StackPanel sp = ScorePanels[CurrentPlayer];
 
-            CustomTextbox txt = new CustomTextbox
+            TextBox txt = new TextBox
             {
                 Height = CHEIGHT,
                 Text = LastTurn.score.ToString(),
-                IsEnabled = false
-
+                IsReadOnly = true
             };
 
             sp.Children.Insert(sp.Children.Count - 1, txt);
 
-            CustomTextbox total = (CustomTextbox)sp.Children[sp.Children.Count - 1];
+            TextBox total = (TextBox)sp.Children[sp.Children.Count - 1];
             total.Text = (int.Parse(total.Text) - LastTurn.score).ToString();
 
             if (PlayersSource.IndexOf(CurrentPlayer) == 0)
@@ -240,6 +241,7 @@ namespace DartMaster9000.CustomControls
                 spTurn.Children.Insert(spTurn.Children.Count - 1,
                     new Label
                     {
+                        Foreground = new SolidColorBrush(Color.FromRgb(255, 255, 255)),
                         Height = CHEIGHT,
                         Margin = new Thickness(0),
                         Content = _turnNumber
