@@ -193,10 +193,14 @@ namespace DartMaster9000.ViewModel
 
                     break;
                 case "2":
+                    if (CurrentTurn.DartsThrown.Count < 1)
+                        return;
                     CurrentDart = Dart2;
                     Dart2.IsCurrentDart = true;
                     break;
                 case "3":
+                    if (CurrentTurn.DartsThrown.Count < 2)
+                        return;
                     CurrentDart = Dart3;
                     Dart3.IsCurrentDart = true;
                     break;

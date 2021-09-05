@@ -86,6 +86,7 @@
     <Compile Include="CustomControls\StackPanelScores.cs" />
     <Compile Include="CustomControls\WinningStandings.cs" />
     <Compile Include="Tools\FocusExtension.cs" />
+    <Compile Include="Tools\FontHelper.cs" />
     <Compile Include="Tools\SaveManager.cs" />
     <Compile Include="ViewModel\MainWindowViewModel.cs" />
     <Compile Include="ViewModel\PlayerGestionViewModel.cs" />
@@ -136,6 +137,9 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <Resource Include="Fonts\VeganStylePersonalUse-5Y58.ttf" />
+    <Resource Include="Fonts\SherlockHolmes-d93Bl.ttf" />
+    <Resource Include="Fonts\Carnevalee Freakshow.ttf" />
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -156,5 +160,6 @@
   <ItemGroup>
     <Resource Include="Images\scoreboard_background2.png" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

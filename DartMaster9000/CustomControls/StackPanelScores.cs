@@ -119,7 +119,7 @@ namespace DartMaster9000.CustomControls
         }
         #endregion
 
-        private const int CHEIGHT = 25;
+        private const int CHEIGHT = 30;
         private int _turnNumber = 0;
         public Dictionary<Player, StackPanel> ScorePanels { get; set; } = new Dictionary<Player, StackPanel>();
         private StackPanel spTurn;
@@ -162,7 +162,8 @@ namespace DartMaster9000.CustomControls
             {
                 Foreground = new SolidColorBrush(Color.FromRgb(255, 255, 255)),
                 Content = "Total",
-                Height = CHEIGHT
+                Height = CHEIGHT,
+                
             };
 
             spTurn.Children.Add(turns);
@@ -192,7 +193,7 @@ namespace DartMaster9000.CustomControls
 
                 StackPanel s = new StackPanel()
                 {
-                    Width = 50,
+                    Width = 80,
                     Margin = new Thickness(10, 0, 0, 0)
                 };
                 Label l = new Label

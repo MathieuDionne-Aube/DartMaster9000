@@ -1,4 +1,5 @@
 ﻿using DartMaster9000.Class;
+using DartMaster9000.Tools;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -102,10 +103,11 @@ namespace DartMaster9000.CustomControls
         private void Init()
         {
             Label l = new Label();
+            l.FontSize = 25;
             l.Content = "WINNING STANDINGS";
-            l.Foreground =  new SolidColorBrush(Color.FromRgb(255, 255, 255));
+            l.Foreground = new SolidColorBrush(Color.FromRgb(255, 255, 255));
             LoadStandings();
-            this.Children.Insert(0,l);
+            this.Children.Insert(0, l);
         }
 
 
@@ -113,13 +115,13 @@ namespace DartMaster9000.CustomControls
         {
             foreach (Player p in PlayersSource)
             {
-                string lbcontent =  $"{p.Name}  : {p.MyStats.Victories}";
-                
+                string lbcontent = $"{p.Name}  : {p.MyStats.Victories}";
+
                 if (standoffsLabel.ContainsKey(p))
                 {
                     Label lb = standoffsLabel[p];
                     lb.Content = lbcontent;
-                    
+                    lb.FontSize = 20;
                     standoffsLabel[p] = lb;
                 }
                 else
@@ -127,8 +129,9 @@ namespace DartMaster9000.CustomControls
                     Label lb = new Label
                     {
                         Foreground = new SolidColorBrush(Color.FromRgb(255, 255, 255)),
-                        Content = lbcontent
-                    };
+                        Content = lbcontent,
+                        FontSize = 20
+                };
                     standoffsLabel.Add(p, lb);
                     this.Children.Add(lb);
                 }
