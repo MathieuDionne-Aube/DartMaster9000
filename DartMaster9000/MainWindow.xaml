@@ -52,8 +52,9 @@
 
                     <Grid>
                         <StackPanel  Orientation="Vertical">
-                            <Border Margin="0,20,0,0" HorizontalAlignment="Center" BorderBrush="Black" BorderThickness="1">
-                                <StackPanel Margin="50,10,50,10" HorizontalAlignment="Center">
+                            <Border Margin="0,20,0,0" HorizontalAlignment="Center" BorderBrush="Black" BorderThickness="0">
+                                <StackPanel   Margin="50,10,50,10" HorizontalAlignment="Center">
+                             
                                     <Label HorizontalAlignment="Center" Foreground="White">Current player</Label>
                                     <Label x:Name="lbCurrentPlayer" Foreground="White" Content="{Binding CurrentPlayer.Name}" HorizontalAlignment="Center"></Label>
                                     <StackPanel  Orientation="Horizontal">
