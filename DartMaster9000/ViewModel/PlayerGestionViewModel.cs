@@ -13,6 +13,9 @@ namespace DartMaster9000.ViewModel
 {
     public class PlayerGestionViewModel : ViewModelBase
     {
+
+
+        public int Max_score { get; set; } = 121;
         private ObservableCollection<Player> _availablePlayers;
 
         public ObservableCollection<Player> AvailablePlayers
@@ -41,6 +44,7 @@ namespace DartMaster9000.ViewModel
         public RelayCommand<Player> AddToInGameCommand { get; set; }
         public RelayCommand<Player> RemoveFromInGameCommand { get; set; }
         public RelayCommand AddNewPlayerCommand { get; set; }
+        public RelayCommand<string> ChangeMaxScoreCommand { get; set; }
 
         private string _newPlayerName;
 
@@ -58,6 +62,7 @@ namespace DartMaster9000.ViewModel
             AddToInGameCommand = new RelayCommand<Player>((p) => AddToInGame(p));
             RemoveFromInGameCommand = new RelayCommand<Player>((p) => RemoveFromInGame(p));
             AddNewPlayerCommand = new RelayCommand(() => AddNewPlayer());
+            ChangeMaxScoreCommand = new RelayCommand<string>((s) => ChangeMaxScore(int.Parse(s)));
 
             AvailablePlayers = new ObservableCollection<Player>();
             foreach (Player item in SaveManager.GetPlayers())
@@ -67,6 +72,11 @@ namespace DartMaster9000.ViewModel
 
             InGamePlayers = new ObservableCollection<Player>();
 
+        }
+
+        private void ChangeMaxScore(int score)
+        {
+            Max_score = score;
         }
 
         private void AddToInGame(Player p)

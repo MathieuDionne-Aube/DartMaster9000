@@ -35,7 +35,7 @@ namespace DartMaster9000
                 MessageBox.Show("No players selected");
                 return;
             }
-            MainWindow main = new MainWindow(vm.InGamePlayers.ToList());
+            MainWindow main = new MainWindow(vm.InGamePlayers.ToList(),vm.Max_score);
             main.Show();
             this.Close();
         }

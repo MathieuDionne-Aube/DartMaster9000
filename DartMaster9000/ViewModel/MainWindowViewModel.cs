@@ -15,7 +15,7 @@ namespace DartMaster9000.ViewModel
 {
     public class MainWindowViewModel : ViewModelBase
     {
-        const int MAX_SCORE = 501;
+        public int Max_score { get; }
         #region Props
         private Game _currentGame;
         public Game CurrentGame
@@ -111,18 +111,24 @@ namespace DartMaster9000.ViewModel
         #region Commands
         public RelayCommand<string> AddScoreCommand { get; set; }
         public RelayCommand EndGameCommand { get; set; }
+        public RelayCommand ForceEndGameCommand { get; set; }
         public RelayCommand OnExitGameCommand { get; set; }
         public RelayCommand NextTurnCommand { get; set; }
         public RelayCommand<string> SetCurrentDartCommand { get; set; }
         #endregion
 
-        public MainWindowViewModel(List<Player> players)
+        public MainWindowViewModel(List<Player> players,int pmax_score)
         {
             AddScoreCommand = new RelayCommand<string>((s) => AddScore(int.Parse(s)));
             EndGameCommand = new RelayCommand(() => EndGame());
+            ForceEndGameCommand = new RelayCommand(() => ForceEndGame());
             OnExitGameCommand = new RelayCommand(() => OnExitGame());
             NextTurnCommand = new RelayCommand(() => EndTurn());
             SetCurrentDartCommand = new RelayCommand<string>((i) => SetCurrentDart(i));
+
+
+            Max_score = pmax_score;
+            NotifyPropertyChanged(nameof(Max_score));
 
             Players = players;
             CurrentDart = Dart1;
@@ -244,10 +250,17 @@ namespace DartMaster9000.ViewModel
 
         private void EndTurn()
         {
+           
             int player_score = CurrentGame.PlayersTurns[CurrentPlayer].Sum(x => x.score) + CurrentTurn.score;
-            if (player_score > MAX_SCORE)
+            if (player_score > Max_score)
             {
                 MessageBox.Show("Player is busting.", "Warning", MessageBoxButton.OK);
+                return;
+            }
+            else if (player_score == Max_score)
+            {
+                MessageBox.Show($"{CurrentPlayer.Name} won the game.", "Winner!", MessageBoxButton.OK);
+                EndGame();
                 return;
             }
             CurrentGame.PlayersTurns[CurrentPlayer].Add(CurrentTurn);
@@ -259,11 +272,7 @@ namespace DartMaster9000.ViewModel
 
         private void EndGame()
         {
-            if (MessageBox.Show($"You are gonna crown {CurrentPlayer.Name} as the winner, Continues?",
-                                "Winner",
-                                MessageBoxButton.YesNo) == MessageBoxResult.No)
-                return;
-
+        
             CurrentPlayer.MyStats.Victories++;
             CurrentGame.IsOver = true;
             NotifyPropertyChanged(nameof(CurrentGame));
@@ -271,6 +280,16 @@ namespace DartMaster9000.ViewModel
             ReorderPlayersByScore();
             CurrentPlayer = Players[0];
             CurrentGame = new Game(Players);
+        }
+
+        private void ForceEndGame()
+        {
+            if (MessageBox.Show($"You are gonna crown {CurrentPlayer.Name} as the winner, Continues?",
+                            "Winner",
+                            MessageBoxButton.YesNo) == MessageBoxResult.No)
+                return;
+
+            EndGame();
         }
 
 

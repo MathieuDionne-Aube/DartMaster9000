@@ -48,6 +48,20 @@ namespace DartMaster9000.CustomControls
     public class StackPanelScores : StackPanel
     {
         #region DependencyProperties
+        public static readonly DependencyProperty MaxScoreProperty =
+                             DependencyProperty.Register(
+                             nameof(MaxScore), typeof(int),
+                             typeof(StackPanelScores)
+                              );
+        public int MaxScore
+        {
+            get { return (int)GetValue(MaxScoreProperty); }
+            set
+            {
+                SetValue(MaxScoreProperty, value);
+            }
+        }
+
         public static readonly DependencyProperty PlayersSourceProperty =
                                DependencyProperty.Register(
                                nameof(PlayersSource), typeof(List<Player>),
@@ -186,7 +200,7 @@ namespace DartMaster9000.CustomControls
                 CustomTextbox t = new CustomTextbox
                 {
                     Height = CHEIGHT,
-                    Text = 501.ToString(),
+                    Text = MaxScore.ToString(),
                     IsReadOnly = true,
                     IsEnabled = false
                 };

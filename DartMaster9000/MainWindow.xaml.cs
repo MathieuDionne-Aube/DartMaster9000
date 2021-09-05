@@ -25,9 +25,9 @@ namespace DartMaster9000
     {
         private MainWindowViewModel vm;
 
-        public MainWindow(List<Player> players)
+        public MainWindow(List<Player> players,int max_score)
         {
-            vm = new MainWindowViewModel(players);
+            vm = new MainWindowViewModel(players,max_score);
             DataContext = vm;
             InitializeComponent();
         }

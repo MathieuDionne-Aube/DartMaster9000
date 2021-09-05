@@ -8,7 +8,7 @@
         mc:Ignorable="d"
         Title="PlayerGestion" Height="472.5" Width="414.688" ResizeMode="NoResize">
     <Grid>
-        <ListView ItemsSource="{Binding AvailablePlayers}" x:Name="lbxAvailable" HorizontalAlignment="Left" Height="313" Margin="23,104,0,0" VerticalAlignment="Top" Width="171">
+        <ListView ItemsSource="{Binding AvailablePlayers}" x:Name="lbxAvailable" HorizontalAlignment="Left" Height="289" Margin="23,128,0,0" VerticalAlignment="Top" Width="171">
             <i:Interaction.Triggers>
                 <i:EventTrigger EventName="SelectionChanged">
                     <i:InvokeCommandAction Command="{Binding AddToInGameCommand}"
@@ -16,7 +16,7 @@
                 </i:EventTrigger>
             </i:Interaction.Triggers>
         </ListView>
-        <ListView ItemsSource="{Binding InGamePlayers}" x:Name="lbxInGame" HorizontalAlignment="Left" Height="313" Margin="217,104,0,0" VerticalAlignment="Top" Width="172">
+        <ListView ItemsSource="{Binding InGamePlayers}" x:Name="lbxInGame" HorizontalAlignment="Left" Height="289" Margin="217,129,0,0" VerticalAlignment="Top" Width="172">
             <i:Interaction.Triggers>
                 <i:EventTrigger EventName="SelectionChanged">
                     <i:InvokeCommandAction Command="{Binding RemoveFromInGameCommand}"
@@ -24,15 +24,15 @@
                 </i:EventTrigger>
             </i:Interaction.Triggers>
         </ListView>
-        <Label Content="In game" HorizontalAlignment="Left" Margin="217,78,0,0" VerticalAlignment="Top" Width="113"/>
+        <Label Content="In game" HorizontalAlignment="Left" Margin="217,103,0,0" VerticalAlignment="Top" Width="113"/>
         <Grid>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="23*"/>
                 <ColumnDefinition Width="384*"/>
             </Grid.ColumnDefinitions>
-            <Label Content="Create new" HorizontalAlignment="Left" Margin="0,9,0,0" VerticalAlignment="Top" Width="113" Grid.Column="1" Height="26"/>
-            <TextBox Text="{Binding NewPlayerName,Mode=TwoWay}" x:Name="txtNewPlayer" HorizontalAlignment="Left" Height="23" Margin="0,40,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="101" Grid.Column="1"/>
-            <Button Content="Add" Grid.Column="1" HorizontalAlignment="Left" Margin="106,40,0,0" VerticalAlignment="Top" Width="49" RenderTransformOrigin="0.702,-0.703" Height="23">
+            <Label Content="Create new" HorizontalAlignment="Left" Margin="0,55,0,0" VerticalAlignment="Top" Width="113" Grid.Column="1" Height="26"/>
+            <TextBox Text="{Binding NewPlayerName,Mode=TwoWay}" x:Name="txtNewPlayer" HorizontalAlignment="Left" Height="23" Margin="0,86,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="101" Grid.Column="1"/>
+            <Button Content="Add" Grid.Column="1" HorizontalAlignment="Left" Margin="106,86,0,0" VerticalAlignment="Top" Width="49" RenderTransformOrigin="0.702,-0.703" Height="23">
                 <i:Interaction.Triggers>
                     <i:EventTrigger EventName="Click">
                         <i:InvokeCommandAction Command="{Binding AddNewPlayerCommand}"
@@ -40,12 +40,40 @@
                     </i:EventTrigger>
                 </i:Interaction.Triggers>
             </Button>
-            <Button Content="Start Game" Grid.Column="1" HorizontalAlignment="Left" Margin="229,36,0,0" VerticalAlignment="Top" Width="88" Height="32" Click="Button_Click">
-     
+            <Button Content="Start Game" Grid.Column="1" HorizontalAlignment="Left" Margin="0,10,0,0" VerticalAlignment="Top" Width="69" Height="27" Click="Button_Click" RenderTransformOrigin="0.308,1.181">
+
             </Button>
+            <GroupBox Grid.Column="1" Header="Max score" HorizontalAlignment="Left" Height="100" Margin="193,0,0,0" VerticalAlignment="Top" Width="172">
+                <StackPanel Orientation="Vertical">
+                    <RadioButton IsChecked="True" Content="121" HorizontalAlignment="Left" Height="18" Margin="10,10,0,0" VerticalAlignment="Top" Width="102">
+                        <i:Interaction.Triggers>
+                            <i:EventTrigger EventName="Checked">
+                                <i:InvokeCommandAction Command="{Binding ChangeMaxScoreCommand}"
+                                                       CommandParameter="121"/>
+                            </i:EventTrigger>
+                        </i:Interaction.Triggers>
+                    </RadioButton>
+                    <RadioButton Content="301" HorizontalAlignment="Left" Height="15" Margin="10,10,0,0" VerticalAlignment="Top" Width="102">
+                        <i:Interaction.Triggers>
+                            <i:EventTrigger EventName="Checked">
+                                <i:InvokeCommandAction Command="{Binding ChangeMaxScoreCommand}"
+                                                       CommandParameter="301"/>
+                            </i:EventTrigger>
+                        </i:Interaction.Triggers>
+                    </RadioButton>
+                    <RadioButton Content="501" HorizontalAlignment="Left" Height="14" Margin="10,10,0,0" VerticalAlignment="Top" Width="102">
+                        <i:Interaction.Triggers>
+                            <i:EventTrigger EventName="Checked">
+                                <i:InvokeCommandAction Command="{Binding ChangeMaxScoreCommand}"
+                                                       CommandParameter="501"/>
+                            </i:EventTrigger>
+                        </i:Interaction.Triggers>
+                    </RadioButton>
+                </StackPanel>
+            </GroupBox>
 
         </Grid>
-        <Label Content="Available" HorizontalAlignment="Left" Margin="23,78,0,0" VerticalAlignment="Top" Width="113"/>
+        <Label Content="Available" HorizontalAlignment="Left" Margin="23,104,0,0" VerticalAlignment="Top" Width="113" Height="24"/>
 
     </Grid>
 </Window>
