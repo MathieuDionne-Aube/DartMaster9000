@@ -264,6 +264,7 @@ namespace DartMaster9000.ViewModel
             else if (player_score == Max_score)
             {
                 MessageBox.Show($"{CurrentPlayer.Name} won the game.", "Winner!", MessageBoxButton.OK);
+                CurrentGame.PlayersTurns[CurrentPlayer].Add(CurrentTurn);
                 EndGame();
                 return;
             }
@@ -278,11 +279,12 @@ namespace DartMaster9000.ViewModel
         {
         
             CurrentPlayer.MyStats.Victories++;
+            ReorderPlayersByScore();
             CurrentGame.IsOver = true;
             NotifyPropertyChanged(nameof(CurrentGame));
             ResetDarts();
-            ReorderPlayersByScore();
             CurrentPlayer = Players[0];
+            CurrentTurn = new Turn(CurrentPlayer);
             CurrentGame = new Game(Players);
         }
 

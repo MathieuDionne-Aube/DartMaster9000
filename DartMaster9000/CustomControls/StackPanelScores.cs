@@ -119,21 +119,44 @@ namespace DartMaster9000.CustomControls
         }
         #endregion
 
-        private const int CHEIGHT = 30;
+        #region Members
+        private const int CHEIGHT = 35;
+        private const int FONTSIZE = 20;
+        private const int SCROLL_HEIGHT = 200;
         private int _turnNumber = 0;
         public Dictionary<Player, StackPanel> ScorePanels { get; set; } = new Dictionary<Player, StackPanel>();
         private StackPanel spTurn;
+        private StackPanel spPlayerNames = new StackPanel()
+        {
+            Orientation = Orientation.Horizontal
+        };
+        private StackPanel spTurnContent = new StackPanel()
+        {
+            Orientation = Orientation.Horizontal,
+            MaxHeight = SCROLL_HEIGHT,
+            MinHeight = SCROLL_HEIGHT
+        };
+        private ScrollViewer sv = new ScrollViewer
+        {
+            VerticalScrollBarVisibility = ScrollBarVisibility.Auto,
+            HorizontalScrollBarVisibility = ScrollBarVisibility.Auto,
+            MaxHeight = SCROLL_HEIGHT,
+            MinHeight = SCROLL_HEIGHT,
+            CanContentScroll = true
+        };
 
-        //static StackPanelScores()
-        //{
-        //    //DefaultStyleKeyProperty.OverrideMetadata(typeof(StackPanelScores), new FrameworkPropertyMetadata(typeof(StackPanelScores)));
-        //}
+        #endregion
 
+
+        /// <summary>
+        /// When property changes, do actions
+        /// </summary>
+        /// <param name="e"></param>
         protected override void OnPropertyChanged(DependencyPropertyChangedEventArgs e)
         {
             if (e.Property.Name == nameof(PlayersSource))
             {
-                LoadPlayersPanels();
+                LoadPlayersScorePanels();
             }
 
             if (e.Property.Name == nameof(LastTurn))
@@ -149,10 +172,18 @@ namespace DartMaster9000.CustomControls
             }
             base.OnPropertyChanged(e);
         }
+
+        /// <summary>
+        /// Initialize the stackpanel acting as the column
+        /// with labels of turn numbers
+        /// </summary>
         private void InitSPTurn()
         {
 
+            StackPanel spTurn2 = new StackPanel();
             spTurn = new StackPanel();
+
+
             Label turns = new Label
             {
                 Foreground = new SolidColorBrush(Color.FromRgb(255, 255, 255)),
@@ -163,23 +194,46 @@ namespace DartMaster9000.CustomControls
                 Foreground = new SolidColorBrush(Color.FromRgb(255, 255, 255)),
                 Content = "Total",
                 Height = CHEIGHT,
-                
+
             };
 
-            spTurn.Children.Add(turns);
+            spTurn2.Children.Add(turns);
             spTurn.Children.Add(total);
-            this.Children.Insert(0, spTurn);
-
+            spTurnContent.Children.Add(spTurn);
+            spPlayerNames.Children.Add(spTurn2);
         }
+
+        /// <summary>
+        /// initialize control
+        /// </summary>
+        /// <param name="e"></param>
         protected override void OnInitialized(EventArgs e)
         {
-            //InitSPTurn();
+            Init();
             base.OnInitialized(e);
         }
 
-        private void LoadPlayersPanels()
+        /// <summary>
+        /// Add the stackpanel containing 
+        /// the names of the players and 
+        /// the scrollviewer containing
+        /// the turns score values
+        /// </summary>
+        private void Init()
         {
-            this.Children.Clear();
+            sv.Content = spTurnContent;
+            this.Children.Add(spPlayerNames);
+            this.Children.Add(sv);
+        }
+
+        /// <summary>
+        /// Load the stackpanels acting as 
+        /// the column for each column score by turns.
+        /// Each players has a stackpanel assigned to it.
+        /// </summary>
+        private void LoadPlayersScorePanels()
+        {
+            ClearAll();
             ScorePanels.Clear();
             InitSPTurn();
 
@@ -188,9 +242,6 @@ namespace DartMaster9000.CustomControls
 
             foreach (Player p in PlayersSource)
             {
-                //if (ScorePanels.ContainsKey(p))
-                //    continue;
-
                 StackPanel s = new StackPanel()
                 {
                     Width = 80,
@@ -201,23 +252,34 @@ namespace DartMaster9000.CustomControls
                     Foreground = new SolidColorBrush(Color.FromRgb(255, 255, 255)),
                     Content = p.Name
                 };
+
+
+                StackPanel s2 = new StackPanel()
+                {
+                    Width = 80,
+                    Margin = new Thickness(10, 0, 0, 0)
+                };
                 TextBox t = new TextBox
                 {
+                    FontSize = FONTSIZE,
                     Height = CHEIGHT,
                     Text = MaxScore.ToString(),
                     IsReadOnly = true
                 };
-                s.Children.Add(l);
-                s.Children.Add(t);
 
-                this.Children.Add(s);
-                ScorePanels.Add(p, s);
+                s.Children.Add(l);
+                spPlayerNames.Children.Add(s);
+
+                s2.Children.Add(t);
+                spTurnContent.Children.Add(s2);
+                ScorePanels.Add(p, s2);
             }
         }
 
-
-
-
+        /// <summary>
+        /// Add the textbox containing the current turn score
+        /// for a player.
+        /// </summary>
         private void AddPlayerTurn()
         {
             if (ScorePanels.ContainsKey(CurrentPlayer) == false)
@@ -226,6 +288,7 @@ namespace DartMaster9000.CustomControls
 
             TextBox txt = new TextBox
             {
+                FontSize = FONTSIZE,
                 Height = CHEIGHT,
                 Text = LastTurn.score.ToString(),
                 IsReadOnly = true
@@ -248,14 +311,20 @@ namespace DartMaster9000.CustomControls
                         Content = _turnNumber
                     });
             }
+            sv.ScrollToBottom();
         }
 
         private void ResetScoreBoard()
         {
-            this.Children.Clear();
-            //InitSPTurn();
-            LoadPlayersPanels();
+            ClearAll();
             ScorePanels = new Dictionary<Player, StackPanel>();
+            LoadPlayersScorePanels();
+        }
+
+        private void ClearAll()
+        {
+            spPlayerNames.Children.Clear();
+            spTurnContent.Children.Clear();
         }
     }
 }

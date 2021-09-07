@@ -6,6 +6,7 @@
         xmlns:ct="clr-namespace:DartMaster9000.CustomControls"
         xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
         xmlns:t="clr-namespace:DartMaster9000.Tools"
+        xmlns:implementation="clr-namespace:DartMaster9000.Tools"
         mc:Ignorable="d"
         Title="MainWindow" Width="1920" Height="1048"  MinWidth="1920"  MinHeight="980" MaxWidth="1920" MaxHeight="1060" WindowState="Maximized">
     <i:Interaction.Triggers>
@@ -20,6 +21,12 @@
                 <Style TargetType="{x:Type Label}">
                     <Setter Property="FontFamily" Value="Bauhaus 93" />
                     <Setter Property="FontSize" Value="20" />
+                </Style>
+                <Style TargetType="{x:Type Path}">
+                    <Setter Property="Cursor" Value="Hand" />
+                </Style>
+                <Style TargetType="{x:Type Rectangle}">
+                    <Setter Property="Cursor" Value="Hand" />
                 </Style>
             </Style.Resources>
         </Style>
@@ -38,7 +45,7 @@
                 </Grid.Background>
                 <StackPanel Margin="50,50,50,20">
                     <Label Margin="0,0,0,0" HorizontalAlignment="Center" Foreground="White" FontSize="45" FontFamily="/DartMaster9000;component/Fonts/#SHERLOCK HOLMES">SCORES</Label>
-                    <ct:StackPanelScores 
+                        <ct:StackPanelScores 
                                          MaxScore="{Binding Max_score,Mode=OneWay}"
                                          x:Name="spScore" 
                                          PlayersSource="{Binding Players}"
@@ -46,10 +53,9 @@
                                          LastTurn="{Binding LastTurn}" 
                                          ResetGame="{Binding CurrentGame.IsOver}"
                                          Margin="0,0,0,0" 
-                                         Orientation="Horizontal"
+                                         Orientation="Vertical"
+                                        Height="250"
                                          />
-
-
                     <Grid>
                         <StackPanel  Orientation="Vertical">
                             <Border Margin="0,20,0,0" HorizontalAlignment="Center" BorderBrush="Black" BorderThickness="0">
@@ -59,7 +65,7 @@
                                     <Label x:Name="lbCurrentPlayer" Foreground="White" Content="{Binding CurrentPlayer.Name}" HorizontalAlignment="Center"></Label>
                                     <StackPanel  Orientation="Horizontal">
                                         <StackPanel FocusManager.FocusedElement="{Binding ElementName=textbox1}">
-                                            <Label Foreground="White">Dart1</Label>
+                                            <Label Foreground="White" HorizontalContentAlignment="Center">1</Label>
                                             <ct:CustomTextbox t:FocusExtension.IsFocused="{Binding Dart1.IsCurrentDart}"  IsReadOnly="True"  x:Name="textbox1" Text="{Binding Dart1.Value,Mode=TwoWay}" Width="50">
                                                 <TextBox.InputBindings>
                                                     <KeyBinding Command="{Binding AddScoreCommand}" CommandParameter="{Binding ElementName=textbox1,Path=Text}" Key="Enter" />
@@ -73,7 +79,7 @@
                                             </ct:CustomTextbox>
                                         </StackPanel>
                                         <StackPanel Margin="10,0,0,0">
-                                            <Label Foreground="White">Dart2</Label>
+                                            <Label Foreground="White" HorizontalContentAlignment="Center">2</Label>
                                             <ct:CustomTextbox t:FocusExtension.IsFocused="{Binding Dart2.IsCurrentDart}"  IsReadOnly="True"  x:Name="textbox2" Text="{Binding Dart2.Value,Mode=TwoWay}"  Width="50">
                                                 <TextBox.InputBindings>
                                                     <KeyBinding Command="{Binding AddScoreCommand}" CommandParameter="{Binding ElementName=textbox2,Path=Text}" Key="Enter" />
@@ -87,7 +93,7 @@
                                             </ct:CustomTextbox>
                                         </StackPanel>
                                         <StackPanel Margin="10,0,0,0">
-                                            <Label Foreground="White">Dart3</Label>
+                                            <Label Foreground="White" HorizontalContentAlignment="Center">3</Label>
                                             <ct:CustomTextbox t:FocusExtension.IsFocused="{Binding Dart3.IsCurrentDart}"  IsReadOnly="True" x:Name="textbox3" Text="{Binding Dart3.Value,Mode=TwoWay}"  Width="50">
                                                 <TextBox.InputBindings>
                                                     <KeyBinding Command="{Binding AddScoreCommand}" CommandParameter="{Binding ElementName=textbox3,Path=Text}" Key="Enter" />
@@ -111,11 +117,7 @@
                                     </Button>
                                 </StackPanel>
                             </Border>
-
-                            <!--<StackPanel Orientation="Vertical" x:Name="spStandoffs" HorizontalAlignment="Center" Margin="0,20,0,0">
-                                <Label>WINNING STANDINGS</Label>
-                            </StackPanel>-->
-                            <ct:WinningStandings PlayersSource="{Binding Players}" ResetGame="{Binding CurrentGame.IsOver}" HorizontalAlignment="Center" Margin="0,20,0,0" Orientation="Vertical" />
+                            <ct:WinningStandings VerticalAlignment="Bottom" PlayersSource="{Binding Players}" ResetGame="{Binding CurrentGame.IsOver}" HorizontalAlignment="Center" Margin="0,20,0,0" Orientation="Vertical" />
                         </StackPanel>
                     </Grid>
                 </StackPanel>
@@ -1049,7 +1051,7 @@
                     </i:Interaction.Triggers>
                 </Button>
                 <StackPanel Margin="10,0,0,0">
-                    <Label Foreground="White" Content="Game type" HorizontalAlignment="Left" VerticalAlignment="Top" Width="128"/>
+                    <Label Foreground="White" Content="Game type" HorizontalAlignment="Left" VerticalAlignment="Top" Width="128" Height="33"/>
                     <Label Foreground="White" Content="{Binding Max_score,Mode=OneWay}" HorizontalAlignment="Left" VerticalAlignment="Top" Width="67"/>
                 </StackPanel>
             </Grid>

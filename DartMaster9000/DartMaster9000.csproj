@@ -88,6 +88,7 @@
     <Compile Include="Model\Stats.cs" />
     <Compile Include="CustomControls\StackPanelScores.cs" />
     <Compile Include="CustomControls\WinningStandings.cs" />
+    <Compile Include="Tools\AutoScrollBehavior.cs" />
     <Compile Include="Tools\FocusExtension.cs" />
     <Compile Include="Tools\FontHelper.cs" />
     <Compile Include="Tools\SaveManager.cs" />
