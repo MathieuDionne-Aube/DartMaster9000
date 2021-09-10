@@ -45,7 +45,7 @@
                 </Grid.Background>
                 <StackPanel Margin="50,50,50,20">
                     <Label Margin="0,0,0,0" HorizontalAlignment="Center" Foreground="White" FontSize="45" FontFamily="/DartMaster9000;component/Fonts/#SHERLOCK HOLMES">SCORES</Label>
-                        <ct:StackPanelScores 
+                    <ct:StackPanelScores 
                                          MaxScore="{Binding Max_score,Mode=OneWay}"
                                          x:Name="spScore" 
                                          PlayersSource="{Binding Players}"
@@ -108,6 +108,11 @@
                                         </StackPanel>
                                     </StackPanel>
                                     <Button Margin="0,10,0,0" Content="Winner">
+                                        <Button.Resources>
+                                            <Style TargetType="Border">
+                                                <Setter Property="CornerRadius" Value="3"/>
+                                            </Style>
+                                        </Button.Resources>
                                         <i:Interaction.Triggers>
                                             <i:EventTrigger EventName="Click">
                                                 <i:InvokeCommandAction Command="{Binding ForceEndGameCommand}"/>
@@ -1043,12 +1048,17 @@
                         </i:EventTrigger>
                     </i:Interaction.Triggers>
                 </Path>
-                <Button IsEnabled="{Binding CurrentTurn.IsOver}" Content="Next Turn" HorizontalAlignment="Left" Margin="1032,24,0,0" VerticalAlignment="Top" Width="218" Height="94">
+                <Button   IsEnabled="{Binding CurrentTurn.IsOver}" Content="Next Turn" HorizontalAlignment="Left" Margin="1075,28,0,0" VerticalAlignment="Top" Width="181" Height="83">
                     <i:Interaction.Triggers>
                         <i:EventTrigger EventName="Click">
                             <i:InvokeCommandAction Command="{Binding NextTurnCommand}"/>
                         </i:EventTrigger>
                     </i:Interaction.Triggers>
+                    <Button.Resources>
+                        <Style TargetType="Border">
+                            <Setter Property="CornerRadius" Value="20"/>
+                        </Style>
+                    </Button.Resources>
                 </Button>
                 <StackPanel Margin="10,0,0,0">
                     <Label Foreground="White" Content="Game type" HorizontalAlignment="Left" VerticalAlignment="Top" Width="128" Height="33"/>

@@ -125,12 +125,12 @@ namespace DartMaster9000.CustomControls
         private const int SCROLL_HEIGHT = 200;
         private int _turnNumber = 0;
         public Dictionary<Player, StackPanel> ScorePanels { get; set; } = new Dictionary<Player, StackPanel>();
-        private StackPanel spTurn;
+        private StackPanel spTurnLabels;
         private StackPanel spPlayerNames = new StackPanel()
         {
             Orientation = Orientation.Horizontal
         };
-        private StackPanel spTurnContent = new StackPanel()
+        private StackPanel spTurnsScores = new StackPanel()
         {
             Orientation = Orientation.Horizontal,
             MaxHeight = SCROLL_HEIGHT,
@@ -161,7 +161,7 @@ namespace DartMaster9000.CustomControls
 
             if (e.Property.Name == nameof(LastTurn))
             {
-                if (spTurn != null)
+                if (spTurnLabels != null)
                     AddPlayerTurn();
             }
 
@@ -180,8 +180,8 @@ namespace DartMaster9000.CustomControls
         private void InitSPTurn()
         {
 
-            StackPanel spTurn2 = new StackPanel();
-            spTurn = new StackPanel();
+            StackPanel spTurnHeader = new StackPanel();
+            spTurnLabels = new StackPanel();
 
 
             Label turns = new Label
@@ -197,10 +197,10 @@ namespace DartMaster9000.CustomControls
 
             };
 
-            spTurn2.Children.Add(turns);
-            spTurn.Children.Add(total);
-            spTurnContent.Children.Add(spTurn);
-            spPlayerNames.Children.Add(spTurn2);
+            spTurnHeader.Children.Add(turns);
+            spTurnLabels.Children.Add(total);
+            spTurnsScores.Children.Add(spTurnLabels);
+            spPlayerNames.Children.Add(spTurnHeader);
         }
 
         /// <summary>
@@ -221,7 +221,7 @@ namespace DartMaster9000.CustomControls
         /// </summary>
         private void Init()
         {
-            sv.Content = spTurnContent;
+            sv.Content = spTurnsScores;
             this.Children.Add(spPlayerNames);
             this.Children.Add(sv);
         }
@@ -242,7 +242,7 @@ namespace DartMaster9000.CustomControls
 
             foreach (Player p in PlayersSource)
             {
-                StackPanel s = new StackPanel()
+                StackPanel spPlayerNameHeader = new StackPanel()
                 {
                     Width = 80,
                     Margin = new Thickness(10, 0, 0, 0)
@@ -254,7 +254,7 @@ namespace DartMaster9000.CustomControls
                 };
 
 
-                StackPanel s2 = new StackPanel()
+                StackPanel spTurnsScores = new StackPanel()
                 {
                     Width = 80,
                     Margin = new Thickness(10, 0, 0, 0)
@@ -267,12 +267,12 @@ namespace DartMaster9000.CustomControls
                     IsReadOnly = true
                 };
 
-                s.Children.Add(l);
-                spPlayerNames.Children.Add(s);
+                spPlayerNameHeader.Children.Add(l);
+                spPlayerNames.Children.Add(spPlayerNameHeader);
 
-                s2.Children.Add(t);
-                spTurnContent.Children.Add(s2);
-                ScorePanels.Add(p, s2);
+                spTurnsScores.Children.Add(t);
+                this.spTurnsScores.Children.Add(spTurnsScores);
+                ScorePanels.Add(p, spTurnsScores);
             }
         }
 
@@ -302,7 +302,7 @@ namespace DartMaster9000.CustomControls
             if (PlayersSource.IndexOf(CurrentPlayer) == 0)
             {
                 _turnNumber++;
-                spTurn.Children.Insert(spTurn.Children.Count - 1,
+                spTurnLabels.Children.Insert(spTurnLabels.Children.Count - 1,
                     new Label
                     {
                         Foreground = new SolidColorBrush(Color.FromRgb(255, 255, 255)),
@@ -324,7 +324,7 @@ namespace DartMaster9000.CustomControls
         private void ClearAll()
         {
             spPlayerNames.Children.Clear();
-            spTurnContent.Children.Clear();
+            spTurnsScores.Children.Clear();
         }
     }
 }
